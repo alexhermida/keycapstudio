@@ -1,0 +1,3 @@
+# Validate a single lighting keycap before expanding support
+
+The MVP supports only the user's Keychron K2 top-right 1u lighting keycap, with SVG upload, a centered legend with adjustable size, a 3D preview, and two-color 3MF export. Typed text, font selection, other keycaps, and other keyboards are deferred so that one complete workflow can be validated with a physical print before expanding compatibility. The implementation will use React and TypeScript as requested, superseding the earlier Python requirement; this does not relax the physical calibration gate or the requirement for separate, watertight body and legend meshes without overlapping volume.
