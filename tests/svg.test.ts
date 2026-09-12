@@ -29,6 +29,8 @@ describe('SVG ingestion', () => {
     ['<path d="M20 30H40V50Z" style="filter:blur(3px)"/>', 'style'],
     ['<path d="M20 30H40V50Z" fill="url(#paint)"/>', 'references'],
     ['<path d="M20 30H40V50Z" opacity="0.5"/>', 'Transparent'],
+    ['<path d="M20 30H40V50Z" fill="transparent"/>', 'opaque color'],
+    ['<path d="M20 30H40V50Z" fill="notacolor"/>', 'opaque color'],
     ['<path d="M20 30 INVALID"/>', 'path data'],
     ['<path d="M20 30H40V50Z" transform="translate(bad)"/>', 'transform'],
     ['<path d="M20 30H40V50Z" onclick="alert(1)"/>', 'attribute'],

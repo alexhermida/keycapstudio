@@ -48,7 +48,7 @@ Implementation authorized. Build the agreed MVP, verify software behavior, and c
 
 ## Verification
 
-- Geometry, SVG validation, and 3MF export are implemented. The first 20 domain tests pass, including watertightness, serialized-mesh overlap, holes, disconnected islands, invalid input rejection, and archive structure. UI/browser verification is in progress.
+- Geometry, SVG validation, and 3MF export are implemented. Domain checks cover watertightness, serialized-mesh overlap, holes, disconnected islands, invalid input rejection, and archive structure. Chromium and Firefox pass upload/edit/download, error recovery, and automated WCAG A/AA checks.
 - No physical fit or print-quality validation has been established in this project.
 - A prior external print reportedly fit the target switch, but does not validate this project's geometry.
 - Candidate 3MF XML and mesh bounds were inspected; all mesh edges have two incident triangles. Full solid validity and fit have not been verified.

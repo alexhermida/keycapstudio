@@ -12,6 +12,7 @@ The application is a static React/TypeScript editor. It has no backend, accounts
 - fflate: assemble the XML and mesh resources into a downloadable ZIP-based 3MF.
 - Vitest, Testing Library, and jsdom: domain tests and accessible UI interaction checks.
 - Playwright: browser-level upload, generation, download, and error-recovery tests.
+- axe-core: automated WCAG A/AA checks in the browser test suite.
 - ESLint and React Hooks rules: consistent correctness checks alongside TypeScript.
 - Prettier: readable, consistent formatting with a reproducible check for contributors and agents.
 

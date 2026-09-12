@@ -1,5 +1,6 @@
 import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 import { SVGPathData } from 'svg-pathdata';
+import { Color } from 'three';
 import type { Artwork, FilledPath, Point } from '../geometry/types';
 
 export const MAX_SVG_BYTES = 150_000;
@@ -104,6 +105,8 @@ export function parseArtwork(source: string): Artwork {
     const fill = properties.get('fill');
     if (fill && !/^(none|#[0-9a-f]{3}|#[0-9a-f]{6}|[a-z]+|rgb\([\d\s,.%]+\))$/i.test(fill))
       throw new Error('Use simple opaque SVG fill colors.');
+    if (fill && /^[a-z]+$/i.test(fill) && fill !== 'none' && !(fill.toLowerCase() in Color.NAMES))
+      throw new Error('Use a named opaque color, hex color, or RGB fill.');
     if (node.hasAttribute('transform')) validateTransform(node.getAttribute('transform')!);
     if (node.tagName === 'path') {
       try {

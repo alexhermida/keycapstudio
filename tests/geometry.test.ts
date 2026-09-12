@@ -64,6 +64,9 @@ describe('keycap solids', () => {
       overlap = body.intersect(legend);
     expect(body.status()).toBe('NoError');
     expect(legend.status()).toBe('NoError');
+    const bodyParts = body.decompose();
+    expect(bodyParts).toHaveLength(1);
+    bodyParts.forEach((part) => part.delete());
     expect(overlap.volume()).toBeLessThan(1e-4);
     expect(legend.boundingBox().min[2]).toBeGreaterThanOrEqual(
       KEYCAP.frontMidHeight - KEYCAP.legendDepth - 0.001,
