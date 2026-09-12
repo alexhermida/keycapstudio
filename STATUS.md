@@ -4,7 +4,7 @@ Last updated: 2026-09-12.
 
 ## Current phase
 
-Software MVP implemented and locally verified. Ready for user evaluation and a first calibration print. Physical fit remains unvalidated; user print feedback is required.
+Software MVP implemented and locally verified. The first physical trial failed: the socket was unusable/missing and the top finish was poor. Printability review and a supported follow-up trial are in progress; physical fit remains unvalidated. See CALIBRATION.md.
 
 ## Implemented
 
@@ -26,22 +26,24 @@ Software MVP implemented and locally verified. Ready for user evaluation and a f
 - Type checking, linting, and production build pass.
 - 22 unit/domain tests pass: bounds, connected body, watertight edges, volume conservation, serialized-mesh overlap, holes, islands, determinism, SVG rejection, and archive packaging.
 - Six Chromium/Firefox checks pass: actual worker generation, upload/edit/download, error recovery, session reset, and automated WCAG A/AA checks.
-- Production-build smoke test passes under a repository subpath, including lazy chunks, worker, WebAssembly, and model generation. GitHub-hosted workflow execution remains unverified until a remote is configured.
+- Production-build smoke test passes under a repository subpath, including lazy chunks, worker, WebAssembly, and model generation. GitHub-hosted quality checks passed after the initial push to main.
 - Formatting and staged-content privacy checks pass; private references and generated artifacts remain ignored.
 - A private representative SVG passed a local browser smoke check without being added to public fixtures.
 - Local browser inspection verified the desktop workspace and curved model preview.
 - Slicer CLI inspection read the sample as a manifold model with the intended 18 mm square footprint. Import diagnostics recognized one assembly and two component volumes. Interactive part selection/material reassignment remains unverified: native UI automation was unavailable, and CLI project re-export did not yield a usable verification artifact.
+- The user subsequently confirmed separate Body and Legend parts in the slicer GUI.
+- Read-only cross-section diagnostics confirm that the current upright model starts its socket boss 1 mm above the base as an unsupported layer island. All 22 domain tests still pass; these do not establish printability without supports. Photos establish the failed result, but the exact sliced project has not been inspected.
 
 ## Remaining acceptance gates
 
 - User physical print: seating, retention, removal, full travel, surrounding clearance, roof integrity, and legend quality. All mechanical values remain provisional.
-- Slicer GUI: confirm one Custom Keycap with Body and Legend parts, independently assign materials, and inspect the layer preview.
-- Public remote and Pages deployment: workflows are prepared; no remote is configured and no public deployment has been made.
+- Slicer: separate parts are confirmed; inspect actual layer/support coverage for the socket boss and cavity roof.
+- Public remote and Pages deployment: main was pushed and the user enabled Actions-based Pages with HTTPS. Deployment execution has not been verified.
 
 ## Next work
 
-- Evaluate the editor, verify the two-part slicer workflow, and report a first calibration print.
-- Configure the intended public remote and run the manual Pages deployment when ready.
+- Review the supported follow-up print and inspect its sliced project before selecting a geometry or print-workflow change.
+- Run and verify the manual Pages deployment when requested.
 - Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
 ## Scope retained

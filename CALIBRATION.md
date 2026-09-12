@@ -40,7 +40,15 @@ For each physical trial, record the model revision, relevant geometry parameters
 
 ## Physical trials
 
-No trials of this project's geometry recorded.
+### Trial 1 — failed; fit not evaluated
+
+User feedback on 2026-09-12: the first print did not produce a usable stem socket and the top finish was poor. Local photos show loose extruded strands inside the cavity, no recognizable socket boss, and pronounced surface ridges with uneven legend regions. A previous externally generated print has an intact socket and a cleaner top. Both were confirmed printed icon-up. Photos and private printing setup remain excluded. The exact sliced project and settings have not been inspected, so this comparison does not isolate every printing variable.
+
+Read-only cross-section checks of the current generator reproduce a printability hazard in its exported upright orientation: at Z=0.99 mm only the shell exists; at Z=1.01 mm a separate socket-boss region of approximately 16.37 mm² appears. The boss starts at `stemBottom = 1.0 mm`, without material beneath it. It joins the roof higher up, but whole-solid connectivity does not make those initial layers supported. The previously supplied candidate model's stem starts at Z=0; that file is still not confirmed as the exact successful print artifact.
+
+The unsupported boss is the leading explanation for the missing socket in the reported upright, unsupported trial. The cavity roof also requires a support/bridging assessment. Mesh inspection of the candidate reference confirms a horizontal top with approximately 182.39 mm² of body/legend faces at its maximum height; the current model instead has a curved, sloping top. Layer stepping is therefore another relevant difference even with matching orientation. The top's ridges and blobs cannot be assigned uniquely to support failure, layer stepping, or extrusion behavior from photos alone. The 22 existing domain tests still pass: they validate mesh structure, not a support-free printing process.
+
+A supported follow-up trial is pending. No mechanical parameter has been changed or validated. Inspect support coverage under the boss and roof in the actual sliced preview, then assess socket integrity before testing fit. Keep future comparisons to one changed variable where practical.
 
 ## Implemented provisional preset
 
