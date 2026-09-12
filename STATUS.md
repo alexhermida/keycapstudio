@@ -4,58 +4,46 @@ Last updated: 2026-09-12.
 
 ## Current phase
 
-Implementation authorized. Build the agreed MVP, verify software behavior, and commit meaningful milestones. Physical fit remains a user validation gate.
+Software MVP implemented and locally verified. Ready for user evaluation and a first calibration print. Physical fit remains unvalidated; user print feedback is required.
 
-## Confirmed
+## Implemented
 
-- TypeScript and React replace the original Python implementation requirement.
-- MVP: K2 top-right 1u lighting keycap, SVG upload, centered adjustable legend, 3D preview, and two-color 3MF export.
-- Text, font selection, and support for other keycaps/keyboards are deferred.
-- GitHub Pages hosting with all processing in the browser.
-- Maintain agent guidance, a human README, progress tracking, domain documentation, calibration records, and architectural decisions alongside the code.
-- Tests, linting, modular code, and frontend quality practices are required.
-- The repository will be public; personal printing setup details must remain outside it.
-- Approximate reproduction of the original outer shape is acceptable. Mechanical shape customization is a future direction, outside the fixed-geometry MVP.
-- MVP accepts filled-path SVG artwork. Users may convert outlines to filled paths before upload; automatic stroke conversion is deferred and unsupported strokes must produce clear guidance.
-- Single-session upload, adjust, and download is sufficient. Refresh starts a new design; editable project saving, restoration, and reopening are deferred.
-- Desktop/laptop use is the primary MVP target. Keep the layout adaptable; full mobile interaction support and mobile-specific testing are deferred.
-- Visual direction: light minimal workspace, compact left-hand controls, large softly lit 3D preview on the right, neutral interface colors, and a clear Download 3MF action.
-- The app directory is a standalone Git repository and is the intended root of the future public remote. The parent Python project is outside this repository.
+- Standalone React/TypeScript repository with a light desktop editor.
+- Local SVG upload, original examples, centered sizing, and two color controls.
+- Interactive 3D preview with orbit, zoom, top, and underside views.
+- Geometry worker with cancellation on input changes, timeout, progress, and recoverable errors.
+- Deterministic approximate K2 lighting-key geometry, hollow shell, blind cross socket, and flush inlay.
+- Separate watertight Body and Legend meshes, including disconnected legend islands.
+- Model-only 3MF with assembly/part names and independent material assignments.
+- Strict SVG validation, fill rules, transforms, implicit closure, and bounded complexity.
+- TypeScript, ESLint, Prettier, Vitest, Playwright, and automated accessibility checks.
+- GitHub quality-check and manual Pages deployment workflows.
+- Agent instructions, human documentation, calibration records, dependency rationale, and milestone commits.
+- Private artwork, photos, test exports, and local settings excluded from Git.
 
-## Completed
+## Verification evidence
 
-- Inspected the app directory: no existing application implementation.
-- Recorded domain terms and the MVP scope decision.
-- Recorded the browser-only deployment decision.
-- Added AGENTS.md, README.md, STATUS.md, CALIBRATION.md, and docs/MVP.md.
-- Added privacy guidance and removed requirements to record personal printing setup details in calibration records.
-- Recorded qualitative switch-fit evidence from an externally generated keycap.
-- Inspected a candidate reference 3MF in place: separate Keycap, Legend, and Stem parts; recorded provisional mesh measurements without copying the file or its private metadata into the repository. Its identity as the successful print remains uncertain.
-- Inspected eight original keycap photos and recorded qualitative shape observations plus tentative caliper readings. Added a local ignore rule for temporary reference files.
-- Defined front/rear orientation and recorded the user's corrected corner/midpoint heights: front 10.8/10.0 mm, rear 11.8/10.8 mm. These supersede single-height interpretations; physical print validation remains pending.
-- Inspected a private representative SVG: four disconnected filled paths, cubic curves, a nonzero viewBox origin, and no explicit closepath commands. Recorded parsing and grouping requirements without copying the artwork into public fixtures.
-- Initialized the standalone app repository on branch main. Temporary references remain ignored; no commits, remote, or publication have been created.
+- Type checking, linting, and production build pass.
+- 22 unit/domain tests pass: bounds, connected body, watertight edges, volume conservation, serialized-mesh overlap, holes, islands, determinism, SVG rejection, and archive packaging.
+- Six Chromium/Firefox checks pass: actual worker generation, upload/edit/download, error recovery, session reset, and automated WCAG A/AA checks.
+- Production-build smoke test passes under a repository subpath, including lazy chunks, worker, WebAssembly, and model generation. GitHub-hosted workflow execution remains unverified until a remote is configured.
+- Formatting and staged-content privacy checks pass; private references and generated artifacts remain ignored.
+- A private representative SVG passed a local browser smoke check without being added to public fixtures.
+- Local browser inspection verified the desktop workspace and curved model preview.
+- Slicer CLI inspection read the sample as a manifold model with the intended 18 mm square footprint. Import diagnostics recognized one assembly and two component volumes. Interactive part selection/material reassignment remains unverified: native UI automation was unavailable, and CLI project re-export did not yield a usable verification artifact.
 
-## Next
+## Remaining acceptance gates
 
-- Define export acceptance checks without recording personal printing setup details.
-- Establish the K2 variant and any existing physical calibration evidence.
-- Choose and document a simple approximate geometry using the reference observations, keeping uncertain widths and socket dimensions provisional until physical validation.
-- Resolve SVG acceptance details and the essential editing/preview workflow.
-- Prepare GitHub workflows at this repository root; remote creation and publication remain pending.
-- Select essential preview interactions and desktop browser checks during implementation.
-- Scaffold the app and quality checks after the dependent design decisions are resolved.
+- User physical print: seating, retention, removal, full travel, surrounding clearance, roof integrity, and legend quality. All mechanical values remain provisional.
+- Slicer GUI: confirm one Custom Keycap with Body and Legend parts, independently assign materials, and inspect the layer preview.
+- Public remote and Pages deployment: workflows are prepared; no remote is configured and no public deployment has been made.
 
-## Verification
+## Next work
 
-- Geometry, SVG validation, and 3MF export are implemented. Domain checks cover watertightness, serialized-mesh overlap, holes, disconnected islands, invalid input rejection, and archive structure. Chromium and Firefox pass upload/edit/download, error recovery, and automated WCAG A/AA checks.
-- No physical fit or print-quality validation has been established in this project.
-- A prior external print reportedly fit the target switch, but does not validate this project's geometry.
-- Candidate 3MF XML and mesh bounds were inspected; all mesh edges have two incident triangles. Full solid validity and fit have not been verified.
+- Evaluate the editor, verify the two-part slicer workflow, and report a first calibration print.
+- Configure the intended public remote and run the manual Pages deployment when ready.
+- Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
-## Gates and open decisions
+## Scope retained
 
-- Physical calibration requires user print feedback; provisional dimensions must not be treated as validated.
-- Front/rear orientation and approximate corner/midpoint heights are recorded. The top-width discrepancy remains documented uncertainty; an exact replica is not required, so it does not block the design interview.
-- Export acceptance procedure remains open; public compatibility targets are specified in docs/MVP.md.
-- Geometry library, remaining SVG subset details, and specific test tooling remain undecided. Visual direction is confirmed.
+One fixed 1u K2 lighting-key preset, filled SVGs, two colors, and single-session editing. Approximate outer shape is acceptable. Text, fonts, other keycaps/keyboards, editable project persistence, automatic stroke conversion, and mechanical customization remain deferred.

@@ -1,33 +1,77 @@
-# Keycap Generator
+# Keycap Studio
 
-A planned browser app for turning an SVG icon into a two-color printable keycap for the top-right lighting key of a Keychron K2.
+A browser app that turns a filled SVG icon into a two-color printable replacement for the **Keychron K2 top-right 1u lighting keycap**.
 
-## Project status
+Upload an icon, adjust its size, choose two colors, inspect the 3D model, and download a 3MF. Processing happens locally: no backend, account, telemetry, or saved-project storage.
 
-The project is in a design interview. Only documentation exists; there is no runnable app, dependency setup, automated test suite, or deployment yet. See [STATUS.md](STATUS.md) for current progress and unresolved decisions.
+**The software MVP is implemented. Mechanical fit is experimental and requires a physical test print.** See [CALIBRATION.md](CALIBRATION.md).
 
-## MVP workflow
+## Run locally
 
-1. Upload a supported SVG icon.
-2. Adjust the centered legend's size and preview the body and legend colors in 3D.
-3. Download a 3MF containing separate Body and Legend parts.
-4. Open it in the target slicer, assign materials to the parts, and prepare the print.
+Use Node.js 22.12 or newer; Node 22 is the CI target.
 
-The MVP targets one 1u lighting keycap with a Cherry MX compatible stem. Text, fonts, and other keycaps or keyboards are deferred. Physical fit still requires calibration with the user's keyboard and printer.
+```sh
+npm ci
+npm run dev
+```
 
-## Technology and hosting
+Open the URL printed by Vite. The app starts with an original example icon; upload your own SVG or try Spark/Orbit. Refreshing starts a new design.
 
-React and TypeScript, with all model processing in the browser and hosting on GitHub Pages. Uploaded SVG files remain local to the browser. Setup, development, verification, and deployment commands will be documented when the app is scaffolded.
+## Development checks
 
-This directory is a standalone Git repository intended for the public remote. The earlier Python project in the parent directory is not part of this repository. Local reference files under `_tmp/` are excluded from version control. No remote or deployment is configured yet.
+```sh
+npm run check           # Types, ESLint, unit/domain tests, production build
+npm run format:check    # Formatting
+npx playwright install chromium firefox
+npm run test:e2e        # Browser workflow and accessibility tests
+```
+
+Run `npm run build` before browser tests when source changes. `npm run test:watch` watches unit tests; `npm run format` formats source and docs. Browser tests launch a local production preview. On Linux, install browser system dependencies with `npx playwright install --with-deps chromium firefox`.
+
+## SVG support
+
+- Filled paths, disconnected regions, holes with nonzero/evenodd fill rules, and line, Bezier, and arc path commands.
+- Optional viewBox, including a nonzero origin; artwork must remain inside it when provided.
+- Groups and translate, scale, rotate, matrix, skewX, and skewY transforms.
+- Simple opaque colors and a limited set of inline fill styles.
+- Limits: 150 KB, 256 elements, 2,000 path commands, and 20,000 sampled contour points.
+
+Visible artwork bounds determine centering and size; proportions are preserved. All regions use one legend material. A single source fill color initializes the legend color picker.
+
+Convert strokes and basic shapes to filled paths first. Text, clipping, masks, gradients, transparency, embedded images, stylesheets, external references, and scripts are rejected with guidance. Very fine details can disappear during slicing; inspect the layer preview.
+
+## Printing
+
+The 3MF contains one **Custom Keycap** assembly with separately named **Body** and **Legend** parts. The legend follows the curved surface and extends 0.5 mm vertically into the roof. It may contain multiple disconnected closed solids. The parts partition the solid without intentional overlapping volume.
+
+Open the file as a model in OrcaSlicer or Snapmaker Orca, keep both parts assembled, and assign a filament to each. No printer profile or G-code is included. Choose orientation, supports, and settings in the slicer. Inspect socket access, roof support, and small icon features.
+
+Print one cap first. After cooling, check seating, retention, removal, full key travel, and clearance from surrounding keys and the case. Do not force a tight socket. Automated checks do not establish physical fit or print quality.
+
+## GitHub Pages
+
+This folder is the standalone repository root. Local references under `_tmp/` are ignored; no remote is configured yet.
+
+1. Push this repository to your intended GitHub remote.
+2. Under **Settings → Pages**, choose **GitHub Actions** as the source.
+3. Run **Deploy to GitHub Pages** from the Actions tab on `main`.
+
+Deployment is manual. It runs formatting, type/lint/unit checks, a production build, and Chromium/Firefox tests before publishing only `dist/`. **Quality checks** runs on pull requests and pushes to main. No extra secrets are needed beyond GitHub's workflow token.
+
+Relative asset URLs support both a repository subpath and a root domain. The worker and WebAssembly binary are bundled locally. Workflow structure follows the [Vite Pages guide](https://vite.dev/guide/static-deploy.html#github-pages).
 
 ## Repository guide
 
-- [MVP requirements](docs/MVP.md): agreed behavior and open product questions.
-- [Progress](STATUS.md): completed work, next steps, and verification status.
-- [Agent guide](AGENTS.md): constraints and workflow for AI contributors.
-- [Glossary](CONTEXT.md): shared domain terms.
-- [Calibration](CALIBRATION.md): measurements and physical validation records.
-- [Architecture decisions](docs/adr/): rationale for consequential choices.
+- [AGENTS.md](AGENTS.md): agent workflow, meaningful commits, and privacy constraints.
+- [STATUS.md](STATUS.md): progress, verification evidence, and remaining gates.
+- [CONTEXT.md](CONTEXT.md): domain glossary.
+- [MVP requirements](docs/MVP.md): agreed scope and exclusions.
+- [Architecture](docs/ARCHITECTURE.md): module boundaries and dependency rationale.
+- [Calibration](CALIBRATION.md): parameter choices and physical validation.
+- [Decisions](docs/adr/): architectural tradeoffs.
 
-Documentation and meaningful automated checks are part of the deliverable. Automated checks will cover the software; physical prints must establish fit and print quality.
+Core modules live in `src/svg`, `src/geometry`, and `src/export`; React components and the worker hook are separate. Mechanical values live in `src/geometry/config.ts`.
+
+## Limitations
+
+Only the K2 lighting key is supported. Text, fonts, other keys/keyboards, shape customization, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Slicer GUI material assignment and a physical print remain acceptance checks before claiming validated compatibility.

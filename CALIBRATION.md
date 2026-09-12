@@ -30,7 +30,7 @@ The 13.5 mm photo reading remains unreconciled with the initial 14.1 mm top widt
 
 On 2026-09-12, an initial user interpretation of the photos replaced the original front/rear heights of 5.1/10.4 mm with 10.5/11.5 mm. A subsequent explicit correction superseded that single-height interpretation with front corners/midpoint of 10.8/10.0 mm and rear corners/midpoint of 11.8/10.8 mm. These imply approximate edge depressions of 0.8 mm at the front and 1.0 mm at the rear, but do not define the full top surface or a precise curvature radius.
 
-The latest correction reflects distinct measurement locations on curved edges. No implemented geometry or tests exist to update, and no previously print-validated parameter was changed. Future geometry may approximate these observations; record chosen parameters and their rationale before implementation, and validate fit with a physical print.
+The latest correction reflects distinct measurement locations on curved edges. At the time of that correction no geometry or tests had been implemented, and no previously print-validated parameter was changed. The implemented provisional preset below approximates these observations; fit still requires a physical print.
 
 ## Change and validation procedure
 

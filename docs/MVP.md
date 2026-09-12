@@ -33,7 +33,7 @@ Support simple icon SVGs: filled paths, multiple paths, holes, viewBox, and comm
 
 The user accepts converting outline artwork to filled paths before upload. Automatic stroke conversion is deferred. If visible strokes contribute to the artwork, including artwork mixing fills and strokes, reject it with an actionable instruction to convert strokes to filled paths in an SVG editor and export again. Do not silently omit strokes or treat stroke-only geometry as filled artwork. A declared but non-rendering stroke, such as `stroke="none"`, is not itself unsupported artwork.
 
-Exact handling of clipping, masks, embedded raster images, and other complex SVG features is unresolved.
+The implemented subset rejects clipping, masks, gradients, transparency, embedded raster images, text, stylesheets, and external resources. Convert basic shapes to filled paths before upload. Limits are 150 KB, 256 elements, 2,000 path commands, and 20,000 sampled contour points.
 
 ### Representative input observations
 
@@ -42,7 +42,7 @@ A user-supplied local SVG contains four separate filled paths, one solid fill co
 - Preserve relative placement and aspect ratio across all paths when centering and scaling the complete legend.
 - Interpret filled subpaths using SVG fill semantics, including implicit closure when an explicit closepath command is absent. See the [SVG fill specification](https://www.w3.org/TR/SVG2/painting.html#FillProperties).
 - Allow multiple disconnected watertight solids within the single Legend part, all assigned to one material. Do not add bridges between disconnected icon shapes.
-- The reference establishes relevant input features, not implemented support or verified printability. Holes and transforms still need separate test fixtures.
+- The reference informed the implemented parser and passed a local upload smoke check. Original public fixtures cover holes and transforms separately. Printability still requires physical validation.
 
 ## Deferred
 
@@ -54,10 +54,11 @@ Personalizing the keycap's mechanical shape is an explicit future direction. V1 
 
 Maintain modular code following frontend and React practices, meaningful tests, linting, TypeScript checks, a production build, and GitHub Actions verification. Keep domain processing independently testable from the UI. Maintain agent guidance, human documentation, progress, and calibration evidence in the repository.
 
-## Open acceptance details
+## Acceptance and validation
 
-- Export acceptance procedure, including assembled part placement and independent material assignment.
-- K2 variant and existing validated geometry, if any.
-- Supported SVG subset, input limits, and legend size limits.
-- Essential preview controls and error feedback.
-- Physical print acceptance criteria and user calibration feedback.
+- Automated tests verify mesh closure, positive volumes, connected body, volume partition, serialized output, and bounded input rejection.
+- Browser tests verify upload, sizing, colors, camera controls, download, error recovery, accessibility, and session reset.
+- Legend size is the longest visible artwork dimension, from 3 to 11 mm; initial size is 8 mm.
+- Preview controls include orbit, zoom, top, and underside views. Invalid or still-generating input disables export. Camera motion does not change exported geometry.
+- GUI slicer verification must confirm assembled placement and independent Body/Legend material assignment.
+- Physical acceptance criteria and the remaining print gate are in CALIBRATION.md. No broader keyboard-variant compatibility is claimed.
