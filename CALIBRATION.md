@@ -48,7 +48,15 @@ Read-only cross-section checks of the current generator reproduce a printability
 
 The unsupported boss is the leading explanation for the missing socket in the reported upright, unsupported trial. The cavity roof also requires a support/bridging assessment. Mesh inspection of the candidate reference confirms a horizontal top with approximately 182.39 mm² of body/legend faces at its maximum height; the current model instead has a curved, sloping top. Layer stepping is therefore another relevant difference even with matching orientation. The top's ridges and blobs cannot be assigned uniquely to support failure, layer stepping, or extrusion behavior from photos alone. The 22 existing domain tests still pass: they validate mesh structure, not a support-free printing process.
 
-A supported follow-up trial is pending. No mechanical parameter has been changed or validated. Inspect support coverage under the boss and roof in the actual sliced preview, then assess socket integrity before testing fit. Keep future comparisons to one changed variable where practical.
+A supported follow-up was subsequently reported below. No mechanical parameter was changed or validated from this failed trial. Keep future comparisons to one changed variable where practical.
+
+### Trial 2 — improved supported results; incomplete acceptance
+
+User feedback on 2026-09-13: supported copies were printed in two orientations. The copy resting on a side face had a substantially better top finish, but a small region was missing. The user also reported slight relief in the legend. Two slicer screenshots and a saved project were inspected locally; these artifacts and all private process settings remain excluded from Git. Switch seating, retention, removal, and full travel have not yet been confirmed.
+
+The saved project contains the reference cap and two copies of this project's model. Part transforms preserve the Body/Legend assembly; one copy is rotated as a whole. Numerical checks reconstructed the transformed legend meshes from both saved copies and compared upper-face vertices and centroids against the intended faceted top. Each copy passed 2,656 surface samples with an absolute height deviation below 0.000002 mm and zero measured legend volume outside the intended outer solid. Fresh generation checks at two legend sizes also passed within numerical tolerance. This does not reproduce a raised legend in the stored geometry; it does not rule out slicing or printing effects.
+
+The saved archive contains model/process data and preview images but no G-code, so the actual extrusion toolpaths have not been analyzed. The missing region needs a close-up and support-coverage review before its cause is established. The reported physical relief needs comparison with the corresponding sliced toolpaths and a close-up of the print. Do not lower the legend or change socket dimensions to compensate for an unconfirmed cause. No mechanical parameters changed; no fit or print-quality gate has passed.
 
 ## Implemented provisional preset
 

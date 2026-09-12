@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-09-12.
+Last updated: 2026-09-13.
 
 ## Current phase
 
-Software MVP implemented and locally verified. The first physical trial failed: the socket was unusable/missing and the top finish was poor. Printability review and a supported follow-up trial are in progress; physical fit remains unvalidated. See CALIBRATION.md.
+Software MVP implemented and locally verified. Supported follow-up prints improved the finish, especially in the side orientation, but a small missing region and slight legend relief were reported. Saved-project inspection found no geometric legend protrusion. Physical fit remains unvalidated. See CALIBRATION.md.
 
 ## Implemented
 
@@ -33,6 +33,7 @@ Software MVP implemented and locally verified. The first physical trial failed: 
 - Slicer CLI inspection read the sample as a manifold model with the intended 18 mm square footprint. Import diagnostics recognized one assembly and two component volumes. Interactive part selection/material reassignment remains unverified: native UI automation was unavailable, and CLI project re-export did not yield a usable verification artifact.
 - The user subsequently confirmed separate Body and Legend parts in the slicer GUI.
 - Read-only cross-section diagnostics confirm that the current upright model starts its socket boss 1 mm above the base as an unsupported layer island. All 22 domain tests still pass; these do not establish printability without supports. Photos establish the failed result, but the exact sliced project has not been inspected.
+- The supported follow-up's saved project and two slicer screenshots were inspected privately. Both stored legend meshes match the intended surface within 0.000002 mm after component transforms, with zero measured protruding volume. The archive contains no G-code; actual toolpath behavior and the cause of the physical relief remain unverified.
 
 ## Remaining acceptance gates
 
@@ -42,7 +43,7 @@ Software MVP implemented and locally verified. The first physical trial failed: 
 
 ## Next work
 
-- Review the supported follow-up print and inspect its sliced project before selecting a geometry or print-workflow change.
+- Confirm socket fit and travel; inspect the missing region and legend relief in physical close-ups and the corresponding sliced toolpaths before selecting a geometry change.
 - Run and verify the manual Pages deployment when requested.
 - Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
