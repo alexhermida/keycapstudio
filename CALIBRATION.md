@@ -4,15 +4,15 @@
 
 No generated dimensions have been validated by a physical print in this project. The following working measurements describe the original Keychron K2 lighting keycap, incorporating user clarification of the reference photos.
 
-| Parameter | Working measurement | Status |
-| --- | --- | --- |
-| Bottom width | 18.0 mm | Provisional |
-| Top width | 14.1 mm | Initial value; 13.5 mm photo reading awaits clarification |
-| Front corner height | 10.8 mm | Approximate user measurement; generated geometry unvalidated |
-| Front edge midpoint height | 10.0 mm | Approximate user measurement; generated geometry unvalidated |
-| Rear corner height | 11.8 mm | Approximate user measurement; generated geometry unvalidated |
-| Rear edge midpoint height | 10.8 mm | Approximate user measurement; generated geometry unvalidated |
-| Legend inlay depth | Approximately 0.5 mm | Design target; unvalidated |
+| Parameter                  | Working measurement  | Status                                                       |
+| -------------------------- | -------------------- | ------------------------------------------------------------ |
+| Bottom width               | 18.0 mm              | Provisional                                                  |
+| Top width                  | 14.1 mm              | Initial value; 13.5 mm photo reading awaits clarification    |
+| Front corner height        | 10.8 mm              | Approximate user measurement; generated geometry unvalidated |
+| Front edge midpoint height | 10.0 mm              | Approximate user measurement; generated geometry unvalidated |
+| Rear corner height         | 11.8 mm              | Approximate user measurement; generated geometry unvalidated |
+| Rear edge midpoint height  | 10.8 mm              | Approximate user measurement; generated geometry unvalidated |
+| Legend inlay depth         | Approximately 0.5 mm | Design target; unvalidated                                   |
 
 These values are not a complete mechanical specification. Stem fit, clearances, wall thickness, surface shape, and the exact keyboard variant require evidence before compatibility can be claimed.
 
@@ -42,6 +42,31 @@ For each physical trial, record the model revision, relevant geometry parameters
 
 No trials of this project's geometry recorded.
 
+## Implemented provisional preset
+
+The first TypeScript preset uses the following values in `src/geometry/config.ts`. These are explicitly experimental choices, not validated fit dimensions. No gate has been passed and no physical result is claimed.
+
+| Parameter                          | Selected value        | Rationale                                                                            |
+| ---------------------------------- | --------------------- | ------------------------------------------------------------------------------------ |
+| Base width and depth               | 18.0 mm               | Initial base measurement; a square 1u footprint is the first approximation           |
+| Top width and depth                | 13.8 mm               | Midpoint of the uncertain 13.5/14.1 mm readings; exact reproduction was waived       |
+| Bottom corner radius               | 1.0 mm                | Rounded-shell approximation                                                          |
+| Front/rear top edge center heights | 10.0 / 10.8 mm        | Latest user observations                                                             |
+| Front/rear dish depth              | 0.8 / 1.0 mm          | Latest corner-to-midpoint differences; smoothly interpolated parabolic top           |
+| Nominal horizontal wall inset      | 1.3 mm                | Provisional structural thickness                                                     |
+| Vertical roof thickness            | 1.6 mm                | Leaves about 1.1 mm below the inlay                                                  |
+| Socket boss outside diameter       | 5.6 mm                | Structural starting point near the observed boss size                                |
+| Socket boss bottom above base      | 1.0 mm                | Provisional recess; installed height and travel need testing                         |
+| Socket cross span / arm width      | 4.04 / 1.194 mm       | Rounded candidate model opening measurements, not adopted as validated fit           |
+| Socket insertion depth             | 3.6 mm                | Provisional blind-socket depth; not measured from the original cap                   |
+| Legend depth                       | 0.5 mm vertically     | Inlaid region shares the actual faceted outer surface                                |
+| Surface refinement length          | 0.7 mm                | Bounds facet size before applying curvature                                          |
+| Legend longest dimension           | 3–11 mm, default 8 mm | Keeps the centered artwork within the roof; fine detail still requires slicer review |
+
+The shape is authored here from primitives and observations. Rounded corners and taper mean corner extrema need not equal the ideal unrounded surface formula. The SVG is scaled by its visible artwork bounds, preserving aspect ratio and the relative positions of separate paths. The inlay depth is measured vertically, rather than along each local surface normal.
+
+Physical acceptance: the socket seats without excessive force, holds without unwanted wobble, can be removed safely, and permits full key travel and return without rubbing the case or neighboring caps. The cooled print must also have an intact roof, legible flush legend, and no unintended gaps. Report these observations before changing validation status.
+
 ## External fit reference
 
 A previously printed keycap from the [Vostok Labs SVG keycap generator](https://vostoklabs.github.io/SVG-keycap-generator/) was reported to fit the target switch well, but its outer shape differed from the original keycap. This is qualitative evidence for a working switch attachment, not validation of this project's dimensions or the replacement cap's outer shape.
@@ -52,12 +77,12 @@ The user supplied a candidate 3MF, but has not confirmed that it is the exact fi
 
 The file declares millimeter units and contains Keycap, Legend, and Stem mesh parts referenced by one assembly, without component or build transforms. Read-only mesh inspection yielded:
 
-| Feature | Approximate measurement | Status |
-| --- | --- | --- |
-| Overall X/Y extent | 18.1355 × 18.1355 mm | Candidate mesh only |
-| Overall height | 11.8323 mm | Candidate mesh only |
-| Legend thickness | 0.5 mm | Candidate mesh only |
-| Cross-shaped socket opening span, each axis | 4.0386 mm | Inferred from stem bottom-plane vertices |
-| Socket opening arm width, each axis | 1.1938 mm | Inferred from stem bottom-plane vertices |
+| Feature                                     | Approximate measurement | Status                                   |
+| ------------------------------------------- | ----------------------- | ---------------------------------------- |
+| Overall X/Y extent                          | 18.1355 × 18.1355 mm    | Candidate mesh only                      |
+| Overall height                              | 11.8323 mm              | Candidate mesh only                      |
+| Legend thickness                            | 0.5 mm                  | Candidate mesh only                      |
+| Cross-shaped socket opening span, each axis | 4.0386 mm               | Inferred from stem bottom-plane vertices |
+| Socket opening arm width, each axis         | 1.1938 mm               | Inferred from stem bottom-plane vertices |
 
 Socket opening measurements do not establish insertion depth, internal taper, or fit for newly generated geometry. They are reference observations, not adopted or physically validated project parameters. Each mesh edge has two incident triangles; self-intersections, inter-part overlap, and full solid validity have not been checked.

@@ -13,6 +13,7 @@ The application is a static React/TypeScript editor. It has no backend, accounts
 - Vitest, Testing Library, and jsdom: domain tests and accessible UI interaction checks.
 - Playwright: browser-level upload, generation, download, and error-recovery tests.
 - ESLint and React Hooks rules: consistent correctness checks alongside TypeScript.
+- Prettier: readable, consistent formatting with a reproducible check for contributors and agents.
 
 No external generator code, keycap mesh, personal artwork, or printer profile is bundled. Public examples and fixtures are authored for this project.
 
