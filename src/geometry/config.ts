@@ -2,6 +2,8 @@
 export const KEYCAP = Object.freeze({
   bottomWidth: 18,
   topWidth: 13.8,
+  /** Height at which the planar taper reaches topWidth; not the dish's maximum. */
+  taperReferenceHeight: 11.3,
   cornerRadius: 1,
   frontMidHeight: 10,
   rearMidHeight: 10.8,

@@ -46,6 +46,8 @@ The 3MF contains one **Custom Keycap** assembly with separately named **Body** a
 
 Open the file as a model in OrcaSlicer or Snapmaker Orca, keep both parts assembled, and assign a filament to each. No printer profile or G-code is included. Choose orientation, supports, and settings in the slicer. Inspect socket access, roof support, and small icon features.
 
+For side-oriented calibration prints, use the slicer's lay-on-face action on a broad flat side of the newly exported model. Reapply it after geometry revisions instead of reusing an old saved rotation. Inspect first-layer coverage; the rounded corners, cavity, and socket can still need supports. Planar sides do not make the entire model support-free.
+
 Print one cap first. After cooling, check seating, retention, removal, full key travel, and clearance from surrounding keys and the case. Do not force a tight socket. Automated checks do not establish physical fit or print quality.
 
 ## GitHub Pages

@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import type { ManifoldToplevel } from 'manifold-3d';
 import { generateKeycap, initializeKernel } from '../src/geometry/generate';
-import { KEYCAP } from '../src/geometry/config';
+import { KEYCAP, topHeight } from '../src/geometry/config';
 import type { Artwork, KeycapModel, MeshData } from '../src/geometry/types';
 
 let kernel: ManifoldToplevel;
@@ -86,6 +86,103 @@ describe('keycap solids', () => {
     body.delete();
     probe.delete();
     overlap.delete();
+  });
+  it.each([
+    ['front', 1, -1],
+    ['rear', 1, 1],
+    ['left', 0, -1],
+    ['right', 0, 1],
+  ] as const)('keeps the %s exterior face planar for bed contact', (_, axis, sign) => {
+    const { positions, indices } = model.body;
+    const slope = (KEYCAP.bottomWidth - KEYCAP.topWidth) / (2 * KEYCAP.taperReferenceHeight);
+    let sideFaces = 0;
+    for (let i = 0; i < indices.length; i += 3) {
+      const [a, b, c] = [0, 1, 2].map((offset) =>
+        Array.from(positions.slice(indices[i + offset] * 3, indices[i + offset] * 3 + 3)),
+      );
+      const u = b.map((value, j) => value - a[j]);
+      const v = c.map((value, j) => value - a[j]);
+      const normal = [
+        u[1] * v[2] - u[2] * v[1],
+        u[2] * v[0] - u[0] * v[2],
+        u[0] * v[1] - u[1] * v[0],
+      ];
+      // Ignore the roof, inner walls, rounded corners, and degenerate slivers.
+      if (
+        Math.hypot(...normal) < 1e-6 ||
+        (sign * normal[axis]) / Math.hypot(...normal) < 0.9 ||
+        Math.abs((a[1 - axis] + b[1 - axis] + c[1 - axis]) / 3) > 5 ||
+        [a, b, c].some((point) => sign * point[axis] < 6)
+      )
+        continue;
+      sideFaces++;
+      for (const point of [a, b, c]) {
+        // This becomes bed Z after laying this plane down. No shallow pockets.
+        const distance =
+          (KEYCAP.bottomWidth / 2 - sign * point[axis] - slope * point[2]) / Math.hypot(1, slope);
+        expect(Math.abs(distance)).toBeLessThan(1e-5);
+      }
+    }
+    expect(sideFaces).toBeGreaterThan(1);
+    // Nothing protrudes past the face and lifts it away from the bed.
+    for (let i = 0; i < positions.length; i += 3)
+      expect(sign * positions[i + axis] + slope * positions[i + 2]).toBeLessThanOrEqual(
+        KEYCAP.bottomWidth / 2 + 1e-5,
+      );
+  });
+  it('retains the existing boss and blind cross socket at every critical height', () => {
+    const body = solid(model.body);
+    const { CrossSection: C } = kernel;
+    const allocated = [];
+    const circle = C.circle(2.8, 64);
+    const a = C.square([4.04, 1.194], true);
+    const b = C.square([1.194, 4.04], true);
+    const cross = a.add(b);
+    const socket = circle.subtract(cross);
+    const window = C.square(6, true);
+    allocated.push(circle, a, b, cross, socket, window);
+    try {
+      for (const z of [0.99, 1.01, 2.5, 4.59, 4.61]) {
+        const slice = body.slice(z);
+        const center = slice.intersect(window);
+        allocated.push(slice, center);
+        if (z < 1) expect(center.isEmpty()).toBe(true);
+        else {
+          const expected = z < 4.6 ? socket : circle;
+          const missing = expected.subtract(center);
+          const extra = center.subtract(expected);
+          allocated.push(missing, extra);
+          expect(missing.area() + extra.area()).toBeLessThan(1e-5);
+        }
+      }
+    } finally {
+      allocated.forEach((section) => section.delete());
+      body.delete();
+    }
+  });
+  it('keeps the curved legend top flush and the inlay depth unchanged', () => {
+    const { positions, indices } = model.legend;
+    let topFaces = 0;
+    for (let i = 0; i < indices.length; i += 3) {
+      const [a, b, c] = [0, 1, 2].map((offset) =>
+        Array.from(positions.slice(indices[i + offset] * 3, indices[i + offset] * 3 + 3)),
+      );
+      const u = b.map((value, j) => value - a[j]);
+      const v = c.map((value, j) => value - a[j]);
+      const normal = [
+        u[1] * v[2] - u[2] * v[1],
+        u[2] * v[0] - u[0] * v[2],
+        u[0] * v[1] - u[1] * v[0],
+      ];
+      if (normal[2] / Math.hypot(...normal) < 0.5) continue;
+      topFaces++;
+      for (const point of [a, b, c]) {
+        // Faceted approximation of the unchanged analytic dish, not an emboss.
+        expect(Math.abs(point[2] - topHeight(point[0], point[1]))).toBeLessThan(0.01);
+      }
+    }
+    expect(topFaces).toBeGreaterThan(10);
+    expect(model.legendVolume).toBeCloseTo(64 * 0.5, 3);
   });
   it('supports holes and disconnected islands at maximum size', () => {
     const art: Artwork = {

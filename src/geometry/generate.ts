@@ -46,15 +46,18 @@ export function generateKeycap(
   };
   const { Manifold: M, CrossSection: C } = kernel;
   try {
-    function shellVolume(bottomWidth: number, topWidth: number, lower: number, roofOffset: number) {
-      const section = keep(
-        keep(C.square(bottomWidth - 2 * KEYCAP.cornerRadius, true)).offset(
+    function roundedSection(width: number) {
+      return keep(
+        keep(C.square(width - 2 * KEYCAP.cornerRadius, true)).offset(
           KEYCAP.cornerRadius,
           'Round',
           2,
           32,
         ),
       );
+    }
+    function shellVolume(bottomWidth: number, topWidth: number, lower: number, roofOffset: number) {
+      const section = roundedSection(bottomWidth);
       const ratio = topWidth / bottomWidth;
       const extruded = keep(section.extrude(12, 0, 0, [ratio, ratio]));
       const refined = keep(extruded.refineToLength(KEYCAP.surfaceResolution));
@@ -65,7 +68,19 @@ export function generateKeycap(
       );
       return warped;
     }
-    const outside = shellVolume(KEYCAP.bottomWidth, KEYCAP.topWidth, 0, 0);
+    // Shape the roof independently: warping a tapered shell also bows its walls.
+    // Intersect the roof with a straight frustum so each exterior side is planar.
+    const roof = shellVolume(KEYCAP.bottomWidth, KEYCAP.bottomWidth, 0, 0);
+    const half = KEYCAP.bottomWidth / 2;
+    const envelopeHeight = Math.max(topHeight(half, -half), topHeight(half, half)) + 1;
+    const scale =
+      1 -
+      ((KEYCAP.bottomWidth - KEYCAP.topWidth) / KEYCAP.bottomWidth) *
+        (envelopeHeight / KEYCAP.taperReferenceHeight);
+    const taper = keep(
+      roundedSection(KEYCAP.bottomWidth).extrude(envelopeHeight, 0, 0, [scale, scale]),
+    );
+    const outside = keep(taper.intersect(roof));
     const cavity = shellVolume(
       KEYCAP.bottomWidth - 2 * KEYCAP.wallThickness,
       KEYCAP.topWidth - 2 * KEYCAP.wallThickness,

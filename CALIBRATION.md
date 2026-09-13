@@ -64,32 +64,45 @@ Further bed-contact inspection: the user reports that the missing side-face regi
 
 The subsequent close-up shows a crescent-shaped missing/underfilled patch near the middle of the bed-facing side's top edge. The user confirms that both material and support were absent there when printing finished, before any support removal. This rules out support-removal damage for that patch and is spatially consistent with the measured nonplanar face. The available evidence favors a bed-contact/slicing problem, although the exact extrusion paths remain unverified. The photo also shows a visibly proud, ridged legend; that remains a separate issue from side-face contact.
 
-Recommended next implementation: preserve planar tapered exterior side faces away from rounded corners, retain the curved top and existing socket dimensions, and add a regression check for side-face planarity and flush legend geometry. This is a proposed outer-shell change, not an implemented or physically validated fix. Record actual geometric differences and rerun solid/export checks before requesting another physical trial.
+The user approved a planar-side correction; its implementation and verification are recorded below. The original missing-patch result has not yet been retested physically.
 
 ## Implemented provisional preset
 
-The first TypeScript preset uses the following values in `src/geometry/config.ts`. These are explicitly experimental choices, not validated fit dimensions. No gate has been passed and no physical result is claimed.
+The current TypeScript preset uses the following values in `src/geometry/config.ts`, including the planar-side correction below. These are explicitly experimental choices, not validated fit dimensions. One earlier sample seated, but repeatable fit and full travel remain unvalidated.
 
-| Parameter                          | Selected value        | Rationale                                                                            |
-| ---------------------------------- | --------------------- | ------------------------------------------------------------------------------------ |
-| Base width and depth               | 18.0 mm               | Initial base measurement; a square 1u footprint is the first approximation           |
-| Top width and depth                | 13.8 mm               | Midpoint of the uncertain 13.5/14.1 mm readings; exact reproduction was waived       |
-| Bottom corner radius               | 1.0 mm                | Rounded-shell approximation                                                          |
-| Front/rear top edge center heights | 10.0 / 10.8 mm        | Latest user observations                                                             |
-| Front/rear dish depth              | 0.8 / 1.0 mm          | Latest corner-to-midpoint differences; smoothly interpolated parabolic top           |
-| Nominal horizontal wall inset      | 1.3 mm                | Provisional structural thickness                                                     |
-| Vertical roof thickness            | 1.6 mm                | Leaves about 1.1 mm below the inlay                                                  |
-| Socket boss outside diameter       | 5.6 mm                | Structural starting point near the observed boss size                                |
-| Socket boss bottom above base      | 1.0 mm                | Provisional recess; installed height and travel need testing                         |
-| Socket cross span / arm width      | 4.04 / 1.194 mm       | Rounded candidate model opening measurements, not adopted as validated fit           |
-| Socket insertion depth             | 3.6 mm                | Provisional blind-socket depth; not measured from the original cap                   |
-| Legend depth                       | 0.5 mm vertically     | Inlaid region shares the actual faceted outer surface                                |
-| Surface refinement length          | 0.7 mm                | Bounds facet size before applying curvature                                          |
-| Legend longest dimension           | 3–11 mm, default 8 mm | Keeps the centered artwork within the roof; fine detail still requires slicer review |
+| Parameter                          | Selected value        | Rationale                                                                                    |
+| ---------------------------------- | --------------------- | -------------------------------------------------------------------------------------------- |
+| Base width and depth               | 18.0 mm               | Initial base measurement; a square 1u footprint is the first approximation                   |
+| Nominal taper width and depth      | 13.8 mm               | Midpoint of the uncertain 13.5/14.1 mm readings; now measured at the taper reference plane   |
+| Taper reference height             | 11.3 mm               | Existing analytic top height at the middle of a left/right top edge; fixes planar side slope |
+| Bottom corner radius               | 1.0 mm                | Rounded-shell approximation                                                                  |
+| Front/rear top edge center heights | 10.0 / 10.8 mm        | Latest user observations                                                                     |
+| Front/rear dish depth              | 0.8 / 1.0 mm          | Latest corner-to-midpoint differences; smoothly interpolated parabolic top                   |
+| Nominal horizontal wall inset      | 1.3 mm                | Provisional structural thickness                                                             |
+| Vertical roof thickness            | 1.6 mm                | Leaves about 1.1 mm below the inlay                                                          |
+| Socket boss outside diameter       | 5.6 mm                | Structural starting point near the observed boss size                                        |
+| Socket boss bottom above base      | 1.0 mm                | Provisional recess; installed height and travel need testing                                 |
+| Socket cross span / arm width      | 4.04 / 1.194 mm       | Rounded candidate model opening measurements, not adopted as validated fit                   |
+| Socket insertion depth             | 3.6 mm                | Provisional blind-socket depth; not measured from the original cap                           |
+| Legend depth                       | 0.5 mm vertically     | Inlaid region shares the actual faceted outer surface                                        |
+| Surface refinement length          | 0.7 mm                | Bounds facet size before applying curvature                                                  |
+| Legend longest dimension           | 3–11 mm, default 8 mm | Keeps the centered artwork within the roof; fine detail still requires slicer review         |
 
 The shape is authored here from primitives and observations. Rounded corners and taper mean corner extrema need not equal the ideal unrounded surface formula. The SVG is scaled by its visible artwork bounds, preserving aspect ratio and the relative positions of separate paths. The inlay depth is measured vertically, rather than along each local surface normal.
 
 Physical acceptance: the socket seats without excessive force, holds without unwanted wobble, can be removed safely, and permits full key travel and return without rubbing the case or neighboring caps. The cooled print must also have an intact roof, legible flush legend, and no unintended gaps. Report these observations before changing validation status.
+
+## Geometry revision — planar exterior sides, 2026-09-13
+
+The previous construction applied the curved top-height warp to an already tapered solid. That bent the exterior sidewalls and prevented full planar bed contact in a side orientation. The corrected construction intersects a straight, rounded-square frustum with an independently curved roof volume. The broad exterior sides are planar; the rounded corners remain rounded. The cavity construction is unchanged.
+
+The base remains 18.0 mm square. The 13.8 mm nominal taper width is now anchored at Z=11.3 mm, the previous analytic mid-side top height. Each straight side obeys `abs(x or y) + (2.1 / 11.3) * z = 9`. Unlike the former constant-width top outline, the new dish perimeter follows the intersection of those planes and the curved roof. The top-height function is unchanged, but its triangulation and perimeter change slightly. Comparison with the preceding geometry found approximately 0.24 mm maximum displacement normal to the new planes at sampled non-corner side vertices, and maximum height changed from approximately 11.7511 to 11.7248 mm. These are geometric measurements, not physical validation.
+
+No socket dimensions changed: boss diameter 5.6 mm, boss bottom Z=1.0 mm, cross span/arm 4.04/1.194 mm, and blind depth 3.6 mm. The legend remains a separate flush region with 0.5 mm vertical inlay. Physical legend relief is a separate unresolved printing issue; this revision does not claim to fix it.
+
+Verification: all four side-planarity regression cases failed on the former geometry and pass on the correction. Tests check the full mesh stays behind each supporting plane, the central socket cross-sections at critical heights match the previous dimensions, the dish/inlay remain intact, and solids/export remain valid. All 28 domain tests and six Chromium/Firefox workflow/accessibility checks pass, along with types, lint, and build. An actual local-browser export was inspected and confirmed to contain the corrected geometry; the representative-artwork side-plane deviations were below 0.000001 mm.
+
+Next physical trial: export a fresh model, re-import it, and use the slicer's lay-on-face action on a broad flat side. Do not reuse the old model's rotation: the side angle changed. Inspect the first layers for continuous coverage of that face and provide supports where still needed for the cavity/socket and other overhangs. Compare the previously missing patch, then check seating, removal, full travel, and surrounding clearance. The socket is still recessed above the base in upright orientation; this is not a support-free keycap.
 
 ## External fit reference
 
