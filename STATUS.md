@@ -4,7 +4,7 @@ Last updated: 2026-09-13.
 
 ## Current phase
 
-Software MVP implemented and locally verified. Supported follow-up prints improved the finish, especially in the side orientation, but a small missing region and slight legend relief were reported. Saved-project inspection found no geometric legend protrusion. Physical fit remains unvalidated. See CALIBRATION.md.
+Software MVP implemented and locally verified. One supported side-printed sample seated after initial tightness; the upright sample and a previously successful reference model did not fit in the same trial. Full travel and repeatable fit remain unvalidated. A small missing region and slight legend relief remain under review; saved-project inspection found no geometric legend protrusion. See CALIBRATION.md.
 
 ## Implemented
 
@@ -34,6 +34,7 @@ Software MVP implemented and locally verified. Supported follow-up prints improv
 - The user subsequently confirmed separate Body and Legend parts in the slicer GUI.
 - Read-only cross-section diagnostics confirm that the current upright model starts its socket boss 1 mm above the base as an unsupported layer island. All 22 domain tests still pass; these do not establish printability without supports. Photos establish the failed result, but the exact sliced project has not been inspected.
 - The supported follow-up's saved project and two slicer screenshots were inspected privately. Both stored legend meshes match the intended surface within 0.000002 mm after component transforms, with zero measured protruding volume. The archive contains no G-code; actual toolpath behavior and the cause of the physical relief remain unverified.
+- User feedback confirms seating for one side-printed sample, initially tight. The same trial's upright sample and external reference did not fit; no dimensional change is justified from this comparison alone.
 
 ## Remaining acceptance gates
 
@@ -43,7 +44,8 @@ Software MVP implemented and locally verified. Supported follow-up prints improv
 
 ## Next work
 
-- Confirm socket fit and travel; inspect the missing region and legend relief in physical close-ups and the corresponding sliced toolpaths before selecting a geometry change.
+- Confirm full travel and clearance on the seated sample. Establish repeatable reference fit with a controlled printing baseline before selecting a socket dimension change; keep private calibration settings out of the repository.
+- Inspect the missing region and legend relief in physical close-ups and the corresponding sliced toolpaths before selecting a geometry change.
 - Run and verify the manual Pages deployment when requested.
 - Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
