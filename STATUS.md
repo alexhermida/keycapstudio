@@ -35,7 +35,7 @@ Software MVP implemented and locally verified. One supported side-printed sample
 - Read-only cross-section diagnostics confirm that the current upright model starts its socket boss 1 mm above the base as an unsupported layer island. All 22 domain tests still pass; these do not establish printability without supports. Photos establish the failed result, but the exact sliced project has not been inspected.
 - The supported follow-up's saved project and two slicer screenshots were inspected privately. Both stored legend meshes match the intended surface within 0.000002 mm after component transforms, with zero measured protruding volume. The archive contains no G-code; actual toolpath behavior and the cause of the physical relief remain unverified.
 - User feedback confirms seating for one side-printed sample, initially tight. The same trial's upright sample and external reference did not fit; no dimensional change is justified from this comparison alone.
-- Further mesh diagnostics identify a nonplanar bed-contact side in the saved orientation, spanning approximately 0–0.1754 mm above the bed. This may contribute to the missing patch; its location and timing relative to support removal still need confirmation. No geometry changed.
+- Further mesh diagnostics identify a nonplanar bed-contact side in the saved orientation, spanning approximately 0–0.1754 mm above the bed. A subsequent close-up shows a consistent crescent-shaped patch, and the user confirms missing material/support before removal. A planar-side correction is recommended but not implemented. No geometry changed.
 
 ## Remaining acceptance gates
 
@@ -46,7 +46,7 @@ Software MVP implemented and locally verified. One supported side-printed sample
 ## Next work
 
 - Confirm full travel and clearance on the seated sample. Establish repeatable reference fit with a controlled printing baseline before selecting a socket dimension change; keep private calibration settings out of the repository.
-- Inspect the missing region and legend relief in physical close-ups and the corresponding sliced toolpaths before selecting a geometry change.
+- On implementation approval, correct exterior side-face planarity without changing socket dimensions, with regression coverage and documented geometric differences. Diagnose the physical legend relief separately; stored meshes remain flush.
 - Run and verify the manual Pages deployment when requested.
 - Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
