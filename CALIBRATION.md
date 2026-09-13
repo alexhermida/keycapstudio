@@ -60,6 +60,10 @@ The saved project contains the reference cap and two copies of this project's mo
 
 The saved archive contains model/process data and preview images but no G-code, so the actual extrusion toolpaths have not been analyzed. The missing region needs a close-up and support-coverage review before its cause is established. The reported physical relief needs comparison with the corresponding sliced toolpaths and a close-up of the print. Do not lower the legend or change socket dimensions to compensate for an unconfirmed cause. No mechanical parameters changed; no fit or print-quality gate has passed.
 
+Further bed-contact inspection: the user reports that the missing side-face region remains the main problem even with support. Applying the saved assembly and build transforms to the body places its lowest point at the bed plane, but the near-horizontal, downward-facing side surface spans approximately 0–0.1754 mm above that plane. The side is not a single planar bed-contact face. Cross-sections at Z=0.01 mm have two regions, whereas sections at Z=0.05 mm and above join into one region. These are mesh sections, not verified extrusion paths. The shell-generation warp applies the top-height function throughout the tapered shell, rather than preserving planar front/rear walls.
+
+The nonplanar contact face is a concrete printability concern, but matching it to the reported missing patch still requires a close-up and confirmation of whether material was absent before support removal. Support-clearance behavior, adhesion, and removal damage have not been isolated. Review a planar-side geometry change only after identifying the affected patch; preserve the provisional socket dimensions and record any proposed outer-shell change explicitly.
+
 ## Implemented provisional preset
 
 The first TypeScript preset uses the following values in `src/geometry/config.ts`. These are explicitly experimental choices, not validated fit dimensions. No gate has been passed and no physical result is claimed.

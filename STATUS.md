@@ -35,6 +35,7 @@ Software MVP implemented and locally verified. One supported side-printed sample
 - Read-only cross-section diagnostics confirm that the current upright model starts its socket boss 1 mm above the base as an unsupported layer island. All 22 domain tests still pass; these do not establish printability without supports. Photos establish the failed result, but the exact sliced project has not been inspected.
 - The supported follow-up's saved project and two slicer screenshots were inspected privately. Both stored legend meshes match the intended surface within 0.000002 mm after component transforms, with zero measured protruding volume. The archive contains no G-code; actual toolpath behavior and the cause of the physical relief remain unverified.
 - User feedback confirms seating for one side-printed sample, initially tight. The same trial's upright sample and external reference did not fit; no dimensional change is justified from this comparison alone.
+- Further mesh diagnostics identify a nonplanar bed-contact side in the saved orientation, spanning approximately 0–0.1754 mm above the bed. This may contribute to the missing patch; its location and timing relative to support removal still need confirmation. No geometry changed.
 
 ## Remaining acceptance gates
 
