@@ -74,6 +74,16 @@ Keep the current preset unchanged as an experimental MVP baseline. In particular
 
 The physical legend is still reported raised. Earlier export checks found a flush inlay; lowering the legend without identifying the cause would be an unverified compensation. The next diagnostic evidence should be the latest sliced export containing actual toolpaths and a close-up of its printed legend. Keep those artifacts and all personal process settings private.
 
+### Toolpath follow-up — slicing lead; physical cause unconfirmed
+
+On 2026-09-16 a subsequent G-code export was inspected in place, without copying it into the repository. The user identifies its orientation as one that previously printed successfully; retain that orientation. The file is a newly supplied slice, not independently confirmed as the exact toolpaths used for the earlier printed sample.
+
+Read-only replay separated model extrusion from supports, purge operations, retractions, and travel. Model extrusion occurs at the declared layer heights, with no distinct legend-only layer-height offset. The legend's model paths are outer walls in this orientation, rather than horizontal top-surface fill. Neither observation proves flushness normal to the tilted surface or excludes physical toolhead alignment effects.
+
+Two sampled narrow legend sections contain opposing perimeter lanes whose centerline separation is substantially smaller than their nominal extrusion widths. Their commanded extrusion density is consistent with the nominal individual lanes rather than a proportional correction for their strong overlap. A local bead-envelope estimate indicates possible overpacking; it is not a measurement of deposited material or an exact comparison with the current source mesh. This makes thin-region wall generation a concrete candidate for the relief, not a confirmed root cause.
+
+The next comparison should change only the wall-generation strategy to adaptive-width generation, then inspect the resulting toolpaths before another physical trial. Compare the body/socket paths as well because this slicing change can affect them. Keep the successful geometry, orientation, and other settings unchanged. A close-up of the corresponding print and the matching saved project remain useful to distinguish path planning from physical alignment or extrusion effects. No application geometry or calibrated dimensions changed; private setup details and artifacts remain excluded.
+
 ## Implemented provisional preset
 
 The current TypeScript preset uses the following values in `src/geometry/config.ts`, including the planar-side correction below. These are experimental choices retained as a working baseline after the latest sample's reported good fit. Repeatable fit and full travel remain unvalidated; the result does not independently validate each dimension.
