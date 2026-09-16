@@ -2,7 +2,7 @@
 
 ## Validation status
 
-No generated dimensions have been validated by a physical print in this project. The following working measurements describe the original Keychron K2 lighting keycap, incorporating user clarification of the reference photos.
+The user reports improved printing after the planar-side correction and good fit for the latest sample, confirmed on 2026-09-16. Preserve that geometry as the working baseline. This establishes sample-level seating, not independent validation of every dimension, full travel, removal, retention, clearance, or repeatability. Physical legend relief remains unresolved. The following working measurements describe the original Keychron K2 lighting keycap, incorporating user clarification of the reference photos.
 
 | Parameter                  | Working measurement  | Status                                                       |
 | -------------------------- | -------------------- | ------------------------------------------------------------ |
@@ -64,11 +64,19 @@ Further bed-contact inspection: the user reports that the missing side-face regi
 
 The subsequent close-up shows a crescent-shaped missing/underfilled patch near the middle of the bed-facing side's top edge. The user confirms that both material and support were absent there when printing finished, before any support removal. This rules out support-removal damage for that patch and is spatially consistent with the measured nonplanar face. The available evidence favors a bed-contact/slicing problem, although the exact extrusion paths remain unverified. The photo also shows a visibly proud, ridged legend; that remains a separate issue from side-face contact.
 
-The user approved a planar-side correction; its implementation and verification are recorded below. The original missing-patch result has not yet been retested physically.
+The user approved a planar-side correction; its implementation and verification are recorded below. Subsequent physical feedback is recorded in Trial 3.
+
+### Trial 3 — improved print and good fit; legend quality unresolved
+
+Following the planar-side correction (`9c85b06`), the user reported that the new print was better, with remaining concerns about appearance and a raised legend compared with the external reference. On 2026-09-16 the user confirmed that the latest cap fits well. This is feedback on the reported corrected-model trial; its exact printed artifact and sliced toolpaths have not been inspected. Do not infer individually confirmed full travel, retention, removal, surrounding clearance, or repeatability from the general fit report.
+
+Keep the current preset unchanged as an experimental MVP baseline. In particular, retain the socket span/arm of 4.04/1.194 mm and insertion depth of 3.6 mm. No parameter changed in recording this result. The improved print report supports keeping the planar-side correction, but there is no new close-up or toolpath inspection quantifying the former missing patch.
+
+The physical legend is still reported raised. Earlier export checks found a flush inlay; lowering the legend without identifying the cause would be an unverified compensation. The next diagnostic evidence should be the latest sliced export containing actual toolpaths and a close-up of its printed legend. Keep those artifacts and all personal process settings private.
 
 ## Implemented provisional preset
 
-The current TypeScript preset uses the following values in `src/geometry/config.ts`, including the planar-side correction below. These are explicitly experimental choices, not validated fit dimensions. One earlier sample seated, but repeatable fit and full travel remain unvalidated.
+The current TypeScript preset uses the following values in `src/geometry/config.ts`, including the planar-side correction below. These are experimental choices retained as a working baseline after the latest sample's reported good fit. Repeatable fit and full travel remain unvalidated; the result does not independently validate each dimension.
 
 | Parameter                          | Selected value        | Rationale                                                                                    |
 | ---------------------------------- | --------------------- | -------------------------------------------------------------------------------------------- |
@@ -102,7 +110,7 @@ No socket dimensions changed: boss diameter 5.6 mm, boss bottom Z=1.0 mm, cross 
 
 Verification: all four side-planarity regression cases failed on the former geometry and pass on the correction. Tests check the full mesh stays behind each supporting plane, the central socket cross-sections at critical heights match the previous dimensions, the dish/inlay remain intact, and solids/export remain valid. All 28 domain tests and six Chromium/Firefox workflow/accessibility checks pass, along with types, lint, and build. An actual local-browser export was inspected and confirmed to contain the corrected geometry; the representative-artwork side-plane deviations were below 0.000001 mm.
 
-Next physical trial: export a fresh model, re-import it, and use the slicer's lay-on-face action on a broad flat side. Do not reuse the old model's rotation: the side angle changed. Inspect the first layers for continuous coverage of that face and provide supports where still needed for the cavity/socket and other overhangs. Compare the previously missing patch, then check seating, removal, full travel, and surrounding clearance. The socket is still recessed above the base in upright orientation; this is not a support-free keycap.
+Repeat-trial guidance: export a fresh model, re-import it, and use the slicer's lay-on-face action on a broad flat side. Do not reuse the old model's rotation: the side angle changed. Inspect the first layers for continuous coverage of that face and provide supports where still needed for the cavity/socket and other overhangs. Trial 3 reports improved printing and good fit; removal, full travel, and surrounding clearance still need explicit confirmation. The socket is still recessed above the base in upright orientation; this is not a support-free keycap.
 
 ## External fit reference
 

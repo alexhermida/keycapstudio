@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-09-13.
+Last updated: 2026-09-16.
 
 ## Current phase
 
-Planar exterior-side correction implemented and locally verified; ready for a fresh side-oriented calibration print. Socket dimensions are unchanged. One pre-fix side-printed sample seated after initial tightness, but full travel and repeatable fit remain unvalidated. The physical legend relief remains a separate unresolved issue. See CALIBRATION.md.
+Experimental MVP baseline: the user reports improved printing after the planar-side correction and confirms that the latest cap fits well. Preserve the current geometry and socket dimensions. Full travel, clearance, retention, removal, and repeatability have not been individually confirmed; physical legend relief remains unresolved. Remote main contains the correction, but the public site still serves the earlier deployment. See CALIBRATION.md.
 
 ## Implemented
 
@@ -36,18 +36,21 @@ Planar exterior-side correction implemented and locally verified; ready for a fr
 - The supported follow-up's saved project and two slicer screenshots were inspected privately. Both stored legend meshes match the intended surface within 0.000002 mm after component transforms, with zero measured protruding volume. The archive contains no G-code; actual toolpath behavior and the cause of the physical relief remain unverified.
 - User feedback confirms seating for one side-printed sample, initially tight. The same trial's upright sample and external reference did not fit; no dimensional change is justified from this comparison alone.
 - Pre-fix mesh diagnostics identified a nonplanar bed-contact side spanning approximately 0–0.1754 mm above the bed in the saved orientation. A close-up showed a consistent crescent-shaped patch absent before support removal. The approved correction now separates the straight taper from the curved roof; all four exterior plane regressions pass. The representative local SVG also generated and downloaded corrected geometry with no browser errors.
+- Follow-up feedback reports improved printing and, on 2026-09-16, good fit for the latest sample. This is sample-level seating evidence, not validation of every mechanical dimension or printing setup. The legend still appears raised; no geometry changed in response.
+- Read-only deployment checks on 2026-09-16: the configured custom-domain app returns HTTP 200. The latest successful Pages workflow is run 34706535559 at revision `9cbb065` (2026-09-12), while remote main is `9c85b06`, containing the planar-side correction. The public deployment is behind the corrected baseline.
 
 ## Remaining acceptance gates
 
-- User physical print: seating, retention, removal, full travel, surrounding clearance, roof integrity, and legend quality. All mechanical values remain provisional.
+- User physical print: good seating is reported for the latest sample. Retention, removal, full travel, surrounding clearance, repeatability, and flush legend quality remain to be established. Dimensions are retained as the working baseline, not a broadly validated fit specification.
 - Slicer: separate parts are confirmed; inspect actual layer/support coverage for the socket boss and cavity roof.
-- Public remote and Pages deployment: main was pushed and the user enabled Actions-based Pages with HTTPS. Deployment execution has not been verified.
+- Public Pages deployment: rerun the manual deployment on corrected main, with user authorization, and verify the resulting version and browser workflow.
 
 ## Next work
 
-- Confirm full travel and clearance on the seated sample. Establish repeatable reference fit with a controlled printing baseline before selecting a socket dimension change; keep private calibration settings out of the repository.
-- Test a fresh corrected export, using lay-on-face again rather than the old saved rotation. Verify first-layer coverage and the missing patch. Diagnose physical legend relief separately; the generated inlay remains flush.
-- Run and verify the manual Pages deployment when requested.
+- Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
+- Diagnose physical legend relief separately using the latest sliced export containing toolpaths and a close-up of the corresponding print. Earlier model checks found a flush inlay; they do not establish the cause of physical relief.
+- Run and verify the manual Pages deployment when requested; pushing main alone does not publish it.
+- After the baseline and legend investigation, consider a bounded socket-fit adjustment with today's dimensions as the default. Isolate stem/socket generation internally while retaining Body + Legend export; a separately exported Stem is not needed for this control. UI implementation and the physically tested adjustment range remain future work.
 - Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
 ## Scope retained

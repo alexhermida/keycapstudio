@@ -4,7 +4,7 @@ A browser app that turns a filled SVG icon into a two-color printable replacemen
 
 Upload an icon, adjust its size, choose two colors, inspect the 3D model, and download a 3MF. Processing happens locally: no backend, account, telemetry, or saved-project storage.
 
-**The software MVP is implemented. Mechanical fit is experimental and requires a physical test print.** See [CALIBRATION.md](CALIBRATION.md).
+**Experimental MVP:** a physical sample of the current geometry is reported to fit well, but broader mechanical validation is incomplete. A raised legend remains a known print-quality issue despite flush exported geometry. Test your own print; see [CALIBRATION.md](CALIBRATION.md).
 
 ## Run locally
 
@@ -52,13 +52,13 @@ Print one cap first. After cooling, check seating, retention, removal, full key 
 
 ## GitHub Pages
 
-This folder is the standalone repository root. Local references under `_tmp/` are ignored; no remote is configured yet.
+This folder is the standalone repository root. Local references under `_tmp/` are ignored.
 
 1. Push this repository to your intended GitHub remote.
 2. Under **Settings → Pages**, choose **GitHub Actions** as the source.
 3. Run **Deploy to GitHub Pages** from the Actions tab on `main`.
 
-Deployment is manual. It runs formatting, type/lint/unit checks, a production build, and Chromium/Firefox tests before publishing only `dist/`. **Quality checks** runs on pull requests and pushes to main. No extra secrets are needed beyond GitHub's workflow token.
+Deployment is manual: pushing main does not update the public app. It runs formatting, type/lint/unit checks, a production build, and Chromium/Firefox tests before publishing only `dist/`. **Quality checks** runs on pull requests and pushes to main. No extra secrets are needed beyond GitHub's workflow token. Check the successful deployment's commit against the intended revision; current verification evidence is recorded in [STATUS.md](STATUS.md).
 
 Relative asset URLs support both a repository subpath and a root domain. The worker and WebAssembly binary are bundled locally. Workflow structure follows the [Vite Pages guide](https://vite.dev/guide/static-deploy.html#github-pages).
 
@@ -76,4 +76,4 @@ Core modules live in `src/svg`, `src/geometry`, and `src/export`; React componen
 
 ## Limitations
 
-Only the K2 lighting key is supported. Text, fonts, other keys/keyboards, shape customization, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Slicer GUI material assignment and a physical print remain acceptance checks before claiming validated compatibility.
+Only the K2 lighting key is supported. Text, fonts, other keys/keyboards, shape customization, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Separate Body/Legend parts are user-confirmed in the slicer. Good fit is reported for the latest sample, but full travel, clearance, retention, removal, and repeatability have not been individually confirmed. Physical legend relief remains unresolved; no broadly validated compatibility or print-quality claim is made.
