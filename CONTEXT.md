@@ -14,6 +14,9 @@ The 1u keycap at the top-right of the user's Keychron K2, used for the keyboard'
 **Body**:
 The structural part of a keycap, including its shell and switch attachment.
 
+**Stem**:
+The keycap's internal boss surrounding the stem socket and joining it to the roof; distinct from the switch's moving stem.
+
 **Stem socket**:
 The opening on the underside of the keycap that receives the keyboard switch's stem.
 _Avoid_: Switch

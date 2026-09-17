@@ -1,6 +1,7 @@
 import Module from 'manifold-3d';
 import type { Manifold, CrossSection, ManifoldToplevel, Mesh } from 'manifold-3d';
 import { KEYCAP, topHeight } from './config';
+import { attachStem } from './stem';
 import type { Artwork, KeycapModel, MeshData } from './types';
 
 export async function initializeKernel(wasmUrl?: string): Promise<ManifoldToplevel> {
@@ -44,7 +45,7 @@ export function generateKeycap(
     allocated.push(solid);
     return solid;
   };
-  const { Manifold: M, CrossSection: C } = kernel;
+  const { CrossSection: C } = kernel;
   try {
     function roundedSection(width: number) {
       return keep(
@@ -88,28 +89,7 @@ export function generateKeycap(
       KEYCAP.roofThickness,
     );
     const shell = keep(outside.subtract(cavity));
-    const stem = keep(
-      keep(
-        M.cylinder(12, KEYCAP.stemOuterDiameter / 2, KEYCAP.stemOuterDiameter / 2, 64),
-      ).translate([0, 0, KEYCAP.stemBottom]),
-    );
-    const joined = keep(keep(shell.add(stem)).intersect(outside));
-    const socketHeight = KEYCAP.stemBottom + KEYCAP.socketDepth + 1;
-    const a = keep(
-      keep(M.cube([KEYCAP.socketSpan, KEYCAP.socketArm, socketHeight], true)).translate([
-        0,
-        0,
-        socketHeight / 2 - 1,
-      ]),
-    );
-    const b = keep(
-      keep(M.cube([KEYCAP.socketArm, KEYCAP.socketSpan, socketHeight], true)).translate([
-        0,
-        0,
-        socketHeight / 2 - 1,
-      ]),
-    );
-    const full = keep(joined.subtract(keep(a.add(b))));
+    const full = keep(attachStem(kernel, shell, outside));
     const sections = artwork.paths.map((path) => keep(new C(path.contours, path.fillRule)));
     if (!sections.length) throw new Error('SVG has no filled shapes.');
     const combined = keep(C.union(sections));

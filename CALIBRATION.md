@@ -130,6 +130,12 @@ Verification: all four side-planarity regression cases failed on the former geom
 
 Repeat-trial guidance: export a fresh model, re-import it, and use the slicer's lay-on-face action on a broad flat side. Do not reuse the old model's rotation: the side angle changed. Inspect the first layers for continuous coverage of that face and provide supports where still needed for the cavity/socket and other overhangs. Trial 3 reports improved printing and good fit; removal, full travel, and surrounding clearance still need explicit confirmation. The socket is still recessed above the base in upright orientation; this is not a support-free keycap.
 
+## Implementation revision — stem module extraction, 2026-09-16
+
+Stem/socket assembly moved from `generate.ts` into `stem.ts` without changing any mechanical value, operation order, or exported part. The boss is still joined to the shell, clipped to the exterior, and then cut by the blind socket. The module owns its temporary geometry; its caller owns inputs and the returned body solid.
+
+Before extraction, mesh fingerprints were captured from the existing generator using an original square legend at sizes 3, 8, and 11 mm. They match byte-for-byte after extraction for both Body and Legend positions and indices. Direct module tests also verify attachment, clipping, socket sections, and ownership; the existing full-model socket/roof checks remain. This is software equivalence evidence, not additional physical validation. The adaptive-width print trial and remaining mechanical observations are still pending. Any future socket-fit control must retain these defaults and document changes and physical verification here.
+
 ## External fit reference
 
 A previously printed keycap from the [Vostok Labs SVG keycap generator](https://vostoklabs.github.io/SVG-keycap-generator/) was reported to fit the target switch well, but its outer shape differed from the original keycap. This is qualitative evidence for a working switch attachment, not validation of this project's dimensions or the replacement cap's outer shape.

@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 2026-09-16.
+Last updated: 2026-09-17.
 
 ## Current phase
 
@@ -13,6 +13,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 - Interactive 3D preview with orbit, zoom, top, and underside views.
 - Geometry worker with cancellation on input changes, timeout, progress, and recoverable errors.
 - Deterministic approximate K2 lighting-key geometry, hollow shell, blind cross socket, and flush inlay.
+- Isolated stem/socket assembly module with explicit geometry ownership and unchanged fixed dimensions. Advanced switch-fit control documented as future work, not implemented.
 - Separate watertight Body and Legend meshes, including disconnected legend islands.
 - Model-only 3MF with assembly/part names and independent material assignments.
 - Strict SVG validation, fill rules, transforms, implicit closure, and bounded complexity.
@@ -24,7 +25,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 ## Verification evidence
 
 - Type checking, linting, and production build pass.
-- 28 unit/domain tests pass: four exterior-plane regressions, preserved socket cross-sections, curved inlay checks, bounds, connected body, watertight edges, volume conservation, serialized-mesh overlap, holes, islands, determinism, SVG rejection, and archive packaging.
+- 34 unit/domain tests pass: three pre-extraction mesh fingerprints, three direct stem/socket tests, four exterior-plane regressions, preserved socket cross-sections, curved inlay checks, bounds, connected body, watertight edges, volume conservation, serialized-mesh overlap, holes, islands, determinism, SVG rejection, and archive packaging.
 - Six Chromium/Firefox checks pass: actual worker generation, upload/edit/download, error recovery, session reset, and automated WCAG A/AA checks.
 - Production-build smoke test passes under a repository subpath, including lazy chunks, worker, WebAssembly, and model generation. GitHub-hosted quality checks passed after the initial push to main.
 - Formatting and staged-content privacy checks pass; private references and generated artifacts remain ignored.
@@ -53,7 +54,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
 - Physically compare the adaptive-width slice against the existing sample, retaining the successful orientation and avoiding further simultaneous adjustments. Check legend relief, preserved icon detail, and socket fit; provide a close-up. The toolpath comparison supports a slicing-related overpacking hypothesis, but the physical cause is not confirmed. A matching saved project remains necessary for exact mesh-to-toolpath comparison.
 - Future code changes still require a manual Pages deployment; pushing main alone does not publish them.
-- After the baseline and legend investigation, consider a bounded socket-fit adjustment with today's dimensions as the default. Isolate stem/socket generation internally while retaining Body + Legend export; a separately exported Stem is not needed for this control. UI implementation and the physically tested adjustment range remain future work.
+- Stem/socket isolation is complete with unchanged output. After the baseline and legend investigation, plan physical calibration for the documented Advanced switch-fit control before choosing its adjustment semantics, bounds, and step size. Keep today's dimensions as the default and retain Body + Legend export. UI implementation remains future work.
 - Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
 ## Scope retained

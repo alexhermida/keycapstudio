@@ -50,6 +50,12 @@ Typed text, font selection, automatic SVG stroke conversion, PNG input, other ke
 
 Personalizing the keycap's mechanical shape is an explicit future direction. V1 retains one fixed geometry preset; keeping mechanical parameters centralized supports later work without adding a geometry editor now.
 
+### Planned follow-up: Switch fit
+
+The next narrowly scoped mechanical control is planned under an **Advanced** section, after the current print-quality and fit checks. Its purpose is to adjust only the cross-shaped socket opening, leaving the outer keycap, boss diameter, socket depth, and legend unchanged. Keep the current opening dimensions as the default, provide Reset, and clearly distinguish tighter from looser adjustment. Continue exporting Body + Legend with the stem joined into Body.
+
+The stem/socket module is now isolated and tested without changing its output. The UI, request parameters, and adjustment logic are not implemented. Exact adjustment semantics, minimum/maximum values, and step size remain open until a physical calibration plan establishes a suitable range; do not invent validated tight/loose presets. This does not authorize a general geometry editor or additional keyboard support.
+
 ## Engineering requirements
 
 Maintain modular code following frontend and React practices, meaningful tests, linting, TypeScript checks, a production build, and GitHub Actions verification. Keep domain processing independently testable from the UI. Maintain agent guidance, human documentation, progress, and calibration evidence in the repository.

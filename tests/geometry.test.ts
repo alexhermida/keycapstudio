@@ -1,4 +1,5 @@
 import { beforeAll, describe, expect, it } from 'vitest';
+import { createHash } from 'node:crypto';
 import type { ManifoldToplevel } from 'manifold-3d';
 import { generateKeycap, initializeKernel } from '../src/geometry/generate';
 import { KEYCAP, topHeight } from '../src/geometry/config';
@@ -53,6 +54,20 @@ describe('keycap solids', () => {
   beforeAll(() => {
     model = generateKeycap(kernel, square, 8);
   }, 30000);
+  it.each([
+    [3, '3d5071d95925e18525d65c0a14e65f3e3170fb8610cadb351d93bed25c22d6ea'],
+    [8, '726f3de7071decb352957197409d3659db131eed8a236db6b7d0301c9f2a4af3'],
+    [11, '716ad4575c953131bb054337e53391394d4183c700911e75202aa95d84697a96'],
+  ] as const)('preserves the pre-extraction mesh baseline at legend size %s', (size, digest) => {
+    // Captured before extracting stem generation. Review geometry/calibration changes
+    // before updating these fingerprints; do not regenerate them to hide a regression.
+    const result = generateKeycap(kernel, square, size);
+    const hash = createHash('sha256');
+    for (const mesh of [result.body, result.legend])
+      for (const array of [mesh.positions, mesh.indices])
+        hash.update(new Uint8Array(array.buffer, array.byteOffset, array.byteLength));
+    expect(hash.digest('hex')).toBe(digest);
+  });
   it('produces closed, positive-volume meshes and conserves volume', () => {
     assertClosed(model.body);
     assertClosed(model.legend);

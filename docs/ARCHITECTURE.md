@@ -26,3 +26,11 @@ No external generator code, keycap mesh, personal artwork, or printer profile is
 - The UI owns colors, file selection, legend size, progress/error states, and preview camera controls.
 
 Keep mechanical values in `src/geometry/config.ts`. Record provisional choices in CALIBRATION.md. Automated solid validation does not establish physical fit.
+
+## Stem module
+
+`src/geometry/stem.ts` owns stem/socket assembly through `attachStem(kernel, shell, outside)`. It joins the boss to the supplied shell, clips the joined solid to the exterior, then cuts the blind cross-shaped socket. The order is intentional: the cut applies to the joined body, not just an isolated boss. The caller retains ownership of both inputs and owns the returned solid; the module frees its own temporary Manifold objects even on failure.
+
+The module reads the existing centralized dimensions. It does not expose fit adjustments or a new exported part. `generate.ts` still returns only Body and Legend, preserving the preview/worker/export contracts. This isolates future socket work without a plugin system or additional dependencies.
+
+Direct tests use a synthetic shell to verify roof attachment, clipping, critical socket sections, and input/result lifetime. Whole-generator tests retain geometric invariants and pre-extraction mesh fingerprints for a public square icon at minimum, default, and maximum sizes. Review deliberate geometry or kernel changes against CALIBRATION.md before updating those fingerprints; they are not substitutes for physical testing.

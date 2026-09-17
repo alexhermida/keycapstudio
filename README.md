@@ -74,6 +74,8 @@ Relative asset URLs support both a repository subpath and a root domain. The wor
 
 Core modules live in `src/svg`, `src/geometry`, and `src/export`; React components and the worker hook are separate. Mechanical values live in `src/geometry/config.ts`.
 
+Stem/socket assembly is isolated in `src/geometry/stem.ts` and covered by direct tests plus whole-model regression checks. A future Advanced switch-fit control is outlined in the MVP document; it is not available in the current UI.
+
 ## Limitations
 
 Only the K2 lighting key is supported. Text, fonts, other keys/keyboards, shape customization, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Separate Body/Legend parts are user-confirmed in the slicer. Good fit is reported for the latest sample, but full travel, clearance, retention, removal, and repeatability have not been individually confirmed. Physical legend relief remains unresolved; no broadly validated compatibility or print-quality claim is made.
