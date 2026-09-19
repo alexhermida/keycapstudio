@@ -1,5 +1,4 @@
-// KeyV2 OEM row 5 blank reference.
-// Supply KeyV2's checkout through OPENSCADPATH.
+// Solid exterior using the exact OEM profile and tessellation of the blank.
 include <includes.scad>
 
 $fn = 64;
@@ -8,12 +7,12 @@ $stem_throw = 4;
 $cherry_bevel = true;
 $support_type = "flared";
 
-// This pinned configuration's raw mesh starts at Z=1.195 mm.
+// Match the blank's Z-origin translation exactly.
 translate([0, 0, -1.195]) {
   oem_row(5, 0) {
     cherry(0.35) {
       unsupported_stem() {
-        key();
+        outer_shape();
       }
     }
   }
