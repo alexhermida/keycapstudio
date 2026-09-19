@@ -46,9 +46,11 @@ A user-supplied local SVG contains four separate filled paths, one solid fill co
 
 ## Deferred
 
-Typed text, font selection, automatic SVG stroke conversion, PNG input, other keyboards or K2 rows, arbitrary key sizes, more than two colors, arbitrary legend positioning, legend rotation, layout editing, and user-configurable mechanical geometry.
+Typed text, font selection, automatic SVG stroke conversion, PNG input, other keyboards or K2 rows, arbitrary key sizes, more than two colors, arbitrary legend positioning, legend rotation, and layout editing. General-purpose mechanical geometry editing remains deferred.
 
-Personalizing the keycap's mechanical shape is an explicit future direction. V1 retains one fixed geometry preset; keeping mechanical parameters centralized supports later work without adding a geometry editor now.
+Personalizing the keycap's mechanical shape is an explicit future direction. The implemented OEM reference is fixed; the user now wants profile-specific controls within justified bounds, beginning with a profile selector. Keeping mechanical parameters centralized supports this without promising a general geometry editor.
+
+The user has since requested a profile-first editor with OEM as the initial choice and only controls permitted by that profile. The current single OEM row 5 reference remains the default; see [the proposed controls plan](plans/oem-profile-controls.md). This supersedes the fixed-preset UI direction for future implementation, but does not authorize uncalibrated mechanical ranges or other keyboards. The existing controls for SVG, legend size, and colors remain available. The adaptive-width print and any new fit or outer-dimension trial are separate physical gates.
 
 ### Planned follow-up: Switch fit
 

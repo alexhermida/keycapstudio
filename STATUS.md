@@ -62,6 +62,7 @@ Experimental MVP: the OEM comparison print passed the requested seating, retenti
 
 ## Next work
 
+- Plan the profile-first OEM editor per [the controls plan](docs/plans/oem-profile-controls.md). A typed profile selector with one OEM row 5 choice can proceed independently; any new mechanical range needs a generation method and physical calibration. Await the user's preference among appearance, fit, and exterior adjustment.
 - Investigate the physically raised legend through a controlled slicing/print comparison. Preserve the flush digital part boundary and avoid an unvalidated depth change.
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
 - Physically compare the adaptive-width slice against the existing sample, retaining the successful orientation and avoiding further simultaneous adjustments. Check legend relief, preserved icon detail, and socket fit; provide a close-up. The toolpath comparison supports a slicing-related overpacking hypothesis, but the physical cause is not confirmed. A matching saved project remains necessary for exact mesh-to-toolpath comparison.
