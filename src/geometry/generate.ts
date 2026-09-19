@@ -82,6 +82,11 @@ export function generateFromBlank(
     const lowerSurface = keep(outside.translate([0, 0, -KEYCAP.legendDepth]));
     const band = keep(outside.subtract(lowerSurface));
     const legend = keep(prism.intersect(band));
+    const expectedLegendVolume = scaled.area() * KEYCAP.legendDepth;
+    if (
+      Math.abs(legend.volume() - expectedLegendVolume) > Math.max(1e-3, expectedLegendVolume * 0.01)
+    )
+      throw new Error('This icon extends beyond the usable key top. Reduce its size.');
     const body = keep(full.subtract(legend));
     if (body.status() !== 'NoError' || legend.status() !== 'NoError' || legend.isEmpty())
       throw new Error('This icon could not produce valid solids. Try a simpler SVG.');

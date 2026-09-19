@@ -2,7 +2,7 @@
 
 ## Agreed scope
 
-Generate a printable replacement for the user's Keychron K2 top-right 1u lighting keycap. Use React and TypeScript; host on GitHub Pages with all processing in the browser. Keep uploaded SVG data local.
+Generate two-color OEM-profile keycaps from SVG artwork. The user's Keychron K2 top-right 1u lighting keycap (OEM row 5) is the default and only physically checked variant; additional row/width options are experimental. Use React and TypeScript; host on GitHub Pages with all processing in the browser. Keep uploaded SVG data local.
 
 The workflow includes SVG upload, a centered legend with adjustable size, a 3D preview, one body color, one legend color, and a downloadable 3MF.
 
@@ -48,9 +48,9 @@ A user-supplied local SVG contains four separate filled paths, one solid fill co
 
 Typed text, font selection, automatic SVG stroke conversion, PNG input, more than two colors, arbitrary legend positioning, legend rotation, and layout editing. General-purpose mechanical geometry editing remains deferred. Additional keyboards and OEM row/width variants are not yet implemented; the first supported catalogue is planned separately.
 
-The implemented OEM reference is one fixed row 5, 1u blank. The user clarified that the next editor workflow should select an OEM row and key width in `u`, then accept SVG artwork as an independent step. This requests additional key variants, not raw geometry or stem-fit sliders.
+The editor now selects an OEM row and key width in `u`, then accepts SVG artwork as an independent step. The row 5/1u reference remains the default. This is a catalogue of generated variants, not raw geometry or stem-fit sliders.
 
-The proposed row/width flow is in [the OEM key-selection plan](plans/oem-profile-controls.md). The current reference remains the default. Existing SVG, legend-size, and color controls remain, with key width (`u`) clearly separate from legend size (`mm`). The adaptive-width print and every new key variant have separate physical gates.
+The implemented first catalogue and remaining gates are in [the OEM key-selection plan](plans/oem-profile-controls.md). Existing SVG, legend-size, and color controls remain, with key width (`u`) clearly separate from legend size (`mm`). The adaptive-width print and every new key variant have separate physical gates.
 
 ### Later follow-up: Switch fit
 

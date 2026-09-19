@@ -78,3 +78,32 @@ test('rejects unsupported artwork and recovers without stale export', async ({ p
   await page.reload();
   await expect(page.getByText('Spark · example')).toBeVisible();
 });
+
+test('selects an OEM row and width independently of the artwork', async ({ page }) => {
+  await page.goto('/');
+  const download = page.getByRole('button', { name: 'Download 3MF' });
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  await page.getByLabel('Upload SVG').setInputFiles({
+    name: 'two-islands.svg',
+    mimeType: 'image/svg+xml',
+    buffer: Buffer.from(artwork),
+  });
+  await expect(page.getByText('two-islands.svg')).toBeVisible();
+  await page.getByLabel('OEM row').selectOption('3');
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  await expect(page.getByLabel('Key width')).toHaveValue('oem-r3-1u');
+  await page.getByLabel('OEM row').selectOption('5');
+  await page.getByLabel('Key width').selectOption('oem-r5-1_5u');
+  await expect(page.getByText('two-islands.svg')).toBeVisible();
+  await expect(page.getByText(/Experimental size/)).toBeVisible();
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  const downloadEvent = page.waitForEvent('download');
+  await download.click();
+  const file = await downloadEvent;
+  const archive = unzipSync(new Uint8Array(await readFile((await file.path())!)));
+  const xml = strFromU8(archive['3D/3dmodel.model']);
+  const x = [...xml.matchAll(/<vertex x="([^"]+)"/g)].map((match) => Number(match[1]));
+  expect(Math.max(...x) - Math.min(...x)).toBeCloseTo(26.977, 1);
+  expect(xml).toContain('name="Body"');
+  expect(xml).toContain('name="Legend"');
+});

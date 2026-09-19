@@ -2,6 +2,7 @@ import { lazy, Suspense, useRef, useState } from 'react';
 import { ColorField } from './components/ColorField';
 import { useKeycap } from './hooks/useKeycap';
 import { KEYCAP } from './geometry/config';
+import { DEFAULT_VARIANT_ID, getVariant, KEY_VARIANTS } from './geometry/variants';
 import type { Artwork } from './geometry/types';
 import { EXAMPLES } from './examples';
 
@@ -46,6 +47,7 @@ export default function App() {
   const [artwork, setArtwork] = useState(INITIAL);
   const [name, setName] = useState('Spark · example');
   const [size, setSize] = useState<number>(KEYCAP.defaultLegendSize);
+  const [variantId, setVariantId] = useState(DEFAULT_VARIANT_ID);
   const [bodyColor, setBodyColor] = useState('#eeeae1');
   const [legendColor, setLegendColor] = useState('#527b48');
   const [inputError, setInputError] = useState('');
@@ -55,7 +57,10 @@ export default function App() {
   const [notice, setNotice] = useState('');
   const fileInput = useRef<HTMLInputElement>(null);
   const readVersion = useRef(0);
-  const { model, pending, error, retry } = useKeycap(artwork, size);
+  const { model, pending, error, retry } = useKeycap(artwork, size, variantId);
+  const variant = getVariant(variantId);
+  const rows = [...new Set(KEY_VARIANTS.map((candidate) => candidate.row))];
+  const widths = KEY_VARIANTS.filter((candidate) => candidate.row === variant.row);
   const problem = inputError || error;
   const busy = pending || reading;
 
@@ -142,14 +147,66 @@ export default function App() {
                 ⌘
               </span>
               <div>
-                <strong>Keychron K2</strong>
-                <span>Lighting key · OEM row 5 · 1u · MX stem</span>
+                <strong>OEM profile</strong>
+                <span>MX-compatible · row and width below</span>
               </div>
-              <span className="preset-badge">FIXED</span>
+              <span className="preset-badge">ACTIVE</span>
             </div>
             <section className="control-section">
               <div className="section-title">
                 <span className="step">01</span>
+                <h2>Choose your key</h2>
+              </div>
+              <div className="key-fields">
+                <label>
+                  OEM row
+                  <select
+                    aria-label="OEM row"
+                    value={variant.row}
+                    onChange={(event) => {
+                      const row = Number(event.target.value);
+                      const next =
+                        KEY_VARIANTS.find(
+                          (candidate) => candidate.row === row && candidate.width === variant.width,
+                        ) ?? KEY_VARIANTS.find((candidate) => candidate.row === row);
+                      if (next) setVariantId(next.id);
+                      setNotice('');
+                    }}
+                  >
+                    {rows.map((row) => (
+                      <option key={row} value={row}>
+                        Row {row}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Key width
+                  <select
+                    aria-label="Key width"
+                    value={variantId}
+                    onChange={(event) => {
+                      setVariantId(event.target.value);
+                      setNotice('');
+                    }}
+                  >
+                    {widths.map((choice) => (
+                      <option key={choice.id} value={choice.id}>
+                        {choice.width}u
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              <p className="field-help">
+                {variant.physicalStatus === 'sample-checked'
+                  ? 'One printed sample passed the K2 lighting-key fit checks.'
+                  : 'Experimental size: fit and print quality have not been checked physically.'}
+              </p>
+            </section>
+            <section className="control-section">
+              <div className="section-title">
+                <span className="step">02</span>
                 <h2>Your icon</h2>
               </div>
               <input
@@ -203,7 +260,7 @@ export default function App() {
             </section>
             <section className="control-section">
               <div className="section-title">
-                <span className="step">02</span>
+                <span className="step">03</span>
                 <h2>Legend size</h2>
                 <output htmlFor="legend-size">
                   {size.toFixed(1)} <small>mm</small>
@@ -230,7 +287,7 @@ export default function App() {
             </section>
             <section className="control-section colors-section">
               <div className="section-title">
-                <span className="step">03</span>
+                <span className="step">04</span>
                 <h2>Make it two-tone</h2>
               </div>
               <div className="color-fields">
@@ -263,7 +320,9 @@ export default function App() {
             ) : null}
             <div className="preview-footnote">
               <span>Drag to orbit · scroll to zoom</span>
-              <span>18 × 18 mm base</span>
+              <span>
+                OEM row {variant.row} · {variant.width}u
+              </span>
             </div>
             <div className="export-bar">
               <div className="export-details">
@@ -317,7 +376,7 @@ export default function App() {
       <footer>
         <span>KEYCAP STUDIO</span>
         <span>Small object. Personal touch.</span>
-        <span>Designed for the K2 lighting key.</span>
+        <span>OEM keycaps, made locally.</span>
       </footer>
     </div>
   );

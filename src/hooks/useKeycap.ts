@@ -4,10 +4,11 @@ import type { Artwork, GenerateResponse, KeycapModel } from '../geometry/types';
 interface Result {
   artwork: Artwork;
   size: number;
+  variantId: string;
   model?: KeycapModel;
   error?: string;
 }
-export function useKeycap(artwork: Artwork, size: number) {
+export function useKeycap(artwork: Artwork, size: number, variantId: string) {
   const [result, setResult] = useState<Result>();
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
@@ -19,12 +20,12 @@ export function useKeycap(artwork: Artwork, size: number) {
         const fail = (message: string) => {
           clearTimeout(timeout);
           worker?.terminate();
-          setResult({ artwork, size, error: message });
+          setResult({ artwork, size, variantId, error: message });
         };
         worker.onmessage = ({ data }: MessageEvent<GenerateResponse>) => {
           clearTimeout(timeout);
           if ('error' in data) fail(data.error);
-          else setResult({ artwork, size, model: data.model });
+          else setResult({ artwork, size, variantId, model: data.model });
         };
         worker.onerror = () =>
           fail('The geometry engine could not start. Reload the page or try another browser.');
@@ -32,9 +33,14 @@ export function useKeycap(artwork: Artwork, size: number) {
           () => fail('This icon took too long to generate. Simplify its paths and try again.'),
           45000,
         );
-        worker.postMessage({ id: attempt, artwork, size });
+        worker.postMessage({ id: attempt, artwork, size, variantId });
       } catch {
-        setResult({ artwork, size, error: 'This browser could not start the geometry engine.' });
+        setResult({
+          artwork,
+          size,
+          variantId,
+          error: 'This browser could not start the geometry engine.',
+        });
       }
     }, 180);
     return () => {
@@ -42,8 +48,9 @@ export function useKeycap(artwork: Artwork, size: number) {
       clearTimeout(timeout);
       worker?.terminate();
     };
-  }, [artwork, size, attempt]);
-  const current = result?.artwork === artwork && result.size === size;
+  }, [artwork, size, variantId, attempt]);
+  const current =
+    result?.artwork === artwork && result.size === size && result.variantId === variantId;
   return {
     model: result?.model,
     error: current ? result.error : undefined,

@@ -1,21 +1,27 @@
 import wasmUrl from 'manifold-3d/manifold.wasm?url';
 import { generateFromBlank, initializeKernel } from './generate';
 import { loadOemBlank } from './oem';
-import { OEM_ROW5 } from './config';
+import { getVariant } from './variants';
 import type { GenerateRequest, GenerateResponse } from './types';
 
 const kernel = initializeKernel(wasmUrl);
-const blank = kernel.then(loadOemBlank);
 self.onmessage = async ({ data }: MessageEvent<GenerateRequest>) => {
   let result: GenerateResponse;
   try {
-    const { full, outside } = await blank;
-    result = {
-      id: data.id,
-      model: generateFromBlank(await kernel, full, outside, data.artwork, data.size, [
-        ...OEM_ROW5.legendCenter,
-      ]),
-    };
+    const variant = getVariant(data.variantId);
+    const ready = await kernel;
+    const { full, outside } = await loadOemBlank(ready, variant.id);
+    try {
+      result = {
+        id: data.id,
+        model: generateFromBlank(ready, full, outside, data.artwork, data.size, [
+          ...variant.legendCenter,
+        ]),
+      };
+    } finally {
+      full.delete();
+      outside.delete();
+    }
   } catch (error) {
     result = {
       id: data.id,

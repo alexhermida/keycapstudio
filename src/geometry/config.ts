@@ -23,9 +23,6 @@ export const KEYCAP = Object.freeze({
   defaultLegendSize: 8,
 });
 
-/** Pinned OEM row 5 mesh preset; the legend offset follows its asymmetric roof. */
-export const OEM_ROW5 = Object.freeze({ legendCenter: [0, 1.75] as const });
-
 /** +Y is the rear. A shallow parabolic dish interpolates the observed edges. */
 export function topHeight(x: number, y: number): number {
   const t = Math.max(0, Math.min(1, y / KEYCAP.topWidth + 0.5));

@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-09-19.
+Last updated: 2026-09-20.
 
 ## Current phase
 
-Experimental MVP: the OEM comparison print passed the requested seating, retention, removal, travel, and clearance checks for one sample. Its legend has some physical relief. The OEM profile is now selected for local browser generation; the previous procedural generator remains in source for rollback. The public deployment still contains the earlier corrected procedural geometry. See CALIBRATION.md.
+Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel, and clearance checks for one printed sample; its legend has some physical relief. The local browser build now selects OEM row and key width before SVG artwork. Seven new row/width variants are software-verified but not physically fit-validated. The previous procedural generator remains in source for rollback. The public deployment still contains the earlier corrected procedural geometry. See CALIBRATION.md.
 
 ## Implemented
 
@@ -23,12 +23,12 @@ Experimental MVP: the OEM comparison print passed the requested seating, retenti
 - Private artwork, photos, test exports, and local settings excluded from Git.
 - Current blank extraction for the OEM comparison: the complete procedural blank and matching solid exterior envelope are available for development inspection without changing runtime geometry.
 - The browser worker now loads pinned OEM row 5 blank/exterior meshes locally and applies the existing SVG inlay/export pipeline. The previous procedural generator remains for comparison and rollback.
-- The fixed K2 preset now names its OEM row 5 profile in the editor, so the active geometry is visible without inspecting a downloaded model.
+- A selectable OEM catalogue now offers rows 1–5 at 1u and row 5 at 1.25u, 1.5u, and 1.75u. The selected variant drives the worker, preview, and 3MF; SVG artwork, its millimeter size, and colors remain independent.
 
 ## Verification evidence
 
 - Type checking, linting, and production build pass.
-- 34 unit/domain tests pass: three pre-extraction mesh fingerprints, three direct stem/socket tests, four exterior-plane regressions, preserved socket cross-sections, curved inlay checks, bounds, connected body, watertight edges, volume conservation, serialized-mesh overlap, holes, islands, determinism, SVG rejection, and archive packaging.
+- 38 unit/domain tests pass: three pre-extraction mesh fingerprints, three direct stem/socket tests, four exterior-plane regressions, preserved socket cross-sections, curved inlay checks, bounds, connected body, watertight edges, volume conservation, serialized-mesh overlap, holes, islands, determinism, SVG rejection, archive packaging, and the new variant catalogue.
 - Six Chromium/Firefox checks pass: actual worker generation, upload/edit/download, error recovery, session reset, and automated WCAG A/AA checks.
 - Production-build smoke test passes under a repository subpath, including lazy chunks, worker, WebAssembly, and model generation. GitHub-hosted quality checks passed after the initial push to main.
 - Formatting and staged-content privacy checks pass; private references and generated artifacts remain ignored.
@@ -52,17 +52,19 @@ Experimental MVP: the OEM comparison print passed the requested seating, retenti
 - User-supplied slicer preview of the OEM 8 mm 3MF in the upright, icon-up orientation shows strongly visible diagonal top-surface toolpaths around the legend. This is slicing evidence against recommending upright as the preferred finish, not a physical print result. Broad-side mesh fitting finds the candidate sides are not perfectly planar, so a side trial must use a fresh lay-on-face placement and inspect first-layer contact/support coverage.
 - On 2026-09-19, the user reported that the OEM comparison print turned out well and confirmed seating without force, firmness, removal, full travel, and no rubbing against adjacent keys or case. Some legend relief is perceptible. These observations validate one sample's mechanical behavior, but not repeatability or flush printed finish.
 - Local OEM runtime verification: 37 unit/domain tests, type checking, linting, and production build pass. Six Chromium/Firefox browser checks pass, including a downloaded 3MF with the OEM footprint. A separate `/keycaps/` production build loads and enables export in Chromium, exercising the worker and local mesh URLs under a repository subpath. The KeyV2 license accompanies the built assets.
+- The seven additional OEM blank/exterior pairs were generated with the pinned KeyV2 source and OpenSCAD recipe. Their source and asset hashes are recorded in [the variant manifest](docs/plans/oem-variant-manifest.json); tests check the bundled assets against it. Geometry tests confirm each imported solid, blank containment, conserved inlay volume at 3/8/11 mm, one connected Body at 8 mm, and negligible Body/Legend overlap and reconstruction difference. All eight browser workflow checks pass, including a 1.5u download with its expected width. A `/keycaps/` build loaded and generated a 1.75u variant in Chromium. None of the seven variants has physical fit evidence.
 
 ## Remaining acceptance gates
 
 - User physical print: good seating is reported for the latest sample. Retention, removal, full travel, surrounding clearance, repeatability, and flush legend quality remain to be established. Dimensions are retained as the working baseline, not a broadly validated fit specification.
 - OEM physical print: one sample passes the requested mechanical checks; legend flushness and repeatability remain open.
+- New OEM rows/widths: physical fit, clearance, stabilizer needs, and print quality are open for every variant beyond row 5/1u.
 - Slicer: separate parts are confirmed; inspect actual layer/support coverage for the socket boss and cavity roof.
 - Public Pages deployment: corrected geometry is verified live; the deployment workflow's browser checks passed. This does not substitute for physical print validation.
 
 ## Next work
 
-- Plan the OEM row selector and key-width control per [the revised plan](docs/plans/oem-profile-controls.md). The user clarified that SVG upload is independent and comes after choosing row and width. Select the first additional catalogue entries, then generate and validate their templates. No new variant is yet generated or physically validated.
+- Inspect and print selected experimental OEM variants before claiming fit on any additional key. The catalogue and SVG-independent selection are implemented locally; physical validation remains variant-specific.
 - Investigate the physically raised legend through a controlled slicing/print comparison. Preserve the flush digital part boundary and avoid an unvalidated depth change.
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
 - Physically compare the adaptive-width slice against the existing sample, retaining the successful orientation and avoiding further simultaneous adjustments. Check legend relief, preserved icon detail, and socket fit; provide a close-up. The toolpath comparison supports a slicing-related overpacking hypothesis, but the physical cause is not confirmed. A matching saved project remains necessary for exact mesh-to-toolpath comparison.
@@ -72,4 +74,4 @@ Experimental MVP: the OEM comparison print passed the requested seating, retenti
 
 ## Scope retained
 
-One fixed 1u K2 lighting-key preset, filled SVGs, two colors, and single-session editing. Approximate outer shape is acceptable. Text, fonts, other keycaps/keyboards, editable project persistence, automatic stroke conversion, and mechanical customization remain deferred.
+An explicit OEM row/width catalogue, filled SVGs, two colors, and single-session editing. The row 5/1u K2 lighting key remains the only physically checked target. Text, fonts, other profiles, arbitrary dimensions, editable project persistence, automatic stroke conversion, and fit tuning remain deferred.

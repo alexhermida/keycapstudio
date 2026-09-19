@@ -1,6 +1,6 @@
 # Select an OEM row and key width before adding artwork
 
-Date: 2026-09-19. Status: proposed implementation plan; this workflow is not implemented. The user clarified the desired flow: choose the **OEM row** and the **key width in u**, then upload an SVG independently. This supersedes the earlier interpretation that the main new control should adjust stem fit. The only currently generated and physically checked key is row 5, 1u.
+Date: 2026-09-19. Status: first catalogue and browser workflow implemented on the OEM branch; physical validation remains open for new variants. The user clarified the desired flow: choose the **OEM row** and the **key width in u**, then upload an SVG independently. This supersedes the earlier interpretation that the main new control should adjust stem fit. The only physically checked key is row 5, 1u.
 
 ## Editor flow
 

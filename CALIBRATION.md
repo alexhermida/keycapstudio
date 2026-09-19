@@ -2,7 +2,7 @@
 
 ## Validation status
 
-The user reports improved printing after the planar-side correction and good fit for the latest sample, confirmed on 2026-09-16. Preserve that geometry as the working baseline. This establishes sample-level seating, not independent validation of every dimension, full travel, removal, retention, clearance, or repeatability. Physical legend relief remains unresolved. The following working measurements describe the original Keychron K2 lighting keycap, incorporating user clarification of the reference photos.
+The procedural cap improved after the planar-side correction and one sample seated well on 2026-09-16; that geometry remains a historical control. The current OEM row 5/1u reference passed the requested seating, retention, removal, travel, and clearance checks for one sample on 2026-09-19. Seven additional OEM row/width variants are software candidates only. Physical legend relief and repeatability remain unresolved. The following working measurements describe the original Keychron K2 lighting keycap, incorporating user clarification of the reference photos; they are not universal dimensions for every OEM row/width.
 
 | Parameter                  | Working measurement  | Status                                                       |
 | -------------------------- | -------------------- | ------------------------------------------------------------ |
@@ -95,6 +95,12 @@ The recorded settings differ in wall generation and auxiliary purge-structure pl
 ### OEM comparison print — fit confirmed for one sample; legend relief remains
 
 On 2026-09-19, the user reported that the 8 mm Spark OEM comparison print turned out well. Installed on the K2, it seats without force, remains firm, can be removed, completes its travel, and does not rub neighboring keys or the case. These are physical observations for this one sample, not a repeatability or general compatibility claim. The user also feels some relief at the legend. The matched digital 3MF has a flush shared surface and negligible inter-part overlap; the physical relief therefore remains a print/slicing issue to investigate. Exact orientation and print settings were not recorded. Geometry provenance and artifact hash are in `docs/plans/oem-template-comparison-results.md`. The OEM profile and socket replace the runtime preset after this fit gate; the 0.5 mm inlay depth is unchanged.
+
+### Additional OEM rows and widths — software candidates only
+
+On 2026-09-20, seven separate blanks and matching exteriors were generated from the pinned KeyV2 source: rows 1–4 at 1u and row 5 at 1.25u, 1.5u, and 1.75u. The existing row 5/1u assets and all printed-default dimensions remain unchanged. The new variants use the same Cherry stem settings, structural support, and 0.5 mm vertical legend inlay. Their source and asset hashes are in `docs/plans/oem-variant-manifest.json`.
+
+Automated solid checks and browser exports establish only software validity. No new row/width has been printed, fitted, or tested for neighboring-key clearance. These variants are explicitly experimental in the editor. Before treating any one as compatible, record the exact artifact and obtain feedback on insertion force, retention, safe removal, travel, surrounding clearance, and surface/legend quality. Wider keys may have different stabilization requirements; do not infer them from the 1u trial. The adaptive-width print investigating the existing legend relief remains a separate physical gate.
 
 ## Implemented provisional preset
 

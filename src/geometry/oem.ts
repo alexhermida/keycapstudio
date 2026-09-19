@@ -1,6 +1,5 @@
 import type { Manifold, ManifoldToplevel } from 'manifold-3d';
-import blankUrl from './assets/oem-row5-blank.bin?url';
-import exteriorUrl from './assets/oem-row5-exterior.bin?url';
+import { getVariant } from './variants';
 
 function decodeMesh(bytes: ArrayBuffer) {
   const view = new DataView(bytes);
@@ -42,10 +41,11 @@ async function loadSolid(kernel: ManifoldToplevel, url: string): Promise<Manifol
 }
 
 /** Caller owns both solids and must delete them. */
-export async function loadOemBlank(kernel: ManifoldToplevel) {
-  const full = await loadSolid(kernel, blankUrl);
+export async function loadOemBlank(kernel: ManifoldToplevel, variantId: string) {
+  const variant = getVariant(variantId);
+  const full = await loadSolid(kernel, variant.blankUrl);
   try {
-    return { full, outside: await loadSolid(kernel, exteriorUrl) };
+    return { full, outside: await loadSolid(kernel, variant.exteriorUrl) };
   } catch (error) {
     full.delete();
     throw error;

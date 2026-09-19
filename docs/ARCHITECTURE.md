@@ -16,13 +16,13 @@ The application is a static React/TypeScript editor. It has no backend, accounts
 - ESLint and React Hooks rules: consistent correctness checks alongside TypeScript.
 - Prettier: readable, consistent formatting with a reproducible check for contributors and agents.
 
-The pinned KeyV2 OEM row 5 blank and matching exterior are bundled as indexed binary mesh assets. No external generator source, personal artwork, or printer profile is bundled. The mesh assets are derived from the documented OpenSCAD recipes; see the OEM comparison report and bundled KeyV2 license notice. Public examples and fixtures are authored for this project.
+Pinned KeyV2 OEM blanks and matching exteriors are bundled as indexed binary mesh assets for an explicit row/width catalogue. No external generator source, personal artwork, or printer profile is bundled. The mesh assets are derived from the documented OpenSCAD recipes; see the OEM comparison report, variant manifest, and bundled KeyV2 license notice. Public examples and fixtures are authored for this project.
 
 ## Boundaries
 
 - SVG ingestion validates a deliberately limited subset before generating plain contour data.
 - A dedicated worker owns Manifold and generates the body and legend solids. React receives mesh arrays and summary measurements.
-- The worker fetches the local OEM mesh assets once and reuses the same blank/exterior pair for every legend change. Relative build URLs work at root and repository subpaths. The previous procedural blank remains available in source for rollback.
+- The worker loads only the selected row/width pair, applies the same inlay operation, and releases the solids after generation. A new worker is started when artwork, size, or variant changes; color changes do not regenerate geometry. Relative build URLs work at root and repository subpaths. The previous procedural blank remains available in source for rollback.
 - 3MF serialization takes those same mesh arrays; preview and export cannot use different geometry.
 - The UI owns colors, file selection, legend size, progress/error states, and preview camera controls.
 
