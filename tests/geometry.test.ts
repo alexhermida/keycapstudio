@@ -1,8 +1,9 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { createHash } from 'node:crypto';
 import type { ManifoldToplevel } from 'manifold-3d';
-import { generateKeycap, initializeKernel } from '../src/geometry/generate';
+import { generateFromBlank, generateKeycap, initializeKernel } from '../src/geometry/generate';
 import { KEYCAP, topHeight } from '../src/geometry/config';
+import { createCurrentBlank } from '../src/geometry/template';
 import type { Artwork, KeycapModel, MeshData } from '../src/geometry/types';
 
 let kernel: ManifoldToplevel;
@@ -239,5 +240,22 @@ describe('keycap solids', () => {
     expect(again.body.positions).toEqual(model.body.positions);
     for (const size of [NaN, 0, 12])
       expect(() => generateKeycap(kernel, square, size)).toThrow('size');
+  }, 30000);
+  it('places artwork on a borrowed blank without consuming its solids', () => {
+    const blank = createCurrentBlank(kernel);
+    try {
+      const shifted = generateFromBlank(kernel, blank.full, blank.outside, square, 3, [0, 1]);
+      expect(shifted.legendVolume).toBeCloseTo(9 * KEYCAP.legendDepth, 3);
+      expect(Math.min(...shifted.legend.positions.filter((_, i) => i % 3 === 1))).toBeCloseTo(
+        -0.5,
+        3,
+      );
+      expect(blank.full.status()).toBe('NoError');
+      expect(blank.outside.status()).toBe('NoError');
+      expect(blank.full.volume()).toBeCloseTo(shifted.totalVolume, 3);
+    } finally {
+      blank.full.delete();
+      blank.outside.delete();
+    }
   }, 30000);
 });

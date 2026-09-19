@@ -33,6 +33,19 @@ At the stem axis, the current top surface is approximately 10.401 mm above its b
 
 ## Physical gate
 
-Print the corrected `keyv2_oem_row5_reference.stl` as a blank. Compare it with the original cap and the current working print. Check seating without force, installed height, retention, removal, full travel/return, and clearance from neighboring caps and case. In a side orientation, use the slicer's lay-on-face operation on this model independently and inspect contact and support coverage. The existing printed control is useful only if its process conditions make it a fair comparison.
+Print the 8 mm OEM Spark 3MF described below and compare it with the original cap and the current working print. Check seating without force, installed height, retention, removal, full travel/return, clearance from neighboring caps and case, and legend flushness. In a side orientation, use the slicer's lay-on-face operation on this model independently and inspect contact and support coverage. The blank STL remains available to isolate fit if the combined print fails; it is not a required separate print. The existing printed control is useful only if its process conditions make it a fair comparison.
 
-No SVG inlay or browser template switch has been applied yet. Record non-identifying physical results in `CALIBRATION.md` before making an adoption decision.
+## Matched SVG trial
+
+The development-only runner `npx vitest run --config scripts/oem-vitest.config.ts` parses the public `Spark` SVG once and applies the same contours, 3/8/11 mm sizes, 0.5 mm vertical inlay depth, and colors (`#263447` Body, `#e2a544` Legend) to both blanks. The current legend center is `(0, 0)`; the OEM legend center is fixed at `(0, 1.75)` mm, matching KeyV2's top skew. The test exports 8 mm examples to ignored local files:
+
+| 3MF file under `_tmp/oem-template-comparison/` | SHA-256                                                            |
+| ---------------------------------------------- | ------------------------------------------------------------------ |
+| `current_same_svg.3mf`                         | `b33836722e9ad646a6b5d2d536c3712c2c0bdeea5f3eee6f3819c99f66694b33` |
+| `keyv2_oem_row5_same_svg.3mf`                  | `820ed3d6a6b86587fda518bda08424b6bfd61985d748cfe14a21ca0b15ac5f67` |
+
+For the 8 mm OEM export, the reimported Body is one component; serialized Body and Legend overlap by less than `0.000001 mm³`, and their union differs from the blank by less than `0.00001 mm³`. The Legend volume is `6.81877 mm³`, matching the current blank's legend volume for the same contours. The OEM trial gives the same legend volumes as the current blank at 3 and 11 mm, with one connected Body at each tested size. These measurements support no clipping for this SVG; they do not establish the full supported SVG subset or minimum remaining roof thickness.
+
+The current procedural blank produced a disconnected Body with this particular Spark SVG at 11 mm in the development runner. Its existing square regression remains intact. This is a separate edge case to investigate before claiming complete 3–11 mm coverage for arbitrary icons.
+
+The 3MF archive contains one `Custom Keycap` assembly with separately named `Body` and `Legend` objects and no G-code. Slicer material assignment, actual toolpaths, flushness, and physical fit still require inspection and a print. Record non-identifying results in `CALIBRATION.md` before making an adoption decision.

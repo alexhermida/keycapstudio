@@ -40,6 +40,28 @@ export function generateKeycap(
 ): KeycapModel {
   if (!Number.isFinite(size) || size < KEYCAP.minLegendSize || size > KEYCAP.maxLegendSize)
     throw new Error('Legend size must be between 3 and 11 mm.');
+  const blank = createCurrentBlank(kernel);
+  try {
+    return generateFromBlank(kernel, blank.full, blank.outside, artwork, size);
+  } finally {
+    blank.full.delete();
+    blank.outside.delete();
+  }
+}
+
+/** Apply the existing inlay operation to a borrowed blank and matching exterior. */
+export function generateFromBlank(
+  kernel: ManifoldToplevel,
+  full: Manifold,
+  outside: Manifold,
+  artwork: Artwork,
+  size: number,
+  legendCenter: [number, number] = [0, 0],
+): KeycapModel {
+  if (!Number.isFinite(size) || size < KEYCAP.minLegendSize || size > KEYCAP.maxLegendSize)
+    throw new Error('Legend size must be between 3 and 11 mm.');
+  if (legendCenter.some((value) => !Number.isFinite(value)))
+    throw new Error('Legend center must be finite.');
   const allocated: (Manifold | CrossSection)[] = [];
   const keep = <T extends Manifold | CrossSection>(solid: T): T => {
     allocated.push(solid);
@@ -47,15 +69,14 @@ export function generateKeycap(
   };
   const { CrossSection: C } = kernel;
   try {
-    const blank = createCurrentBlank(kernel);
-    const full = keep(blank.full);
-    const outside = keep(blank.outside);
     const sections = artwork.paths.map((path) => keep(new C(path.contours, path.fillRule)));
     if (!sections.length) throw new Error('SVG has no filled shapes.');
     const combined = keep(C.union(sections));
     const scaled = keep(combined.scale(size));
     if (scaled.area() < 0.02) throw new Error('SVG has no usable filled area at this size.');
-    const prism = keep(scaled.extrude(15));
+    const placed =
+      legendCenter[0] || legendCenter[1] ? keep(scaled.translate(legendCenter)) : scaled;
+    const prism = keep(placed.extrude(15));
     // Intersect with the very same tessellated outer surface used by the body.
     // This gives an exact flush surface and a 0.5 mm vertical inlay depth.
     const lowerSurface = keep(outside.translate([0, 0, -KEYCAP.legendDepth]));
