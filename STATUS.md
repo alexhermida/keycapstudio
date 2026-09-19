@@ -23,6 +23,7 @@ Experimental MVP: the OEM comparison print passed the requested seating, retenti
 - Private artwork, photos, test exports, and local settings excluded from Git.
 - Current blank extraction for the OEM comparison: the complete procedural blank and matching solid exterior envelope are available for development inspection without changing runtime geometry.
 - The browser worker now loads pinned OEM row 5 blank/exterior meshes locally and applies the existing SVG inlay/export pipeline. The previous procedural generator remains for comparison and rollback.
+- The fixed K2 preset now names its OEM row 5 profile in the editor, so the active geometry is visible without inspecting a downloaded model.
 
 ## Verification evidence
 

@@ -143,7 +143,7 @@ export default function App() {
               </span>
               <div>
                 <strong>Keychron K2</strong>
-                <span>Lighting key · 1u · MX stem</span>
+                <span>Lighting key · OEM row 5 · 1u · MX stem</span>
               </div>
               <span className="preset-badge">FIXED</span>
             </div>
