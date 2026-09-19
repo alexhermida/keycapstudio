@@ -64,6 +64,7 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 
 ## Next work
 
+- On `feat/oem-shape-height`, an isolated row 5/1u KeyV2 recipe generated experimental radius and height probes. They are not web options or physically calibrated. Initial geometry measurements are in [the customization plan](docs/plans/oem-customization.md); the original browser assets remain unchanged. Next compare full socket/roof and matching exterior meshes, 3MF inlay, and a second height construction before deciding on print candidates.
 - Proposed [OEM shape and height customization plan](docs/plans/oem-customization.md): the user prioritizes outer shape and height and accepts the label “OEM-derived” when height differs from its row's nominal value. Corner radius is the first candidate, height the second. Numeric bounds require geometric and physical trials. No additional control is implemented or calibrated.
 - Inspect and print selected experimental OEM variants before claiming fit on any additional key. The catalogue and SVG-independent selection are implemented locally; physical validation remains variant-specific.
 - Investigate the physically raised legend through a controlled slicing/print comparison. Preserve the flush digital part boundary and avoid an unvalidated depth change.

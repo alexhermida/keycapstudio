@@ -146,6 +146,10 @@ Stem/socket assembly moved from `generate.ts` into `stem.ts` without changing an
 
 Before extraction, mesh fingerprints were captured from the existing generator using an original square legend at sizes 3, 8, and 11 mm. They match byte-for-byte after extraction for both Body and Legend positions and indices. Direct module tests also verify attachment, clipping, socket sections, and ownership; the existing full-model socket/roof checks remain. This is software equivalence evidence, not additional physical validation. The adaptive-width print trial and remaining mechanical observations are still pending. Any future socket-fit control must retain these defaults and document changes and physical verification here.
 
+## OEM shape/height probes, 2026-09-20
+
+The original row 5/1u printed geometry and its runtime assets remain unchanged. A separate KeyV2 development recipe generated isolated corner-radius probes (0.5 and 1.5 mm around 1 mm) and depth-offset probes (−0.5 and +0.5 mm around zero). OpenSCAD reports manifold blanks; initial bounds and volume measurements are in [the customization plan](docs/plans/oem-customization.md). These are exploratory source parameters, not approved or physically validated ranges. Radius slightly changes maximum height; depth offset slightly changes the outer footprint. Central low-level vertices matched the reference in one bounded comparison, but complete socket, roof, legend, matching exterior, and 3MF invariants remain unchecked. No physical fit or printability claim follows from these probes.
+
 ## External fit reference
 
 A previously printed keycap from the [Vostok Labs SVG keycap generator](https://vostoklabs.github.io/SVG-keycap-generator/) was reported to fit the target switch well, but its outer shape differed from the original keycap. This is qualitative evidence for a working switch attachment, not validation of this project's dimensions or the replacement cap's outer shape.

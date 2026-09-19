@@ -41,6 +41,30 @@ No escalar la malla completa para simular radio o altura: también deformaría l
 5. **Verificar.** Comparar el default bit a bit con la referencia actual; comprobar malla cerrada, Body conectado, materiales sin solape, volumen conservado, leyenda al ras y material suficiente debajo, 3MF con dos partes y ausencia de G-code. Probar extremos, cambios rápidos, Reset, errores, Chromium/Firefox y carga bajo una subruta de Pages. Inspeccionar el laminado antes del gate de impresión.
 6. **Cerrar el gate físico y documentar.** Registrar qué valores han sido impresos y cuáles son solo experimentales. Actualizar `docs/MVP.md`, `STATUS.md`, `CALIBRATION.md` y un ADR con la decisión real. No publicar compatibilidad general a partir de una sola muestra ni desplegar sin una acción separada.
 
+## Primer ensayo geométrico, 2026-09-20
+
+Se añadió una [receta aislada](keyv2-oem-customization-probe.scad) sobre fila 5/1u. Los STL generados se guardan solo en `_tmp/`; no son opciones de la web ni muestras validadas. La receta sin ajuste reproduce las 1850 posiciones únicas de vértices de la referencia impresa a la precisión textual del STL. OpenSCAD informa una malla manifold con 3696 caras en las cinco variantes. La comparación de las 120 posiciones únicas del área central (`|x|, |y| ≤ 3 mm`, `z ≤ 4 mm`) encontró coincidencia exacta a 0,00001 mm; esto no prueba que todo el anclaje ni su ajuste físico sean iguales.
+
+Ejemplo reproducible desde la raíz del repositorio, con KeyV2 fijado en `_tmp/KeyV2` (OpenSCAD usa `OPENSCADPATH`, no `-I`):
+
+```sh
+mkdir -p _tmp/oem-template-comparison
+OPENSCADPATH="$PWD/_tmp/KeyV2" /Applications/OpenSCAD.app/Contents/MacOS/openscad \
+  -D 'corner_radius_mm=1.5' -D 'height_delta_mm=0' -D 'exterior=false' \
+  -o _tmp/oem-template-comparison/customization-radius-1_5.stl \
+  docs/plans/keyv2-oem-customization-probe.scad
+```
+
+| Radio (mm) | Cambio de profundidad (mm) | Altura máxima de malla (mm) | Huella X (mm) | Volumen (mm³) |
+| ---------: | -------------------------: | --------------------------: | ------------: | ------------: |
+|        1,0 |                          0 |                    10,33635 |      ±8,72602 |       1460,89 |
+|        0,5 |                          0 |                    10,31463 |      ±8,72534 |       1456,26 |
+|        1,5 |                          0 |                    10,35679 |      ±8,72670 |       1463,81 |
+|        1,0 |                       −0,5 |                     9,83637 |      ±8,71245 |       1362,99 |
+|        1,0 |                       +0,5 |                    10,83633 |      ±8,73846 |       1560,16 |
+
+Así, un ajuste de radio también altera la altura extrema, y uno de profundidad altera ligeramente la huella. Los valores ±0,5 mm son **sondas**, no un rango seguro ni un contrato de interfaz. Aún faltan malla exterior, sección completa del anclaje, espesor del techo/leyenda, ensamblaje 3MF, laminado e impresión. El siguiente trabajo debe contrastar el método de altura que conserva la inserción y comprobar esas invariantes antes de pedir una prueba física.
+
 ## Decisiones abiertas
 
 - Elegir los valores de prueba de radio y altura a partir de medición geométrica; no existe un rango OEM oficial que se pueda copiar.
