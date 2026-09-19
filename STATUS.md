@@ -64,6 +64,7 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 
 ## Next work
 
+- Proposed [OEM mechanical customization plan](docs/plans/oem-customization.md): distinguish values fixed by `oem_row` from other KeyV2 settings, choose one first adjustment, and establish its limits through geometry and physical trials. No additional mechanical control is implemented or calibrated.
 - Inspect and print selected experimental OEM variants before claiming fit on any additional key. The catalogue and SVG-independent selection are implemented locally; physical validation remains variant-specific.
 - Investigate the physically raised legend through a controlled slicing/print comparison. Preserve the flush digital part boundary and avoid an unvalidated depth change.
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.

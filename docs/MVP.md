@@ -52,6 +52,8 @@ The editor now selects an OEM row and key width in `u`, then accepts SVG artwork
 
 The implemented first catalogue and remaining gates are in [the OEM key-selection plan](plans/oem-profile-controls.md). Existing SVG, legend-size, and color controls remain, with key width (`u`) clearly separate from legend size (`mm`). The adaptive-width print and every new key variant have separate physical gates.
 
+The user has requested a plan for further customization within the OEM profile. [The customization plan](plans/oem-customization.md) compares fit, wall/roof thickness, and shape adjustments, distinguishes profile-fixed values, and leaves the first control undecided. No numeric ranges or new UI controls have been approved.
+
 ### Later follow-up: Switch fit
 
 A separate, later mechanical control is planned under an **Advanced** section, after the current print-quality and fit checks. It is not part of OEM row/width selection. Its purpose is to adjust only the cross-shaped socket opening, leaving the outer keycap, boss diameter, socket depth, and legend unchanged. Keep the current opening dimensions as the default, provide Reset, and clearly distinguish tighter from looser adjustment. Continue exporting Body + Legend with the stem joined into Body.
