@@ -45,6 +45,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 - A second user-supplied slice uses adaptive-width walls: both sampled overlapping legend-lane pairs become single wider lanes, sampled outward bead envelopes remain within 0.02 mm, and total legend extrusion decreases by approximately 44.7% with unchanged layer coverage. Sampled socket-opening envelopes remain close to the prior slice. These private diagnostic checks do not establish physical quality or fit; a print comparison is pending. See CALIBRATION.md for limitations.
 - The OEM comparison baseline was extracted from revision `3ff9440` with `manifold-3d@3.5.3`. Ignored development artifacts under `_tmp/oem-template-comparison/` contain the complete blank, exterior envelope, and a manifest with configuration, bounds, volumes, and SHA-256 hashes. Existing 3, 8, and 11 mm mesh fingerprints remain unchanged.
 - The development STL writer was corrected after inspection found that all three vertices in each binary STL triangle record were being written to the same slot. The regenerated baseline files have matching byte lengths, finite coordinates, and zero degenerate triangles; STL import in a slicer should be retried with these files.
+- KeyV2 comparison inputs are pinned to revision `19f0d2faadd4949634c93f38d1a66869d29e8f43`, with an explicit `oem_row(5, 0)` recipe in `docs/plans/`. Candidate generation is blocked in this environment because the installed OpenSCAD binary exits with an incompatible-CPU `neon` error; no KeyV2 STL or comparison measurements exist yet.
 
 ## Remaining acceptance gates
 
@@ -55,6 +56,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 ## Next work
 
 - Continue the [OEM template comparison plan](docs/plans/oem-template-comparison.md): pin KeyV2/OpenSCAD, generate the `oem_row(5)` candidate, and compare it with the extracted current blank. The current runtime and dimensions remain unchanged; no candidate physical validation or adoption decision exists.
+- Run the pinned KeyV2 recipe on a compatible OpenSCAD installation, derive the matching exterior envelope, and record the candidate's mesh measurements before proceeding to Gate A.
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
 - Physically compare the adaptive-width slice against the existing sample, retaining the successful orientation and avoiding further simultaneous adjustments. Check legend relief, preserved icon detail, and socket fit; provide a close-up. The toolpath comparison supports a slicing-related overpacking hypothesis, but the physical cause is not confirmed. A matching saved project remains necessary for exact mesh-to-toolpath comparison.
 - Future code changes still require a manual Pages deployment; pushing main alone does not publish them.
