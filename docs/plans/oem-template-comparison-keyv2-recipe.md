@@ -1,13 +1,13 @@
 # KeyV2 OEM row 5 reference recipe
 
-Status: pinned recipe prepared; STL generation is pending an OpenSCAD binary that runs on the development machine.
+Status: pinned recipe prepared; STL generation is ready to run with a compatible OpenSCAD CLI.
 
 ## Pinned inputs
 
 - KeyV2 repository: `https://github.com/rsheldiii/KeyV2.git`
 - KeyV2 revision: `19f0d2faadd4949634c93f38d1a66869d29e8f43`
 - KeyV2 license: GPL-3.0, retained in the development checkout under `_tmp/KeyV2/`
-- OpenSCAD: record the exact `--version` output when a compatible executable is available
+- OpenSCAD: record the exact `--version` output used for generation
 - Units: millimeters; Z up; +Y rear; stem axis at X=Y=0; base Z=0
 
 ## Resolved configuration
@@ -49,10 +49,13 @@ This preserves KeyV2's structural Cherry stem and roof connection while omitting
 
 ## Generation command
 
-With KeyV2 checked out at the pinned revision and OpenSCAD available:
+With KeyV2 checked out at the pinned revision and OpenSCAD available, expose the KeyV2 checkout through `OPENSCADPATH`:
 
 ```sh
-openscad -I /path/to/KeyV2 -o _tmp/oem-template-comparison/keyv2_oem_row5_reference.stl docs/plans/keyv2-oem-row5.scad
+OPENSCADPATH=/path/to/KeyV2 \
+  openscad \
+  -o _tmp/oem-template-comparison/keyv2_oem_row5_reference.stl \
+  docs/plans/keyv2-oem-row5.scad
 ```
 
 Record the exact OpenSCAD version and the final STL SHA-256 in the comparison manifest. Inspect the STL as a closed positive-volume solid before using it in any surface comparison. The candidate must also have a separately derived solid exterior envelope from the same resolved configuration; a hollow STL alone is insufficient for the existing inlay-band operation.
