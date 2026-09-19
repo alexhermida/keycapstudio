@@ -49,3 +49,7 @@ For the 8 mm OEM export, the reimported Body is one component; serialized Body a
 The current procedural blank produced a disconnected Body with this particular Spark SVG at 11 mm in the development runner. Its existing square regression remains intact. This is a separate edge case to investigate before claiming complete 3–11 mm coverage for arbitrary icons.
 
 The 3MF archive contains one `Custom Keycap` assembly with separately named `Body` and `Legend` objects and no G-code. Slicer material assignment, actual toolpaths, flushness, and physical fit still require inspection and a print. Record non-identifying results in `CALIBRATION.md` before making an adoption decision.
+
+### Orientation observation
+
+The user's upright slicer preview shows conspicuous diagonal top-surface toolpaths around the 8 mm Spark legend. This is a reason to prefer a side-oriented print trial for surface finish, but it is not evidence of a printed defect. A simple plane fit over broad side mesh vertices shows deviations on the order of 0.1–0.2 mm, so no entire exterior side is assumed perfectly flat. Apply lay-on-face to the complete Body/Legend assembly and inspect first-layer contact and supports on the newly sliced model. The front side is a reasonable first side to inspect; use the side with the best actual contact if it differs. Do not reuse the current cap's saved rotation.
