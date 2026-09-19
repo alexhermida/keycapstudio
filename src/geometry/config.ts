@@ -1,4 +1,4 @@
-/** Millimeters. All mechanical values remain provisional until a physical print. */
+/** Millimeters. Historical procedural blank; retained for rollback and comparison. */
 export const KEYCAP = Object.freeze({
   bottomWidth: 18,
   topWidth: 13.8,
@@ -22,6 +22,9 @@ export const KEYCAP = Object.freeze({
   maxLegendSize: 11,
   defaultLegendSize: 8,
 });
+
+/** Pinned OEM row 5 mesh preset; the legend offset follows its asymmetric roof. */
+export const OEM_ROW5 = Object.freeze({ legendCenter: [0, 1.75] as const });
 
 /** +Y is the rear. A shallow parabolic dish interpolates the observed edges. */
 export function topHeight(x: number, y: number): number {

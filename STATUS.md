@@ -4,7 +4,7 @@ Last updated: 2026-09-19.
 
 ## Current phase
 
-Experimental MVP baseline: the user reports improved printing after the planar-side correction and confirms that the latest cap fits well. Preserve the current geometry and socket dimensions. Full travel, clearance, retention, removal, and repeatability have not been individually confirmed; physical legend relief remains unresolved. The corrected geometry is now publicly deployed. See CALIBRATION.md.
+Experimental MVP: the OEM comparison print passed the requested seating, retention, removal, travel, and clearance checks for one sample. Its legend has some physical relief. The OEM profile is now selected for local browser generation; the previous procedural generator remains in source for rollback. The public deployment still contains the earlier corrected procedural geometry. See CALIBRATION.md.
 
 ## Implemented
 
@@ -22,6 +22,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 - Agent instructions, human documentation, calibration records, dependency rationale, and milestone commits.
 - Private artwork, photos, test exports, and local settings excluded from Git.
 - Current blank extraction for the OEM comparison: the complete procedural blank and matching solid exterior envelope are available for development inspection without changing runtime geometry.
+- The browser worker now loads pinned OEM row 5 blank/exterior meshes locally and applies the existing SVG inlay/export pipeline. The previous procedural generator remains for comparison and rollback.
 
 ## Verification evidence
 
@@ -45,20 +46,22 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 - A second user-supplied slice uses adaptive-width walls: both sampled overlapping legend-lane pairs become single wider lanes, sampled outward bead envelopes remain within 0.02 mm, and total legend extrusion decreases by approximately 44.7% with unchanged layer coverage. Sampled socket-opening envelopes remain close to the prior slice. These private diagnostic checks do not establish physical quality or fit; a print comparison is pending. See CALIBRATION.md for limitations.
 - The OEM comparison baseline was extracted from revision `3ff9440` with `manifold-3d@3.5.3`. Ignored development artifacts under `_tmp/oem-template-comparison/` contain the complete blank, exterior envelope, and a manifest with configuration, bounds, volumes, and SHA-256 hashes. Existing 3, 8, and 11 mm mesh fingerprints remain unchanged.
 - The development STL writer was corrected after inspection found that all three vertices in each binary STL triangle record were being written to the same slot. The regenerated baseline files have matching byte lengths, finite coordinates, and zero degenerate triangles; STL import in a slicer should be retried with these files.
-- The KeyV2 recipe was corrected to include definitions without the upstream example key, and to keep structural flared supports while disabling sacrificial print aids. OpenSCAD `2026.03.07` generated the final candidate blank and matching exterior. Both import as a single valid Manifold solid; the blank lies within its exterior. Measured differences and hashes are in [the comparison report](docs/plans/oem-template-comparison-results.md). Physical fit and candidate inlay remain unverified. The web app still uses the current procedural geometry.
-- A development comparison runner applies the same public Spark SVG to both blanks using the existing parser, inlay operation, and 3MF exporter. The 8 mm OEM 3MF passes closed-solid, connected Body, no-overlap, reconstruction, and archive-structure checks; 3 and 11 mm Spark trials also preserve legend volume on the OEM roof. The matching current 8 mm 3MF is available locally. A current-baseline Spark trial at 11 mm yielded a disconnected Body and is recorded as a separate edge case. Slicer and physical validation remain open; the web app still uses the current procedural blank.
+- The KeyV2 recipe was corrected to include definitions without the upstream example key, and to keep structural flared supports while disabling sacrificial print aids. OpenSCAD `2026.03.07` generated the final candidate blank and matching exterior. Both import as a single valid Manifold solid; the blank lies within its exterior. Measured differences and hashes are in [the comparison report](docs/plans/oem-template-comparison-results.md). One printed sample now passes the requested mechanical checks; the local web build uses the OEM preset.
+- A development comparison runner applies the same public Spark SVG to both blanks using the existing parser, inlay operation, and 3MF exporter. The 8 mm OEM 3MF passes closed-solid, connected Body, no-overlap, reconstruction, and archive-structure checks; 3 and 11 mm Spark trials also preserve legend volume on the OEM roof. The matching current 8 mm 3MF is available locally. A current-baseline Spark trial at 11 mm yielded a disconnected Body and is recorded as a separate edge case. Physical legend finish remains open.
 - User-supplied slicer preview of the OEM 8 mm 3MF in the upright, icon-up orientation shows strongly visible diagonal top-surface toolpaths around the legend. This is slicing evidence against recommending upright as the preferred finish, not a physical print result. Broad-side mesh fitting finds the candidate sides are not perfectly planar, so a side trial must use a fresh lay-on-face placement and inspect first-layer contact/support coverage.
+- On 2026-09-19, the user reported that the OEM comparison print turned out well and confirmed seating without force, firmness, removal, full travel, and no rubbing against adjacent keys or case. Some legend relief is perceptible. These observations validate one sample's mechanical behavior, but not repeatability or flush printed finish.
+- Local OEM runtime verification: 37 unit/domain tests, type checking, linting, and production build pass. Six Chromium/Firefox browser checks pass, including a downloaded 3MF with the OEM footprint. A separate `/keycaps/` production build loads and enables export in Chromium, exercising the worker and local mesh URLs under a repository subpath. The KeyV2 license accompanies the built assets.
 
 ## Remaining acceptance gates
 
 - User physical print: good seating is reported for the latest sample. Retention, removal, full travel, surrounding clearance, repeatability, and flush legend quality remain to be established. Dimensions are retained as the working baseline, not a broadly validated fit specification.
+- OEM physical print: one sample passes the requested mechanical checks; legend flushness and repeatability remain open.
 - Slicer: separate parts are confirmed; inspect actual layer/support coverage for the socket boss and cavity roof.
 - Public Pages deployment: corrected geometry is verified live; the deployment workflow's browser checks passed. This does not substitute for physical print validation.
 
 ## Next work
 
-- Continue the [OEM template comparison plan](docs/plans/oem-template-comparison.md): pin KeyV2/OpenSCAD, generate the `oem_row(5)` candidate, and compare it with the extracted current blank. The current runtime and dimensions remain unchanged; no candidate physical validation or adoption decision exists.
-- For the 8 mm OEM Spark 3MF, try a broad front-side orientation with the slicer's lay-on-face operation on the whole assembly. Inspect first-layer contact, cavity and socket support coverage, and Body/Legend alignment before printing; choose another side if it has better contact. Compare seating, height, retention, removal, full travel, clearance, and legend flushness with the original cap and current working sample. Keep the current web geometry until physical evidence supports an adoption decision.
+- Investigate the physically raised legend through a controlled slicing/print comparison. Preserve the flush digital part boundary and avoid an unvalidated depth change.
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
 - Physically compare the adaptive-width slice against the existing sample, retaining the successful orientation and avoiding further simultaneous adjustments. Check legend relief, preserved icon detail, and socket fit; provide a close-up. The toolpath comparison supports a slicing-related overpacking hypothesis, but the physical cause is not confirmed. A matching saved project remains necessary for exact mesh-to-toolpath comparison.
 - Future code changes still require a manual Pages deployment; pushing main alone does not publish them.

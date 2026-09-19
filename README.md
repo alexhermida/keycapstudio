@@ -4,7 +4,7 @@ A browser app that turns a filled SVG icon into a two-color printable replacemen
 
 Upload an icon, adjust its size, choose two colors, inspect the 3D model, and download a 3MF. Processing happens locally: no backend, account, telemetry, or saved-project storage.
 
-**Experimental MVP:** a physical sample of the current geometry is reported to fit well, but broader mechanical validation is incomplete. A raised legend remains a known print-quality issue despite flush exported geometry. Test your own print; see [CALIBRATION.md](CALIBRATION.md).
+**Experimental MVP:** one printed OEM row 5 sample passed the requested K2 fit and travel checks. Its legend has perceptible relief despite flush exported geometry; repeatability remains untested. See [CALIBRATION.md](CALIBRATION.md).
 
 ## Run locally
 
@@ -46,7 +46,7 @@ The 3MF contains one **Custom Keycap** assembly with separately named **Body** a
 
 Open the file as a model in OrcaSlicer or Snapmaker Orca, keep both parts assembled, and assign a filament to each. No printer profile or G-code is included. Choose orientation, supports, and settings in the slicer. Inspect socket access, roof support, and small icon features.
 
-For side-oriented calibration prints, use the slicer's lay-on-face action on a broad flat side of the newly exported model. Reapply it after geometry revisions instead of reusing an old saved rotation. Inspect first-layer coverage; the rounded corners, cavity, and socket can still need supports. Planar sides do not make the entire model support-free.
+For side-oriented prints, use the slicer's lay-on-face action on a broad side of the newly exported model. Reapply it after geometry revisions instead of reusing an old saved rotation. Inspect first-layer coverage; the OEM sides are not perfectly planar, and the cavity and socket can still need supports.
 
 Print one cap first. After cooling, check seating, retention, removal, full key travel, and clearance from surrounding keys and the case. Do not force a tight socket. Automated checks do not establish physical fit or print quality.
 
@@ -74,8 +74,10 @@ Relative asset URLs support both a repository subpath and a root domain. The wor
 
 Core modules live in `src/svg`, `src/geometry`, and `src/export`; React components and the worker hook are separate. Mechanical values live in `src/geometry/config.ts`.
 
-Stem/socket assembly is isolated in `src/geometry/stem.ts` and covered by direct tests plus whole-model regression checks. A future Advanced switch-fit control is outlined in the MVP document; it is not available in the current UI.
+The worker loads the pinned OEM row 5 blank and matching exterior from local binary mesh assets. Their generation recipe and upstream revision are recorded in [the OEM comparison](docs/plans/oem-template-comparison-results.md). The previous procedural blank and its isolated stem/socket module remain in source for comparison and rollback. A future Advanced switch-fit control is outlined in the MVP document; it is not available in the current UI.
+
+OEM mesh provenance: [KeyV2](https://github.com/rsheldiii/KeyV2) at commit `19f0d2faadd4949634c93f38d1a66869d29e8f43`, generated with the repository's OpenSCAD recipes and converted to indexed meshes by `node scripts/build-oem-assets.mjs`. KeyV2's GPL-3.0 license text is preserved in [KEYV2-LICENSE.md](public/KEYV2-LICENSE.md) and shipped with the static build.
 
 ## Limitations
 
-Only the K2 lighting key is supported. Text, fonts, other keys/keyboards, shape customization, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Separate Body/Legend parts are user-confirmed in the slicer. Good fit is reported for the latest sample, but full travel, clearance, retention, removal, and repeatability have not been individually confirmed. Physical legend relief remains unresolved; no broadly validated compatibility or print-quality claim is made.
+Only the K2 lighting key is supported. Text, fonts, other keys/keyboards, shape customization, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Separate Body/Legend parts are user-confirmed in the slicer. One printed OEM sample passed seating, retention, removal, travel, and clearance checks. Repeatability and physical legend flushness remain unresolved; no broadly validated compatibility or print-quality claim is made.

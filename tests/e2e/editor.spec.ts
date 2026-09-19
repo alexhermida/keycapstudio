@@ -45,6 +45,13 @@ test('loads the actual worker, uploads SVG, edits, changes view and downloads a 
   expect(xml).toContain('name="Legend"');
   expect(xml).toContain('#203040FF');
   expect(xml.match(/<component /g)).toHaveLength(2);
+  const vertices = [...xml.matchAll(/<vertex x="([^"]+)" y="([^"]+)" z="([^"]+)"\/>/g)];
+  const span = (axis: number) => {
+    const values = vertices.map((vertex) => Number(vertex[axis]));
+    return Math.max(...values) - Math.min(...values);
+  };
+  expect(span(1)).toBeCloseTo(17.45, 1);
+  expect(span(2)).toBeCloseTo(17.61, 1);
   expect(Object.keys(archive).some((name) => /gcode|project_settings|slice_info/.test(name))).toBe(
     false,
   );

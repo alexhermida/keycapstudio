@@ -1,12 +1,21 @@
 import wasmUrl from 'manifold-3d/manifold.wasm?url';
-import { generateKeycap, initializeKernel } from './generate';
+import { generateFromBlank, initializeKernel } from './generate';
+import { loadOemBlank } from './oem';
+import { OEM_ROW5 } from './config';
 import type { GenerateRequest, GenerateResponse } from './types';
 
 const kernel = initializeKernel(wasmUrl);
+const blank = kernel.then(loadOemBlank);
 self.onmessage = async ({ data }: MessageEvent<GenerateRequest>) => {
   let result: GenerateResponse;
   try {
-    result = { id: data.id, model: generateKeycap(await kernel, data.artwork, data.size) };
+    const { full, outside } = await blank;
+    result = {
+      id: data.id,
+      model: generateFromBlank(await kernel, full, outside, data.artwork, data.size, [
+        ...OEM_ROW5.legendCenter,
+      ]),
+    };
   } catch (error) {
     result = {
       id: data.id,

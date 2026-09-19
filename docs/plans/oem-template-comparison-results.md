@@ -1,6 +1,6 @@
 # OEM blank comparison: preliminary software evidence
 
-Date: 2026-09-19. The original plan is in [oem-template-comparison.md](oem-template-comparison.md). This report compares the current working blank with the KeyV2 OEM row 5 candidate. It does not establish physical fit or approve a runtime change.
+Date: 2026-09-19. The original plan is in [oem-template-comparison.md](oem-template-comparison.md). This report compares the former procedural blank with the KeyV2 OEM row 5 preset now used in the local browser build. One printed sample passed the requested mechanical checks; its legend has some tactile relief.
 
 ## Reproducible inputs
 
@@ -34,6 +34,8 @@ At the stem axis, the current top surface is approximately 10.401 mm above its b
 ## Physical gate
 
 Print the 8 mm OEM Spark 3MF described below and compare it with the original cap and the current working print. Check seating without force, installed height, retention, removal, full travel/return, clearance from neighboring caps and case, and legend flushness. In a side orientation, use the slicer's lay-on-face operation on this model independently and inspect contact and support coverage. The blank STL remains available to isolate fit if the combined print fails; it is not a required separate print. The existing printed control is useful only if its process conditions make it a fair comparison.
+
+Result: the user confirmed seating without force, firmness, removal, full travel, and no rubbing against neighbors or case for the printed comparison sample. The legend still has some relief at the fingertip. This supports adoption of this mechanical preset in the browser; it does not prove repeatability or flush printed finish.
 
 ## Matched SVG trial
 

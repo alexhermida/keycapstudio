@@ -92,6 +92,10 @@ Body paths also change. Three sampled socket-opening sections, estimated from pa
 
 The recorded settings differ in wall generation and auxiliary purge-structure placement, plus derived settings metadata. Consequently this is not a perfectly isolated physical A/B comparison, although it directly demonstrates the targeted change in legend path planning. All personal settings and source exports remain private. Preserve the successful orientation and avoid further simultaneous adjustments for the next trial. Physical legend flushness, intact detail, and continued fit are the remaining checks; no application fix is justified yet.
 
+### OEM comparison print — fit confirmed for one sample; legend relief remains
+
+On 2026-09-19, the user reported that the 8 mm Spark OEM comparison print turned out well. Installed on the K2, it seats without force, remains firm, can be removed, completes its travel, and does not rub neighboring keys or the case. These are physical observations for this one sample, not a repeatability or general compatibility claim. The user also feels some relief at the legend. The matched digital 3MF has a flush shared surface and negligible inter-part overlap; the physical relief therefore remains a print/slicing issue to investigate. Exact orientation and print settings were not recorded. Geometry provenance and artifact hash are in `docs/plans/oem-template-comparison-results.md`. The OEM profile and socket replace the runtime preset after this fit gate; the 0.5 mm inlay depth is unchanged.
+
 ## Implemented provisional preset
 
 The current TypeScript preset uses the following values in `src/geometry/config.ts`, including the planar-side correction below. These are experimental choices retained as a working baseline after the latest sample's reported good fit. Repeatable fit and full travel remain unvalidated; the result does not independently validate each dimension.
