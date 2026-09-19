@@ -1,0 +1,177 @@
+[
+  {
+    "row": 1,
+    "width": 1,
+    "baseZ": 1.195,
+    "boundsMm": {
+      "min": [-8.66469, -8.55978, 0],
+      "max": [8.66469, 8.99306, 8.363719999999999]
+    },
+    "stemPositionsMm": [[0, 0]],
+    "stabilizerPositionsMm": [],
+    "meshes": {
+      "blank": {
+        "sourceSha256": "33e8a0d2d81b00cfd9e5e815a37c335545406079575d3ebd77dd9d38fc3e7498",
+        "assetSha256": "f0bfeba651572cd53e6f1ce98ed2bae9b70891169b8b8446719e110104ee436f",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sourceSha256": "9d353b39216dfac679bd146200f37d0119f7004d5bb99d298e3c3c216fa333ee",
+        "assetSha256": "8077e6446ef981f75a0b1d2e4fdce644815aa45e2d019c303e4db5c9a974810f",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "baseZ": 1.195,
+    "boundsMm": {
+      "min": [-8.66748, -8.56286, 0],
+      "max": [8.66748, 8.98368, 8.47005]
+    },
+    "stemPositionsMm": [[0, 0]],
+    "stabilizerPositionsMm": [],
+    "meshes": {
+      "blank": {
+        "sourceSha256": "109f82bfeeeb80e5e592e95ac3f2fe6cc0f76fc657a22f237da426f478c19278",
+        "assetSha256": "4b78dc5b5f2fb6ed969e8eacbbd56105ef0621030ff26555451327641094c234",
+        "vertices": 1816,
+        "triangles": 3660
+      },
+      "exterior": {
+        "sourceSha256": "f679f3fb9656df2831adcfa0910cc53522b9807afe1e189f14882e0297063388",
+        "assetSha256": "7c51c76df7f30bc2bed67c9880234ff596528f9ba62c1ab7acd17df92b5eeabb",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "baseZ": 1.195,
+    "boundsMm": {
+      "min": [-8.68722, -8.58475, 0],
+      "max": [8.68722, 8.97617, 9.05327]
+    },
+    "stemPositionsMm": [[0, 0]],
+    "stabilizerPositionsMm": [],
+    "meshes": {
+      "blank": {
+        "sourceSha256": "e35c882634c6513624c2b08fcddc1bc229ea4b5e751f9b19232c447b835418de",
+        "assetSha256": "95b6284f1da75604d2ae4c4897981b2212daeec3de5cf160a2b17e4c99082de6",
+        "vertices": 1802,
+        "triangles": 3632
+      },
+      "exterior": {
+        "sourceSha256": "40c6f9c1766275f5af39cce049bb22e9e76b3a66db989b43d47017fc88acdd0c",
+        "assetSha256": "77b0cdc6aa71453fe703989125788f929b8f827750fcd4bf944355f2728f0d3b",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "baseZ": 1.195,
+    "boundsMm": {
+      "min": [-8.69062, -8.58752, 0],
+      "max": [8.69062, 8.97246, 9.16512]
+    },
+    "stemPositionsMm": [[0, 0]],
+    "stabilizerPositionsMm": [],
+    "meshes": {
+      "blank": {
+        "sourceSha256": "1e227eec70f1b1d5ddc394b174f981636ff810cc5a4753ad2084ade6c1febd20",
+        "assetSha256": "f18a4ce8b1203d5bad0757825390db079a3059ad0b291a475e935fe5a8627931",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sourceSha256": "47111b3b89928ad11cc52c756dae7afa6c78e9cc1960ad2d7c418a03fc0d9a48",
+        "assetSha256": "db0c3c9f792021a2b7789b7fc8c0a05280ae5b91423eb0a0a1bccc116dd9e6fc",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "baseZ": 1.195,
+    "boundsMm": {
+      "min": [-11.10727, -8.613, 0],
+      "max": [11.10727, 8.99834, 10.347809999999999]
+    },
+    "stemPositionsMm": [[0, 0]],
+    "stabilizerPositionsMm": [],
+    "meshes": {
+      "blank": {
+        "sourceSha256": "900fb8b8b8505ff6db6dee9c825af8e23717d79b1981f265dd4f593f4c34355d",
+        "assetSha256": "da9e200c658ba3fe6a6f98b71cc99e5a6b29c3c98c7def6642ceaaeb59309bad",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sourceSha256": "24f20aaa251789d4497f6080bf5920d6e9746bae447cd4a8f43ca41fc179a6ea",
+        "assetSha256": "cdc00105461be61aca532e184a3c0e9fc69daec77d2b6d2a4db2a72b5b05fdb7",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "baseZ": 1.195,
+    "boundsMm": {
+      "min": [-13.48852, -8.613, 0],
+      "max": [13.48852, 8.99834, 10.35201]
+    },
+    "stemPositionsMm": [[0, 0]],
+    "stabilizerPositionsMm": [],
+    "meshes": {
+      "blank": {
+        "sourceSha256": "625752f52902c33d1933484f8574927c1feacecbdc45dc09da9f9843c9bc2012",
+        "assetSha256": "2d8f26ee7ce057928ac6b013149d96b83f9979a60b3dce141dc3bf4f666d8f5c",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sourceSha256": "07b2f0f2368ded5f5874df4a4587e14f017dedf2793ecc0640494cfe425f83ef",
+        "assetSha256": "57e9865d36a39d013362cddda59e5345e26d6b48d536c602eba474688cc18dda",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "baseZ": 1.195,
+    "boundsMm": {
+      "min": [-15.86977, -8.613, 0],
+      "max": [15.86977, 8.99834, 10.36806]
+    },
+    "stemPositionsMm": [[0, 0]],
+    "stabilizerPositionsMm": [],
+    "meshes": {
+      "blank": {
+        "sourceSha256": "9cda25097ade6a026412d6344cc0cf227b2bda9d0fee9adb6aaee27758655f1c",
+        "assetSha256": "209ac2844b4e56b41773dc2cb7df63389ba10743163d831cc3343d6000cebf4f",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sourceSha256": "f1bda9225d0a1e01c995206a576593683bcf5fcf950e6d8b7e4bdef05e6ab3f9",
+        "assetSha256": "4e7517eeb9bf9d13f1aff981585fdb8df63f521469665719694b3f2f16c15a42",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  }
+]
