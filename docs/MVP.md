@@ -46,15 +46,15 @@ A user-supplied local SVG contains four separate filled paths, one solid fill co
 
 ## Deferred
 
-Typed text, font selection, automatic SVG stroke conversion, PNG input, other keyboards or K2 rows, arbitrary key sizes, more than two colors, arbitrary legend positioning, legend rotation, and layout editing. General-purpose mechanical geometry editing remains deferred.
+Typed text, font selection, automatic SVG stroke conversion, PNG input, more than two colors, arbitrary legend positioning, legend rotation, and layout editing. General-purpose mechanical geometry editing remains deferred. Additional keyboards and OEM row/width variants are not yet implemented; the first supported catalogue is planned separately.
 
-Personalizing the keycap's mechanical shape is an explicit future direction. The implemented OEM reference is fixed; the user now wants profile-specific controls within justified bounds, beginning with a profile selector. Keeping mechanical parameters centralized supports this without promising a general geometry editor.
+The implemented OEM reference is one fixed row 5, 1u blank. The user clarified that the next editor workflow should select an OEM row and key width in `u`, then accept SVG artwork as an independent step. This requests additional key variants, not raw geometry or stem-fit sliders.
 
-The user has since requested a profile-first editor with OEM as the initial choice and only controls permitted by that profile. The current single OEM row 5 reference remains the default; see [the proposed controls plan](plans/oem-profile-controls.md). This supersedes the fixed-preset UI direction for future implementation, but does not authorize uncalibrated mechanical ranges or other keyboards. The existing controls for SVG, legend size, and colors remain available. The adaptive-width print and any new fit or outer-dimension trial are separate physical gates.
+The proposed row/width flow is in [the OEM key-selection plan](plans/oem-profile-controls.md). The current reference remains the default. Existing SVG, legend-size, and color controls remain, with key width (`u`) clearly separate from legend size (`mm`). The adaptive-width print and every new key variant have separate physical gates.
 
-### Planned follow-up: Switch fit
+### Later follow-up: Switch fit
 
-The next narrowly scoped mechanical control is planned under an **Advanced** section, after the current print-quality and fit checks. Its purpose is to adjust only the cross-shaped socket opening, leaving the outer keycap, boss diameter, socket depth, and legend unchanged. Keep the current opening dimensions as the default, provide Reset, and clearly distinguish tighter from looser adjustment. Continue exporting Body + Legend with the stem joined into Body.
+A separate, later mechanical control is planned under an **Advanced** section, after the current print-quality and fit checks. It is not part of OEM row/width selection. Its purpose is to adjust only the cross-shaped socket opening, leaving the outer keycap, boss diameter, socket depth, and legend unchanged. Keep the current opening dimensions as the default, provide Reset, and clearly distinguish tighter from looser adjustment. Continue exporting Body + Legend with the stem joined into Body.
 
 The stem/socket module is now isolated and tested without changing its output. The UI, request parameters, and adjustment logic are not implemented. Exact adjustment semantics, minimum/maximum values, and step size remain open until a physical calibration plan establishes a suitable range; do not invent validated tight/loose presets. This does not authorize a general geometry editor or additional keyboard support.
 

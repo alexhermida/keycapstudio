@@ -62,7 +62,7 @@ Experimental MVP: the OEM comparison print passed the requested seating, retenti
 
 ## Next work
 
-- Plan the profile-first OEM editor per [the controls plan](docs/plans/oem-profile-controls.md). A typed profile selector with one OEM row 5 choice can proceed independently; any new mechanical range needs a generation method and physical calibration. Await the user's preference among appearance, fit, and exterior adjustment.
+- Plan the OEM row selector and key-width control per [the revised plan](docs/plans/oem-profile-controls.md). The user clarified that SVG upload is independent and comes after choosing row and width. Select the first additional catalogue entries, then generate and validate their templates. No new variant is yet generated or physically validated.
 - Investigate the physically raised legend through a controlled slicing/print comparison. Preserve the flush digital part boundary and avoid an unvalidated depth change.
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
 - Physically compare the adaptive-width slice against the existing sample, retaining the successful orientation and avoiding further simultaneous adjustments. Check legend relief, preserved icon detail, and socket fit; provide a close-up. The toolpath comparison supports a slicing-related overpacking hypothesis, but the physical cause is not confirmed. A matching saved project remains necessary for exact mesh-to-toolpath comparison.
