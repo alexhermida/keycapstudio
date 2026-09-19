@@ -1,7 +1,7 @@
 import Module from 'manifold-3d';
 import type { Manifold, CrossSection, ManifoldToplevel, Mesh } from 'manifold-3d';
-import { KEYCAP, topHeight } from './config';
-import { attachStem } from './stem';
+import { KEYCAP } from './config';
+import { createCurrentBlank } from './template';
 import type { Artwork, KeycapModel, MeshData } from './types';
 
 export async function initializeKernel(wasmUrl?: string): Promise<ManifoldToplevel> {
@@ -47,49 +47,9 @@ export function generateKeycap(
   };
   const { CrossSection: C } = kernel;
   try {
-    function roundedSection(width: number) {
-      return keep(
-        keep(C.square(width - 2 * KEYCAP.cornerRadius, true)).offset(
-          KEYCAP.cornerRadius,
-          'Round',
-          2,
-          32,
-        ),
-      );
-    }
-    function shellVolume(bottomWidth: number, topWidth: number, lower: number, roofOffset: number) {
-      const section = roundedSection(bottomWidth);
-      const ratio = topWidth / bottomWidth;
-      const extruded = keep(section.extrude(12, 0, 0, [ratio, ratio]));
-      const refined = keep(extruded.refineToLength(KEYCAP.surfaceResolution));
-      const warped = keep(
-        refined.warp((v) => {
-          v[2] = lower + (v[2] / 12) * (topHeight(v[0], v[1]) - roofOffset - lower);
-        }),
-      );
-      return warped;
-    }
-    // Shape the roof independently: warping a tapered shell also bows its walls.
-    // Intersect the roof with a straight frustum so each exterior side is planar.
-    const roof = shellVolume(KEYCAP.bottomWidth, KEYCAP.bottomWidth, 0, 0);
-    const half = KEYCAP.bottomWidth / 2;
-    const envelopeHeight = Math.max(topHeight(half, -half), topHeight(half, half)) + 1;
-    const scale =
-      1 -
-      ((KEYCAP.bottomWidth - KEYCAP.topWidth) / KEYCAP.bottomWidth) *
-        (envelopeHeight / KEYCAP.taperReferenceHeight);
-    const taper = keep(
-      roundedSection(KEYCAP.bottomWidth).extrude(envelopeHeight, 0, 0, [scale, scale]),
-    );
-    const outside = keep(taper.intersect(roof));
-    const cavity = shellVolume(
-      KEYCAP.bottomWidth - 2 * KEYCAP.wallThickness,
-      KEYCAP.topWidth - 2 * KEYCAP.wallThickness,
-      -1,
-      KEYCAP.roofThickness,
-    );
-    const shell = keep(outside.subtract(cavity));
-    const full = keep(attachStem(kernel, shell, outside));
+    const blank = createCurrentBlank(kernel);
+    const full = keep(blank.full);
+    const outside = keep(blank.outside);
     const sections = artwork.paths.map((path) => keep(new C(path.contours, path.fillRule)));
     if (!sections.length) throw new Error('SVG has no filled shapes.');
     const combined = keep(C.union(sections));

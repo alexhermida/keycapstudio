@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 2026-09-17.
+Last updated: 2026-09-19.
 
 ## Current phase
 
@@ -21,6 +21,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 - GitHub quality-check and manual Pages deployment workflows.
 - Agent instructions, human documentation, calibration records, dependency rationale, and milestone commits.
 - Private artwork, photos, test exports, and local settings excluded from Git.
+- Current blank extraction for the OEM comparison: the complete procedural blank and matching solid exterior envelope are available for development inspection without changing runtime geometry.
 
 ## Verification evidence
 
@@ -42,6 +43,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 - Subsequent deployment verification supersedes that gap: user-triggered Pages run 35145291350 successfully published `9c85b06`, including all workflow checks. The public geometry-worker asset matches the corrected local build byte-for-byte. The documentation baseline commit was also pushed by the user.
 - A subsequent private G-code export was inspected read-only. Model extrusion moves share nominal layer heights; the legend is sliced as outer walls in the successful side orientation. Sampled narrow legend sections contain strongly overlapping opposing extrusion lanes without a corresponding reduction in extrusion density. This is a testable slicing lead, not a reproduced physical defect or a confirmed cause. No model or printing settings were changed.
 - A second user-supplied slice uses adaptive-width walls: both sampled overlapping legend-lane pairs become single wider lanes, sampled outward bead envelopes remain within 0.02 mm, and total legend extrusion decreases by approximately 44.7% with unchanged layer coverage. Sampled socket-opening envelopes remain close to the prior slice. These private diagnostic checks do not establish physical quality or fit; a print comparison is pending. See CALIBRATION.md for limitations.
+- The OEM comparison baseline was extracted from revision `3ff9440` with `manifold-3d@3.5.3`. Ignored development artifacts under `_tmp/oem-template-comparison/` contain the complete blank, exterior envelope, and a manifest with configuration, bounds, volumes, and SHA-256 hashes. Existing 3, 8, and 11 mm mesh fingerprints remain unchanged.
 
 ## Remaining acceptance gates
 
@@ -51,6 +53,7 @@ Experimental MVP baseline: the user reports improved printing after the planar-s
 
 ## Next work
 
+- Continue the [OEM template comparison plan](docs/plans/oem-template-comparison.md): pin KeyV2/OpenSCAD, generate the `oem_row(5)` candidate, and compare it with the extracted current blank. The current runtime and dimensions remain unchanged; no candidate physical validation or adoption decision exists.
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
 - Physically compare the adaptive-width slice against the existing sample, retaining the successful orientation and avoiding further simultaneous adjustments. Check legend relief, preserved icon detail, and socket fit; provide a close-up. The toolpath comparison supports a slicing-related overpacking hypothesis, but the physical cause is not confirmed. A matching saved project remains necessary for exact mesh-to-toolpath comparison.
 - Future code changes still require a manual Pages deployment; pushing main alone does not publish them.
