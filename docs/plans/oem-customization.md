@@ -63,11 +63,22 @@ OPENSCADPATH="$PWD/_tmp/KeyV2" /Applications/OpenSCAD.app/Contents/MacOS/opensca
 |        1,0 |                       −0,5 |                     9,83637 |      ±8,71245 |       1362,99 |
 |        1,0 |                       +0,5 |                    10,83633 |      ±8,73846 |       1560,16 |
 
-Así, un ajuste de radio también altera la altura extrema, y uno de profundidad altera ligeramente la huella. Los valores ±0,5 mm son **sondas**, no un rango seguro ni un contrato de interfaz. Aún faltan malla exterior, sección completa del anclaje, espesor del techo/leyenda, ensamblaje 3MF, laminado e impresión. El siguiente trabajo debe contrastar el método de altura que conserva la inserción y comprobar esas invariantes antes de pedir una prueba física.
+Así, un ajuste de radio también altera la altura extrema, y uno de profundidad altera ligeramente la huella. Los valores ±0,5 mm son **sondas**, no un rango seguro ni un contrato de interfaz. La comparación de construcciones de altura sigue pendiente; para el radio, el siguiente paso es preparar la malla exterior y el ensamblaje de prueba antes de evaluar el laminado y la impresión.
+
+### Variante de radio preparada para prueba física
+
+Las dos sondas de radio tienen ahora su malla exterior correspondiente y un 3MF de prueba con el ejemplo público Spark a 8 mm. Una comprobación de Manifold confirma que cada blank queda dentro de su exterior y que la región central de inserción (`|x|, |y| ≤ 3 mm`, `0 ≤ z ≤ 4 mm`) no presenta diferencia volumétrica detectable frente a la referencia con tolerancia de 0,0001 mm³. Los tamaños de leyenda 3, 8 y 11 mm generan Body conectado y Legend sin solape apreciable. Los 3MF contienen las dos partes nombradas y no incluyen G-code. Esto verifica estructura digital, no ajuste completo ni acabado impreso.
+
+|  Radio | 3MF de ensayo local (ignorado por Git)                            | SHA-256 del 3MF                                                    |
+| -----: | ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| 0,5 mm | `_tmp/oem-template-comparison/customization-radius-0_5-spark.3mf` | `76813332b5dc12eaf3beb8372ffc38e12abbf53eecd8f75a55277e0f56815c42` |
+| 1,5 mm | `_tmp/oem-template-comparison/customization-radius-1_5-spark.3mf` | `2c65325d9f77dc33b978a5a59db073a2dbd41c5b9179840c024cc0bffa40bddb` |
+
+Comparar primero ambos laminados con la referencia de radio 1 mm, usando la orientación lateral que funcionó y paredes de ancho adaptable. Inspeccionar apoyos, leyenda, contorno y trayectoria de la cruz. Una impresión válida necesita feedback de inserción, firmeza, retirada, recorrido, roces y acabado; hasta entonces los valores no son un intervalo ofrecido por la web. El trabajo sobre altura derivada sigue separado.
 
 ## Decisiones abiertas
 
 - Elegir los valores de prueba de radio y altura a partir de medición geométrica; no existe un rango OEM oficial que se pueda copiar.
 - Si la experiencia deseada acepta una lista de valores discretos o requiere un intervalo continuo. Esta elección determina la arquitectura y el coste de la implementación.
 - Qué filas/anchos, además del default fila 5/1u, deben recibir el ajuste después de verificarlo físicamente.
-- Resultado de la impresión en curso sobre el relieve de la leyenda; puede cambiar la prioridad de trabajo, pero no altera por sí mismo las medidas físicas del perfil.
+- La impresión con paredes de ancho adaptable mejoró el relieve y conservó el funcionamiento de una muestra, aunque la leyenda aún se nota ligeramente. Este resultado no valida un radio o una altura diferentes.

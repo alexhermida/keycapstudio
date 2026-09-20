@@ -134,3 +134,70 @@ it('generates a matched inlay on both blanks and checks the OEM size range', asy
   }
   writeFileSync(`${directory}inlay-results.json`, JSON.stringify(results, null, 2));
 }, 120000);
+
+it('keeps the central socket and exports a valid inlay for isolated corner-radius probes', async () => {
+  const kernel = await initializeKernel();
+  const artwork = parseArtwork(EXAMPLES.spark);
+  const reference = readStl(kernel, 'keyv2_oem_row5_reference.stl');
+  const socketRegion = kernel.Manifold.cube([6, 6, 4], true).translate([0, 0, 2]);
+  const referenceSocket = reference.intersect(socketRegion);
+  try {
+    for (const radius of ['0_5', '1_5']) {
+      const blank = readStl(kernel, `customization-radius-${radius}.stl`);
+      const outside = readStl(kernel, `customization-radius-${radius}-exterior.stl`);
+      try {
+        const candidateSocket = blank.intersect(socketRegion);
+        const socketDelta = candidateSocket.subtract(referenceSocket);
+        const socketMissing = referenceSocket.subtract(candidateSocket);
+        const outsideDifference = blank.subtract(outside);
+        expect(socketDelta.volume() + socketMissing.volume()).toBeLessThan(1e-4);
+        expect(outsideDifference.volume()).toBeLessThan(1e-4);
+        for (const solid of [candidateSocket, socketDelta, socketMissing, outsideDifference])
+          solid.delete();
+
+        for (const size of [3, 8, 11]) {
+          const model = generateFromBlank(kernel, blank, outside, artwork, size, [0, 1.75]);
+          expect(model.legendVolume).toBeGreaterThan(0);
+          const body = new kernel.Manifold(
+            new kernel.Mesh({
+              numProp: 3,
+              vertProperties: model.body.positions,
+              triVerts: model.body.indices,
+              tolerance: 1e-5,
+            }),
+          );
+          const legend = new kernel.Manifold(
+            new kernel.Mesh({
+              numProp: 3,
+              vertProperties: model.legend.positions,
+              triVerts: model.legend.indices,
+              tolerance: 1e-5,
+            }),
+          );
+          const overlap = body.intersect(legend);
+          const parts = body.decompose();
+          expect(parts).toHaveLength(1);
+          expect(overlap.volume()).toBeLessThan(1e-4);
+          if (size === 8) {
+            const bytes = exportThreeMf(model, '#263447', '#e2a544');
+            const archive = unzipSync(bytes);
+            const xml = strFromU8(archive['3D/3dmodel.model']);
+            expect(xml).toContain('name="Body"');
+            expect(xml).toContain('name="Legend"');
+            expect(xml).toContain('name="Custom Keycap"');
+            expect(Object.keys(archive).some((name) => name.endsWith('.gcode'))).toBe(false);
+            writeFileSync(`${directory}customization-radius-${radius}-spark.3mf`, bytes);
+          }
+          for (const solid of [...parts, body, legend, overlap]) solid.delete();
+        }
+      } finally {
+        blank.delete();
+        outside.delete();
+      }
+    }
+  } finally {
+    referenceSocket.delete();
+    socketRegion.delete();
+    reference.delete();
+  }
+}, 120000);
