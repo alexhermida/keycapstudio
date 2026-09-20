@@ -24,13 +24,14 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 - Current blank extraction for the OEM comparison: the complete procedural blank and matching solid exterior envelope are available for development inspection without changing runtime geometry.
 - The browser worker now loads pinned OEM row 5 blank/exterior meshes locally and applies the existing SVG inlay/export pipeline. The previous procedural generator remains for comparison and rollback.
 - A selectable OEM catalogue now offers rows 1–5 at 1u and row 5 at 1.25u, 1.5u, and 1.75u. The selected variant drives the worker, preview, and 3MF; SVG artwork, its millimeter size, and colors remain independent.
-- Prominent header buttons link to the public GitHub repository and a clearly labeled provisional Thangs homepage, ready to replace with the creator profile URL when available.
-- Header buttons now use locally bundled GitHub and Thangs brand pictograms. The in-app print guide explains assembled 3MF import, model orientation, the successful side-placement observation, support and layer-preview checks, the partial Arachne improvement, and fit checks without prescribing unvalidated machine settings.
+- Prominent header buttons link to the public GitHub repository and the creator's Buy Me a Coffee page.
+- Header buttons use locally bundled GitHub and Buy Me a Coffee brand pictograms. The in-app print guide explains assembled 3MF import, model orientation, the successful side-placement observation, support and layer-preview checks, the partial Arachne improvement, and fit checks without prescribing unvalidated machine settings.
 - The local editor now offers bounded corner-radius and row-relative height choices for every catalogue entry, in 0.25 mm steps. Nonzero height is labeled OEM derived; changed measurements are experimental. The original mesh pair remains the exact default and the worker loads only the chosen generated pair. The user explicitly chose not to require a separate physical print before offering each option.
 
 ## Verification evidence
 
 - The locally bundled header icons and expanded print guide pass formatting, type checking, linting, 41 unit tests, production build, and Chromium/Firefox accessibility checks. A local browser smoke check confirmed both icons and the expanded guide. No print-orientation change was made to the 3MF.
+- The provisional Thangs link was replaced with the supplied Buy Me a Coffee profile URL and matching bundled icon. The URL returned HTTP 200; type checking, linting, 41 unit tests, production build, formatting, and Chromium/Firefox accessibility checks pass after the change.
 - Type checking, linting, and production build pass.
 - 38 unit/domain tests pass: three pre-extraction mesh fingerprints, three direct stem/socket tests, four exterior-plane regressions, preserved socket cross-sections, curved inlay checks, bounds, connected body, watertight edges, volume conservation, serialized-mesh overlap, holes, islands, determinism, SVG rejection, archive packaging, and the new variant catalogue.
 - Six Chromium/Firefox checks pass: actual worker generation, upload/edit/download, error recovery, session reset, and automated WCAG A/AA checks.

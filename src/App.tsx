@@ -6,11 +6,10 @@ import { DEFAULT_VARIANT_ID, getVariant, KEY_VARIANTS } from './geometry/variant
 import type { Artwork } from './geometry/types';
 import { EXAMPLES } from './examples';
 import githubMark from './assets/brand/github.svg';
-import thangsMark from './assets/brand/thangs.svg';
+import coffeeMark from './assets/brand/buymeacoffee.svg';
 
 const Preview = lazy(() => import('./components/Preview'));
-// Replace with the creator profile URL once the Thangs page is published.
-const THANGS_URL = 'https://thangs.com/';
+const COFFEE_URL = 'https://buymeacoffee.com/dvd16';
 const INITIAL: Artwork = {
   aspectRatio: 63 / 90,
   sourceColor: '#79a95b',
@@ -152,14 +151,14 @@ export default function App() {
             GitHub
           </a>
           <a
-            className="header-link header-link-thangs"
-            href={THANGS_URL}
+            className="header-link header-link-coffee"
+            href={COFFEE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Thangs homepage; creator profile coming soon"
+            aria-label="Buy Me a Coffee · dvd16"
           >
-            <img className="brand-icon" src={thangsMark} alt="" />
-            Thangs <small>soon</small>
+            <img className="brand-icon" src={coffeeMark} alt="" />
+            Buy Me a Coffee
           </a>
         </nav>
       </header>

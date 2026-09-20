@@ -143,15 +143,10 @@ a {
   color: #fff;
   background: #263b32;
 }
-.header-link-thangs {
+.header-link-coffee {
   color: var(--ink);
   background: #f4f8ef;
   border: 1px solid #c7d7b7;
-}
-.header-link-thangs small {
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 500;
 }
 .brand-icon {
   display: block;
