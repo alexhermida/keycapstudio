@@ -153,6 +153,15 @@ a {
   font-size: 10px;
   font-weight: 500;
 }
+.brand-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.brand-icon-github {
+  filter: invert(1);
+}
 .workspace-heading {
   padding: 45px 0 32px;
   display: flex;

@@ -48,9 +48,11 @@ Convert strokes and basic shapes to filled paths first. Text, clipping, masks, g
 
 The 3MF contains one **Custom Keycap** assembly with separately named **Body** and **Legend** parts. The legend follows the curved surface and extends 0.5 mm vertically into the roof. It may contain multiple disconnected closed solids. The parts partition the solid without intentional overlapping volume.
 
-Open the file as a model in OrcaSlicer or Snapmaker Orca, keep both parts assembled, and assign a filament to each. No printer profile or G-code is included. Choose orientation, supports, and settings in the slicer. Inspect socket access, roof support, and small icon features.
+Open the file as a model in OrcaSlicer or Snapmaker Orca, keep both parts assembled, and assign a filament to each. No printer profile or G-code is included. The 3MF is exported in the keycap's upright modeling orientation; it is not a pre-rotated print setup. Choose placement and supports in the slicer so each row, width, and adjusted shape can be inspected before slicing.
 
-For side-oriented prints, use the slicer's lay-on-face action on a broad side of the newly exported model. Reapply it after geometry revisions instead of reusing an old saved rotation. Inspect first-layer coverage; the OEM sides are not perfectly planar, and the cavity and socket can still need supports.
+For side-oriented prints, use the slicer's lay-on-face action on a broad side of the newly exported assembly, keeping Body and Legend together. A side-oriented trial of the earlier procedural cap improved the top finish; the exact orientation of the successful OEM row 5/1u sample was not recorded. Reapply placement after geometry revisions instead of reusing an old saved rotation. Inspect first-layer coverage; the OEM sides are not perfectly planar, and the cavity, roof, and socket can still need supports. The earlier unsupported icon-up trial produced a poor top and unusable socket; this does not prove that side placement is universally best for every variant.
+
+Inspect the sliced legend and socket before printing. Adaptive-width/Arachne walls replaced overlapping narrow legend paths in a comparison and produced somewhat less tactile relief on a later print, but did not eliminate it. Check thin strokes and seams in layer preview; a color preview alone cannot establish print quality. No specific temperature, speed, or layer-height preset has been validated for this app.
 
 Print one cap first. After cooling, check seating, retention, removal, full key travel, and clearance from surrounding keys and the case. Do not force a tight socket. Automated checks do not establish physical fit or print quality.
 

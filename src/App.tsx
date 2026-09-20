@@ -5,6 +5,8 @@ import { KEYCAP, OEM_CUSTOMIZATION } from './geometry/config';
 import { DEFAULT_VARIANT_ID, getVariant, KEY_VARIANTS } from './geometry/variants';
 import type { Artwork } from './geometry/types';
 import { EXAMPLES } from './examples';
+import githubMark from './assets/brand/github.svg';
+import thangsMark from './assets/brand/thangs.svg';
 
 const Preview = lazy(() => import('./components/Preview'));
 // Replace with the creator profile URL once the Thangs page is published.
@@ -146,7 +148,8 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub <span aria-hidden="true">↗</span>
+            <img className="brand-icon brand-icon-github" src={githubMark} alt="" />
+            GitHub
           </a>
           <a
             className="header-link header-link-thangs"
@@ -155,6 +158,7 @@ export default function App() {
             rel="noopener noreferrer"
             aria-label="Thangs homepage; creator profile coming soon"
           >
+            <img className="brand-icon" src={thangsMark} alt="" />
             Thangs <small>soon</small>
           </a>
         </nav>
@@ -448,22 +452,35 @@ export default function App() {
           </p>
         ) : null}
         <details className="print-guide">
-          <summary>Before you print</summary>
+          <summary>Printing this keycap</summary>
           <div>
             <p>
-              Open the 3MF as a model in OrcaSlicer or Snapmaker Orca. Expand{' '}
-              <strong>Custom Keycap</strong> and assign filaments to <strong>Body</strong> and{' '}
-              <strong>Legend</strong>. Keep both parts assembled.
+              <strong>Import and assign colors.</strong> Open the 3MF as a model in OrcaSlicer or
+              Snapmaker Orca. Expand <strong>Custom Keycap</strong>, assign filaments to{' '}
+              <strong>Body</strong> and <strong>Legend</strong>, and keep both parts assembled.
             </p>
             <p>
-              The cap has a curved top and a hollow underside. Choose orientation and supports in
-              the slicer; inspect the layer preview for thin details and supports inside the socket.
-              Color previews do not guarantee filament color or printability.
+              <strong>Orient the assembly.</strong> The 3MF uses the keycap’s upright modeling
+              coordinates; it is not pre-rotated for printing. A side-oriented trial had a better
+              top finish than an earlier upright trial. A useful starting point is the slicer’s{' '}
+              <em>Lay on Face</em> command on a broad side. Rotate Body and Legend together. Reapply
+              that placement for each new geometry: OEM sides are not perfectly flat. Check
+              first-layer contact and add supports where the cavity, roof, or socket needs them.
+              Printing icon-up without suitable support produced a poor earlier sample.
             </p>
             <p>
-              Print one calibration cap first. Let it cool, check that the socket seats without
-              force, and confirm that the key moves fully and returns freely. Avoid forcing a tight
-              socket.
+              <strong>Inspect the slice.</strong> Look through the legend layers for intact thin
+              strokes and seam placement, and confirm the socket stays open. Adaptive-width walls
+              (Arachne) reduced overlapping legend paths and made the printed relief smaller in one
+              comparison, but did not remove it completely. The color preview alone cannot confirm
+              the final surface finish.
+            </p>
+            <p>
+              <strong>Check the first print.</strong> Let it cool, then check gentle insertion,
+              retention, removal, full travel and return, and clearance from neighboring keys and
+              the case. Do not force a tight socket. Fit feedback applies to the unmodified row 5/1u
+              sample; its exact print orientation was not recorded. Other sizes and measurements
+              remain experimental.
             </p>
           </div>
         </details>
