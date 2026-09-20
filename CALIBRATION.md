@@ -84,13 +84,15 @@ Two sampled narrow legend sections contain opposing perimeter lanes whose center
 
 The next comparison should change only the wall-generation strategy to adaptive-width generation, then inspect the resulting toolpaths before another physical trial. Compare the body/socket paths as well because this slicing change can affect them. Keep the successful geometry, orientation, and other settings unchanged. A close-up of the corresponding print and the matching saved project remain useful to distinguish path planning from physical alignment or extrusion effects. No application geometry or calibrated dimensions changed; private setup details and artifacts remain excluded.
 
-### Adaptive-width comparison — toolpaths improved; print pending
+### Adaptive-width comparison — toolpaths and reported finish improved
 
 A second export supplied on 2026-09-16 uses adaptive-width wall generation. Replaying both files reproduces the opposing-lane pattern in the first slice and confirms its replacement by a single wider lane in both sampled legend sections. The sampled nominal outward bead envelopes remain within 0.02 mm of the prior slice, while the legend's total commanded extrusion decreases by approximately 44.7%, excluding supports and purge operations. Legend-bearing layer coverage is unchanged. These checks support the overpacking hypothesis, but do not prove that the physical relief is resolved or that every fine feature is preserved.
 
 Body paths also change. Three sampled socket-opening sections, estimated from path centerlines and nominal bead widths, retain the narrow opening at approximately 1.194 mm; the sampled wider opening changes from approximately 4.040 to 4.033 mm. These are local path-envelope estimates, not measurements of printed clearance or validation of the complete socket. The application's mechanical dimensions are unchanged. Compare fit again after printing.
 
 The recorded settings differ in wall generation and auxiliary purge-structure placement, plus derived settings metadata. Consequently this is not a perfectly isolated physical A/B comparison, although it directly demonstrates the targeted change in legend path planning. All personal settings and source exports remain private. Preserve the successful orientation and avoid further simultaneous adjustments for the next trial. Physical legend flushness, intact detail, and continued fit are the remaining checks; no application fix is justified yet.
+
+On 2026-09-20, after slicing with adaptive-width walls, the user reported that the printed legend was **somewhat better but still had a small tactile relief**. This is qualitative physical evidence of improvement, not a measured height or proof that wall generation alone caused it. The user has not yet reported socket fit or travel for this specific print. Keep the 0.5 mm digital inlay unchanged; a further controlled comparison would need the exact matching slice and a close-up of the printed legend.
 
 ### OEM comparison print — fit confirmed for one sample; legend relief remains
 
