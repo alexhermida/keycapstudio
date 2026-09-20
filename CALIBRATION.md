@@ -10,6 +10,10 @@ The original reference mesh is unchanged. Its central insertion region through Z
 
 All new presets and customized measurements remain **physically unverified**. Print a fresh export and check seating, retention, removal, complete travel/return, surrounding clearance, roof integrity, and legend finish. The user permits experimental use without a prior print of every option. No physical-validation claim or socket-fit tuning is introduced.
 
+### Latest sample feedback
+
+The user reports that the latest pictured sample fits well. The two front corners show localized roughness/irregular contour, reportedly present on earlier prints and more noticeable on this sample. This is qualitative seating and surface-quality evidence only. The exact exported revision, measurements, and corresponding sliced artifact have not been verified; do not assign the result to every new preset or infer confirmed retention, removal, or full travel. The photo alone does not establish whether the irregularity originated during printing or removal. No geometry or process adjustment is justified yet; request the matching slicer project and the observation before/after removal to investigate.
+
 The following sections document previous geometry and trials.
 
 ## Validation status

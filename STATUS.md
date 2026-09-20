@@ -8,6 +8,8 @@ Parametric OEM R1–R4 editor, default R4 · 1u. Base width/depth, front/rear ed
 
 ## Current implementation — parametric profiles
 
+- Latest physical feedback: the pictured sample fits well but has irregular front corners, also reported on earlier prints. Its exact export/settings are not yet linked to an artifact. Matching slicer project and before/after removal observations are requested; cause and remedy remain unverified. Geometry is unchanged.
+
 - Accepted UI terminology uses OEM R1–R4; the K2 lighting position is R4. The previous `row5` identifier is internal to the historical KeyV2 template.
 - Preset changes and Reset restore reference measurements; artwork and colors stay independent.
 - Collapsible localized controls, direct numerical entry, and actual exported-mesh dimensions.
