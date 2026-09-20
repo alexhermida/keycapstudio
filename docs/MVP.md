@@ -52,7 +52,7 @@ The editor now selects an OEM row and key width in `u`, then accepts SVG artwork
 
 The implemented first catalogue and remaining gates are in [the OEM key-selection plan](plans/oem-profile-controls.md). Existing SVG, legend-size, and color controls remain, with key width (`u`) clearly separate from legend size (`mm`). The adaptive-width print and every new key variant have separate physical gates.
 
-The user has prioritized outer shape and height customization. [The customization plan](plans/oem-customization.md) proposes corner radius first and treats a nondefault vertical height as an OEM-derived variant because `oem_row` fixes height by row. The user accepted that label. No numeric ranges or new UI controls have been approved.
+The user has prioritized outer shape and height customization and asked to use bounded measurements in the editor without printing every option first. [The customization plan](plans/oem-customization.md) and [decision](adr/0004-bounded-oem-measurements.md) define discrete corner-radius and row-relative height choices generated with KeyV2. Nondefault height is labeled OEM derived. These are experimental software bounds, not an official OEM tolerance or a fit claim.
 
 ### Later follow-up: Switch fit
 

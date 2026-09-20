@@ -1,7 +1,7 @@
 import { lazy, Suspense, useRef, useState } from 'react';
 import { ColorField } from './components/ColorField';
 import { useKeycap } from './hooks/useKeycap';
-import { KEYCAP } from './geometry/config';
+import { KEYCAP, OEM_CUSTOMIZATION } from './geometry/config';
 import { DEFAULT_VARIANT_ID, getVariant, KEY_VARIANTS } from './geometry/variants';
 import type { Artwork } from './geometry/types';
 import { EXAMPLES } from './examples';
@@ -48,6 +48,8 @@ export default function App() {
   const [name, setName] = useState('Spark · example');
   const [size, setSize] = useState<number>(KEYCAP.defaultLegendSize);
   const [variantId, setVariantId] = useState(DEFAULT_VARIANT_ID);
+  const [radiusMm, setRadiusMm] = useState<number>(OEM_CUSTOMIZATION.radiusDefault);
+  const [heightDeltaMm, setHeightDeltaMm] = useState<number>(OEM_CUSTOMIZATION.heightDefault);
   const [bodyColor, setBodyColor] = useState('#eeeae1');
   const [legendColor, setLegendColor] = useState('#527b48');
   const [inputError, setInputError] = useState('');
@@ -57,12 +59,19 @@ export default function App() {
   const [notice, setNotice] = useState('');
   const fileInput = useRef<HTMLInputElement>(null);
   const readVersion = useRef(0);
-  const { model, pending, error, retry } = useKeycap(artwork, size, variantId);
+  const { model, pending, error, retry } = useKeycap(
+    artwork,
+    size,
+    variantId,
+    radiusMm,
+    heightDeltaMm,
+  );
   const variant = getVariant(variantId);
   const rows = [...new Set(KEY_VARIANTS.map((candidate) => candidate.row))];
   const widths = KEY_VARIANTS.filter((candidate) => candidate.row === variant.row);
   const problem = inputError || error;
   const busy = pending || reading;
+  const customized = radiusMm !== 1 || heightDeltaMm !== 0;
 
   async function load(source: string | File, label: string) {
     const version = ++readVersion.current;
@@ -199,14 +208,79 @@ export default function App() {
                 </label>
               </div>
               <p className="field-help">
-                {variant.physicalStatus === 'sample-checked'
+                {variant.physicalStatus === 'sample-checked' && !customized
                   ? 'One printed sample passed the K2 lighting-key fit checks.'
-                  : 'Experimental size: fit and print quality have not been checked physically.'}
+                  : 'Experimental size or shape: fit and print quality vary by choice.'}
               </p>
             </section>
             <section className="control-section">
               <div className="section-title">
                 <span className="step">02</span>
+                <h2>Shape and height</h2>
+                <button
+                  className="reset-measures"
+                  type="button"
+                  disabled={!customized}
+                  onClick={() => {
+                    setRadiusMm(1);
+                    setHeightDeltaMm(0);
+                    setNotice('');
+                  }}
+                >
+                  Reset
+                </button>
+              </div>
+              <div className="measure-control">
+                <label htmlFor="corner-radius">Corner radius</label>
+                <output htmlFor="corner-radius">{radiusMm.toFixed(2)} mm</output>
+              </div>
+              <input
+                id="corner-radius"
+                type="range"
+                min={OEM_CUSTOMIZATION.radiusMin}
+                max={OEM_CUSTOMIZATION.radiusMax}
+                step={OEM_CUSTOMIZATION.step}
+                value={radiusMm}
+                onChange={(event) => {
+                  setRadiusMm(Number(event.target.value));
+                  setNotice('');
+                }}
+              />
+              <div className="range-labels">
+                <span>Squarer · 0.50</span>
+                <span>Rounder · 1.50 mm</span>
+              </div>
+              <div className="measure-control">
+                <label htmlFor="height-delta">Height adjustment</label>
+                <output htmlFor="height-delta">
+                  {heightDeltaMm > 0 ? '+' : ''}
+                  {heightDeltaMm.toFixed(2)} mm
+                </output>
+              </div>
+              <input
+                id="height-delta"
+                type="range"
+                min={OEM_CUSTOMIZATION.heightMin}
+                max={OEM_CUSTOMIZATION.heightMax}
+                step={OEM_CUSTOMIZATION.step}
+                value={heightDeltaMm}
+                onChange={(event) => {
+                  setHeightDeltaMm(Number(event.target.value));
+                  setNotice('');
+                }}
+              />
+              <div className="range-labels">
+                <span>−0.50 mm</span>
+                <span>+0.50 mm</span>
+              </div>
+              <p className="field-help">
+                {heightDeltaMm === 0 ? 'OEM row height' : 'OEM derived height'} · 0.25 mm steps.
+                Relative to the selected OEM row. Modified measurements are experimental.
+              </p>
+            </section>
+            <section className="control-section">
+              <div className="section-title">
+                <span className="step">03</span>
                 <h2>Your icon</h2>
               </div>
               <input
@@ -260,7 +334,7 @@ export default function App() {
             </section>
             <section className="control-section">
               <div className="section-title">
-                <span className="step">03</span>
+                <span className="step">04</span>
                 <h2>Legend size</h2>
                 <output htmlFor="legend-size">
                   {size.toFixed(1)} <small>mm</small>
@@ -287,7 +361,7 @@ export default function App() {
             </section>
             <section className="control-section colors-section">
               <div className="section-title">
-                <span className="step">04</span>
+                <span className="step">05</span>
                 <h2>Make it two-tone</h2>
               </div>
               <div className="color-fields">
@@ -321,7 +395,7 @@ export default function App() {
             <div className="preview-footnote">
               <span>Drag to orbit · scroll to zoom</span>
               <span>
-                OEM row {variant.row} · {variant.width}u
+                {heightDeltaMm === 0 ? 'OEM' : 'OEM derived'} row {variant.row} · {variant.width}u
               </span>
             </div>
             <div className="export-bar">

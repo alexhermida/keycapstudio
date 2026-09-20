@@ -23,6 +23,32 @@ export const KEYCAP = Object.freeze({
   defaultLegendSize: 8,
 });
 
+/** Bounded KeyV2 mesh catalogue; these are experimental choices, not an OEM standard. */
+export const OEM_CUSTOMIZATION = Object.freeze({
+  radiusMin: 0.5,
+  radiusMax: 1.5,
+  radiusDefault: 1,
+  heightMin: -0.5,
+  heightMax: 0.5,
+  heightDefault: 0,
+  step: 0.25,
+});
+
+export function validateOemCustomization(radiusMm: number, heightDeltaMm: number): void {
+  const { radiusMin, radiusMax, heightMin, heightMax, step } = OEM_CUSTOMIZATION;
+  if (
+    !Number.isFinite(radiusMm) ||
+    !Number.isFinite(heightDeltaMm) ||
+    radiusMm < radiusMin ||
+    radiusMm > radiusMax ||
+    heightDeltaMm < heightMin ||
+    heightDeltaMm > heightMax ||
+    !Number.isInteger(radiusMm / step) ||
+    !Number.isInteger(heightDeltaMm / step)
+  )
+    throw new Error('Choose an offered OEM corner radius and height adjustment.');
+}
+
 /** +Y is the rear. A shallow parabolic dish interpolates the observed edges. */
 export function topHeight(x: number, y: number): number {
   const t = Math.max(0, Math.min(1, y / KEYCAP.topWidth + 0.5));

@@ -94,6 +94,9 @@ test('selects an OEM row and width independently of the artwork', async ({ page 
   await expect(page.getByLabel('Key width')).toHaveValue('oem-r3-1u');
   await page.getByLabel('OEM row').selectOption('5');
   await page.getByLabel('Key width').selectOption('oem-r5-1_5u');
+  await page.getByLabel('Corner radius').fill('0.75');
+  await page.getByLabel('Height adjustment').fill('-0.25');
+  await expect(page.getByText('OEM derived height')).toBeVisible();
   await expect(page.getByText('two-islands.svg')).toBeVisible();
   await expect(page.getByText(/Experimental size/)).toBeVisible();
   await expect(download).toBeEnabled({ timeout: 45000 });
@@ -106,4 +109,39 @@ test('selects an OEM row and width independently of the artwork', async ({ page 
   expect(Math.max(...x) - Math.min(...x)).toBeCloseTo(26.977, 1);
   expect(xml).toContain('name="Body"');
   expect(xml).toContain('name="Legend"');
+});
+
+test('customizes OEM corner radius and derived height, then resets to the original', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const download = page.getByRole('button', { name: 'Download 3MF' });
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  const original = page.waitForEvent('download');
+  await download.click();
+  const originalFile = await original;
+  const originalBytes = await readFile((await originalFile.path())!);
+
+  await page.getByLabel('Corner radius').fill('1.5');
+  await page.getByLabel('Height adjustment').fill('0.5');
+  await expect(page.getByText('OEM derived height')).toBeVisible();
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  const changed = page.waitForEvent('download');
+  await download.click();
+  const changedFile = await changed;
+  const changedBytes = await readFile((await changedFile.path())!);
+  const modelXml = strFromU8(unzipSync(new Uint8Array(changedBytes))['3D/3dmodel.model']);
+  expect(modelXml).toContain('name="Body"');
+  expect(modelXml).toContain('name="Legend"');
+  expect(changedBytes.equals(originalBytes)).toBe(false);
+
+  await page.getByRole('button', { name: 'Reset' }).click();
+  await expect(page.getByLabel('Corner radius')).toHaveValue('1');
+  await expect(page.getByLabel('Height adjustment')).toHaveValue('0');
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  const restored = page.waitForEvent('download');
+  await download.click();
+  const restoredFile = await restored;
+  const restoredBytes = await readFile((await restoredFile.path())!);
+  expect(restoredBytes.equals(originalBytes)).toBe(true);
 });

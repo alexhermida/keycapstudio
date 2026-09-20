@@ -24,5 +24,7 @@ export interface GenerateRequest {
   artwork: Artwork;
   size: number;
   variantId: string;
+  radiusMm: number;
+  heightDeltaMm: number;
 }
 export type GenerateResponse = { id: number; model: KeycapModel } | { id: number; error: string };

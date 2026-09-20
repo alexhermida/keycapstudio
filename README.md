@@ -2,7 +2,7 @@
 
 A browser app that turns a filled SVG icon into a two-color OEM-profile keycap. The **Keychron K2 top-right 1u lighting keycap (OEM row 5)** is the default and the only variant with reported physical fit.
 
-Choose an OEM row and key width, upload an icon, adjust its legend size, choose two colors, inspect the 3D model, and download a 3MF. Processing happens locally: no backend, account, telemetry, or saved-project storage.
+Choose an OEM row and key width, adjust corner radius and row-relative height, upload an icon, adjust its legend size, choose two colors, inspect the 3D model, and download a 3MF. Processing happens locally: no backend, account, telemetry, or saved-project storage.
 
 **Experimental MVP:** one printed OEM row 5 sample passed the requested K2 fit and travel checks. Its legend has perceptible relief despite flush exported geometry; repeatability remains untested. See [CALIBRATION.md](CALIBRATION.md).
 
@@ -17,7 +17,7 @@ npm run dev
 
 Open the URL printed by Vite. The app starts at OEM row 5, 1u with an original example icon. Choose another offered row/width, upload your own SVG or try Spark/Orbit. Key width is measured in `u`; legend size is independently measured in millimeters. Refreshing starts a new design.
 
-The initial catalogue has rows 1–5 at 1u, plus row 5 at 1.25u, 1.5u, and 1.75u. Only row 5/1u has passed one physical K2 fit trial. Other combinations are experimental and may not fit your keyboard. Larger keys or keys requiring stabilizers are not offered yet.
+The initial catalogue has rows 1–5 at 1u, plus row 5 at 1.25u, 1.5u, and 1.75u. Corner radius is offered from 0.50 to 1.50 mm and height adjustment from −0.50 to +0.50 mm relative to the selected OEM row, both in 0.25 mm steps. Reset restores the original measurements. A nonzero height adjustment is labeled **OEM derived**. Only the unmodified row 5/1u has passed physical K2 fit trials; changed measurements and other sizes are experimental and may not fit your keyboard. Larger keys or keys requiring stabilizers are not offered yet.
 
 ## Development checks
 
@@ -76,10 +76,10 @@ Relative asset URLs support both a repository subpath and a root domain. The wor
 
 Core modules live in `src/svg`, `src/geometry`, and `src/export`; React components and the worker hook are separate. Mechanical values live in `src/geometry/config.ts`.
 
-The worker loads the selected OEM blank and matching exterior from local binary mesh assets. The printed row 5/1u reference retains its original assets. The [variant recipe](docs/plans/keyv2-oem-variant.scad), [generated manifest](docs/plans/oem-variant-manifest.json), and [OEM comparison](docs/plans/oem-template-comparison-results.md) record provenance. The previous procedural blank and its isolated stem/socket module remain in source for comparison and rollback. A future Advanced switch-fit control is outlined in the MVP document; it is not available in the current UI.
+The worker loads the selected OEM blank and matching exterior from local binary mesh assets. The printed row 5/1u reference retains its original assets. The [variant recipe](docs/plans/keyv2-oem-variant.scad), [measurement recipe](docs/plans/keyv2-oem-customizable.scad), [variant manifest](docs/plans/oem-variant-manifest.json), [measurement manifest](docs/plans/oem-customization-manifest.json), and [OEM comparison](docs/plans/oem-template-comparison-results.md) record provenance. Regenerate measurement assets with `node scripts/generate-oem-customizations.mjs` after checking out the pinned KeyV2 source under `_tmp/KeyV2` and installing OpenSCAD 2026.03.07. The previous procedural blank and its isolated stem/socket module remain in source for comparison and rollback. A future Advanced switch-fit control is outlined in the MVP document; it is not available in the current UI.
 
 OEM mesh provenance: [KeyV2](https://github.com/rsheldiii/KeyV2) at commit `19f0d2faadd4949634c93f38d1a66869d29e8f43`, generated with the repository's OpenSCAD recipes and converted to indexed meshes by `node scripts/build-oem-assets.mjs`. KeyV2's GPL-3.0 license text is preserved in [KEYV2-LICENSE.md](public/KEYV2-LICENSE.md) and shipped with the static build.
 
 ## Limitations
 
-The app generates the listed OEM rows/widths, but physical compatibility has only been reported for one row 5/1u K2 lighting-key sample. Text, fonts, arbitrary key sizes, other profiles, fit tuning, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Separate Body/Legend parts are user-confirmed in the slicer. Repeatability and physical legend flushness remain unresolved; no broadly validated compatibility or print-quality claim is made.
+The app generates the listed OEM rows/widths and bounded measurement choices, but physical compatibility has only been reported for the unmodified row 5/1u K2 lighting key. Measurement limits are engineering choices, not an official OEM standard. Text, fonts, arbitrary key sizes, other profiles, fit tuning, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Separate Body/Legend parts are user-confirmed in the slicer. The adaptive-width print improved but did not fully eliminate tactile legend relief; no broadly validated compatibility or print-quality claim is made.

@@ -10,7 +10,12 @@ self.onmessage = async ({ data }: MessageEvent<GenerateRequest>) => {
   try {
     const variant = getVariant(data.variantId);
     const ready = await kernel;
-    const { full, outside } = await loadOemBlank(ready, variant.id);
+    const { full, outside } = await loadOemBlank(
+      ready,
+      variant.id,
+      data.radiusMm,
+      data.heightDeltaMm,
+    );
     try {
       result = {
         id: data.id,

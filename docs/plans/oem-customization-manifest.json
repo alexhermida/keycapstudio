@@ -1,0 +1,3650 @@
+[
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "5f3af8b83e5dc608f9236ef4ac0e7258009a5568bffd0a297d27b1323c6d016f",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "6e81f90f0563692a9205c1fa7dbf6a0ae5f7e6c437b3021e0c6c9ceec6eaeff1",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "37b90e4a06d967eef1579e8769192e8598f60fda73a60984b772b3a4653fa0cd",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "414cd1abbda7f1649511cf1eb08cb73898d4bb9492bdedd0c1d47e5f00019e30",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "291669d56c64626ad894df1e5bd7467e1a8dca41f4ff5442330907d0d994b9c0",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "15c9e9414f282643e7efd5009923f947b264a8d1806f8dab598beb41c8fb928d",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "133f927e1440dd2cb93cbac55d1685bba1028c6877414a9014a8261f2532de43",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "a2cbf6da9d9745d0c1925f7f839acb0da947c0776cde1071fca05c69f27923cc",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "2780afa6d1b8b5146b82c52ee25b1b7ecf57422c127507592fb8aa58a9ca0f3a",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "1e727b5f1f0d78b90c6fee18b103acab9f36cbbdbffb3249f6d6b70603483d39",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "2001048e4db693e720e55546f71bc394e894e65612e5eb5fbaa12db5c8abade9",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "b829c27e0f527fc95672a6b9270e85df57099d98e1aec05b96a6d8c2921915a0",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "7e4f42222e26349f3ec21bc53ea43794b2aeb0c4282cdcc2e41e8973ee21ae13",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "4cc3c0b76952e8f50ad5e732c8c66f948c80edc78ea69d3d05394867188376e1",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "30d8d5e4da65b1ea56a35c126e6d51ddd9665fbc2fde356f112511e32298b3ce",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "2725884641ad719774fc1de9a293fa2c4a8a24c3f4da4e8b78d748cdc3bee017",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "c86ce4aa63bf77e35f35e3bfd70b8f8deb61fc435a482f302aa5ba61686cf273",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "4207ab83dd904a297d6b963bb9085f1c6737ce7b0c95469c070f12f0c21f81d5",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "ccc5fb6814c8f25501c6da72e7a293ceb632178d6920d32b8a3e0e65e69e7f82",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "d5132966145268eab5441d0f7e67ee41ad461512cc70ba2ed12577ae34f953b0",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "12112d6299188d77afa6c3dcbd408cb7f74cda8939231431f275524b01a3becf",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "250e0913e85f4200c9c2cc3ba26c3789055836648d0625fd2853bbb35ffe9bf9",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "8fd29c6508da2124c371b99ea1dcaf5237bcc3d1d0d467c9257a4c264ddb95c3",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "33580a3daabef6220c41bf61598ec395381d55f620c10600a5c524e5fba950ed",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "fc1be949f75b8d355a73eb3ba565b16e5d28fb6d40934a92db27f9d6eb468efc",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "7e7d78d08a774fc34d38cb99f5ce721614f52acb1912f044b9257381a1da1578",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "8645dc167bfef50b7737f0aba7603358238bdf7e7fc4d145f8f10414dab4502a",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "bad94c683b8fea75702a2c290aff5cff9b8cf9eef29d1ef423c2efc7e82184aa",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "b5d473dc899fe46ca884fe8c3114520f50134b03852a6a8100ce61aa54eb98dc",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "4970da425708acadae49fd3cae72f79f2240a874ef9dacf91b980c86bcca286e",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "2ddf269924c2bce70019f38010c830636278b3e0cd6d408e51c65bc41d5a3be3",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "873283aa082038ad19e39ed6b18681e7e2da2584882278232739234c72b234d7",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "7747b62b8489ec6a37d0dedffa622b77926bb5e99395a7d8d4b2d816946556b2",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "a321eaaab5189098091d819cc2a08c099f079610b17ae73fca03d9c73f5043ba",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "38ecb145d83252ca737a61a42325ccfb33dcf204c3db31536d39baf33989ff87",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "6c6c7f2be11b48f1128fd4c450d90e1974758d1ea381ee6822a9acad9d9a7a36",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "9f18a29e74ca08d20edfc75e15d59e779c96cbdd2f18d3e1e415b7a3abed7f3f",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "7d118f0a81873324837ee1f84fb4f06a410cc10a1e1547eab173d66ecb57f833",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "480f2a77d1e8c7a8d586d06e99d6f9e6fb90043c1eebfaaf2b45759dd6de54d3",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "2e7a78df4e8e213781b03535a731933094ab08dfca11916257f4549ec2f62f25",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "a27b9a2ace725a985ab891ede6334fd8229e876a6e600471b420ff30b79408e6",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "85d98399ae7d5c53c79bbc031fa71f1a8d58a9707e093f9271c56f84930e2493",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "6f2b67f46993e04d2410aaa9a09ec75afab466c6bba2846898110ec7a1280f7f",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "754a7aa6639470ba8c8b45dc13fc45057c6c780440bd42aa3cc1f3fb47d09166",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "9aabcda6d9b2d93907c06b8c2395b6dacf28f48393fb5f97718fae2766a65876",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "2a2e9008c84c0035fdbe2f2b3501ef2733a6133d7adb514e84d91f494d55dcb8",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 1,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "6f598eaf982a01c1e7b756aee357ccc39486ea6fdd7d757b1066a408b29b84f9",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "b2139c4f762de45fe25af0c405f6607a5ccf668055ea100eedbbefa65208d831",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "872fccaf8bfd1f882648847b80d2b9ae3aabeeeea5ed1bd30a196d0a9349125a",
+        "vertices": 1806,
+        "triangles": 3640
+      },
+      "exterior": {
+        "sha256": "c46c2dfd93b70928b9e1704a42493a26bab7aa6158ec03d50239eb8e0e5dd6be",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "2f51d088d1e04187c65e6f67468e7e3db2f1c4350e01950e854e4d735524029a",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "2ab477dbca62b76576261ca69b3c218c633faee7eea8677f2d8a989902c2c373",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "cd16138b135ecb0a48ce53e01249c631b35c8c44075089662ab240374a886158",
+        "vertices": 1810,
+        "triangles": 3648
+      },
+      "exterior": {
+        "sha256": "9f79c518e296e19d20c0bfa2a4478d2df7c341c93b99c77f5eced5b1a77c1580",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "19bde488c89809d7d0c9c9ad363088cbce195d41d4c753fdf3d5b9ef58434f93",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "24e832ca59a2a2627bcec8a2c718079aa104de6ac88313c4bffcdd9cb1e14238",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "278597caecdf4f8c552fa6beaa26aa3a8eaa4cc5580ec8e0b5b281be2052730c",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "83620d566de2d29d93e8c0902fcfe2cee2d8930cc12cc10b3632d3c7fe0a6db9",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "e333b40852e873eb59bc8e8768ea54ecf2971d322a1ca8c037ed7008113eed7d",
+        "vertices": 1806,
+        "triangles": 3640
+      },
+      "exterior": {
+        "sha256": "30ee50d8b6b4358cf3bff83c1cad276094e1c638baffcea355da2af931397be0",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "ce7abc752bd18f567780abd944ed004dd8ee120feeef2ba4c8f4828505611e3f",
+        "vertices": 1796,
+        "triangles": 3620
+      },
+      "exterior": {
+        "sha256": "dc5d37d97dbecc218f8e6140ab5f71651c60b1fa5fa5ec3ebf969b82b4372fb8",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "1e5b3e3e737c2a58c322957999fbc5b7e311cb06e91156db35fae1219c8acd58",
+        "vertices": 1814,
+        "triangles": 3656
+      },
+      "exterior": {
+        "sha256": "7c27251b21dbd2be64d92a7e521bd7db0bf4128bbed8c7830d47b50ab5d95aae",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "e667400c341736e84ded93258b636c760efefb9c80491eb0a34d363e015c625d",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "c8fe7d9d6ad17ca7ef32682c54f3efb5c1d54696d1e582d8152ed9fda761885c",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "08cdce57a9fa71200c58be33f4ed061b9a0cbed825657e2b09f0fa84041dd07e",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "5ebdb0cde2108afddb1015fe7c91b8ccdf50d870fba92cf2ac72f53c19ca9315",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "7d54744a00eb3b241ceadd6b54cd9baf09434bade0c7489a23e7dad6549b2c38",
+        "vertices": 1806,
+        "triangles": 3640
+      },
+      "exterior": {
+        "sha256": "66ce60ccd50616dd567c45259c20587f703f806862c231f10f1d81002315c6a4",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "fe2f16c4b9718c68ee9aaff2aa6ae28c5351b05ebc470ffd520ffddcb45da7e8",
+        "vertices": 1796,
+        "triangles": 3620
+      },
+      "exterior": {
+        "sha256": "567016bc0e95dcbe4f61c0dbe992e23f3c2a89d400bdc9666e3638f51297a88e",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "a80155c1cd0d08c8dda0f1849fb46c01db765b88b780ad5dc922e958ac8f75ff",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "b3408704f19b3662e6904b637b2beaae23f8f14fbbb180435f38d756f5bb5794",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "fbcdbe6d20af30d97b8a7014e60faebba7d58d1683efdd71b69fce322afb416e",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "3d032675843c351732dfa6275a11bf626edd5df50df2dcbfdb9f38a37a3ff7d8",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "b5007c0388d654169d8b526808d6af45a8ea2ca23c99e9b6786deed09b878313",
+        "vertices": 1806,
+        "triangles": 3640
+      },
+      "exterior": {
+        "sha256": "5d57aa52a6ddfa2af2969c0e5117e84ea6f0fcc6e766b27ed4964154ba3b6e40",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "35cc19e91e51fe0aee2b769c02d2f5bed9cf95d555ab3bbd9f63469f41251686",
+        "vertices": 1796,
+        "triangles": 3620
+      },
+      "exterior": {
+        "sha256": "0892b06b7e1069879c9d62c639cc3e587b1ce1501cd08644776505a7f757b64b",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "3840f25a4bb5c6ef014f6f83315a189640a3011087c44160207c40519c396ca7",
+        "vertices": 1818,
+        "triangles": 3664
+      },
+      "exterior": {
+        "sha256": "82a0052b89bd0fafd63bfa01e22bc96b01b0b7fa90d487828455d7e654a04c80",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "8cd462631f57a6d2e7403c4e52932e1feb44e5b1ffa0e70a38dad1504e57c3e2",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "eb9fda0ef4126e4c008279f0f15eaad2d0789c95edc441b06da4c998cc11b24d",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "90cd870c6de9d04c171728799d86adb9d5df7c81da6e4f60c436c57d7cf785bb",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "1cf86e2657424b4b8ad6639b6b4346dc6949bf1e805c6cfa1da6f437ad12c511",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "ed916dd4b4db6e911218d565a92b200e577a05bc987b123515c5c25feb653061",
+        "vertices": 1806,
+        "triangles": 3640
+      },
+      "exterior": {
+        "sha256": "5dba8248da60c31af65d57f89931c1ce13e13b44c11f61424128fed59c3bb3b1",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "2ea4474f3552f14d05faff4df509e9979763618f9bfec854cbc521fa32eb9d89",
+        "vertices": 1796,
+        "triangles": 3620
+      },
+      "exterior": {
+        "sha256": "8dae10f36deac35ce6269695a0a4163743ceb318d8396bc0c416eba152a655b6",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "f7d0e7cafaa5e557475c0ac92c522e467544b0552db976d4a16262324c5062bd",
+        "vertices": 1818,
+        "triangles": 3664
+      },
+      "exterior": {
+        "sha256": "afd2a0a63413ba66bd6b3da2e6a8e4f4afd7c0d2f3dd1457e4fd1ca8d608f34b",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "57fcdee1b208bf00df4428c775a4788dafb410a260c7ebfd281506af07581b51",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "52842892007fe4782b8afa47ac8fab859b9e320677fa04ed4f7457d65bec6aa7",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 2,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "7d9b3972d1e62beaef8910893d9f1569717663927aba3a9a98d3f9b7946ed571",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "617442fde21b5be911fa0a03926f0b872ccfdf29ef5f983213e9e61a424cfb41",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "3532b70836612c1dae411e084fe7551797e3d387a0e9ca9246b6eaba8a1fbc0d",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "36317fe45aa0a41dbaa85a53ddf402c841e7660ec76c5c85505286b63466454a",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "bbc147cc32e7a9d8bcdf356330fee838c54a2b45bc1aafbff3d1d59fbad01f36",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "6465c162ef11bd5b6ebb39e27e2a08c47b931c06d5643c24c1c02fda530ce5b3",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "34d2fed1935685466dcd21f371819c7c20f44cbfb4d61d44b30ddc6d2099a332",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "f33d82fadc4e4c9f50ff72d274dd31f1e866cf9873475ebb2694382a35f01232",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "bd39af86529b27fdc0bcbdfd5ba60177818e6f7ab91cd2f6d776bf8c1360a9b6",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "f808c7efab752c81bf996fa21a4ad0b6bba8bd08c582e980bfe34d25be2acb5f",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "8462f86d65457f0a5ffb3c966a33ed106c848d67f965b0ff1d6cb650cfea996e",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "776e225f0feb803247a60514755af8993ca5daaa4cd387d1e4f3f053abf9065a",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "89e0b3cbc53e298627de1d95cbf5fcce79c9e095d6aabdbaad5e127dbb355c60",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "8ccd6a86e91bc37ab6387e6c284b4579405b7f6a16015a86da3ee7c6757495d1",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "d72612afa49b460238422b58c0467c478ee043628a62f81831a8e266d527e40e",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "d4c02a67e891d0f6e4e8aba072c6185581cc7b56c9c858e9fdadf3a1e59bbd18",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "d59a6b1dc73cac871ce2ab6668a8cb292c960e022ca6407bf67140dcb611e834",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "f0fa24313ffba57861298efa33209cc40b6048e84b1fdfb8a47b4836695ec557",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "2d7ada46ee8aebc483528ba153473c3269db286e6d6fc700250d039cf36a4e64",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "e344bb852bd88d060dd21273325b13a70563be1346de98c84ffb5850f8393e13",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "9ada049364cec7ff8b719f5bf0368f8575bd1ca00c6cef00c3b2649738a5a9d4",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "5ae09100715f102ce45bf093ef347beeb1f0a15f2d91782974a60b8b5978a126",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "1d5ba60dcc1981f025afa89407042a5b9fa4a5ecdb9f0962e0adb92d0ca917ac",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "2098b1c81b73b81bf6e43f00c13364b3ebf9803743b5dc940d87a1ac433bc2b4",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "89bd671e0ef58e40958880f387bbfd7c123382e33aeb2b93f49ac5a2e7dda0c7",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "b6c3284c9a5a3e292df256e1479da71c18dbf38a1d445582d7c363ec1e0dbccb",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "7da183483186558de5e28dc8b67d57eec48139db6f0c5502522782a55090a2ad",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "76d87ead1005ca9eea6da1028b20f3b4ecf0ac8ed9ecc52992fcb6680770a03e",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "b34afc3d65a161b4c541d11f234a1c8cc031378f0128206ea6be4de7acbf0b78",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "a63093e78c701c8fee47e65493ff6e0abf0fdaf27f9558a540308510785d53ce",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "e56e81139e76b5e447d31480a5a4969148cc79059697f6a73395858e9651b8cd",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "39ac0e83716437c4d754a5967a18241d824ed40d5e69b50cefa6f2f99f9bfafa",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "4323126417741d033ec7f112ce09226e101d01433c2bb809adb3d93cbe57f339",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "427cd60c17c886cf9a7ab58363774cb8be8f1c9fa89b7b1afd8109254f37476e",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "86c5a4b0e05972c072a4f8056e426ec06a50f7767b9f684fb409c71adb84c69b",
+        "vertices": 1806,
+        "triangles": 3640
+      },
+      "exterior": {
+        "sha256": "15520402619f4476d5667392008ae9ccdaddc07ff6c9662586428a4cc645a89e",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "05fdc7245014fada2f6daaa865f2c50926db763df5cbd7e84068a4614c4bd754",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "2d6e679e41ce9fcdb95e88d831b06f5ce45061fc4a10662cc492be6def92f856",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "9cdab00764c3a2c7460321adc1d4b8c81667cc7fb772c55783411f756109ae2b",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "158760a1284f2be2d69365f0c1f9f3c95c2f89c6e17a398e98845cb8a5a7440e",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "20968479435241ffdadb9f60b94b3c3cb4c3d04bbc547e768d390079b4ac22e6",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "0d72d94482208f2745c0678c54445d582d6a0595be4f59958a0b6c02d49f4629",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "b5e23e7c10cb200e2b95a6fe4b004667f688885f6796b9bfbc01d91cad7ccbd7",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "e5c538b82f596f6169628c42ece0fd9042cf24530010572fa68f2d377f2612a8",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "6a2ed21329055994baa0fc9c57f73d6de6c6097ceb2873f7833ce60a76961120",
+        "vertices": 1808,
+        "triangles": 3644
+      },
+      "exterior": {
+        "sha256": "fa8b279cda5dfbb95b525e758f9368e01b73927fbd0018ae4f2812dd500d3b94",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "cacf50541a22fb2177c7118ca16328f897fd84575bf9358ff846a4a51047d5a4",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "31c28e59f2b8e9d7a34f1f3c7ef20109070a0fa8332cedcb2ed8350582e7641b",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 3,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "8f58684bd216434e5141458ae810c974fcf8523c45ff35281230e13156507a82",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "32c514faac3599f98c80c3d6a5fe6cf038b50dc05e52d003e01adbfbeb7f80e1",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "660d3f846a689555b60e847bd8607ce8921044680f064c0121720e3917344327",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "d119928296d65ad8a3ad03c3a07efc04a5f8108e3236706d7d16ebc59ed40fcc",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "2ac1dcc5fbde93a8cdca0be7c67fa16408e9a7be87478f1bfd2dc5e52fee78d6",
+        "vertices": 1799,
+        "triangles": 3626
+      },
+      "exterior": {
+        "sha256": "42fd1489bf3d88dbb2d6de250a330699b4f662b64d913dc8813ee7c789aafc8b",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "b41d863138f315dccdf4592ca736fcb6deb0f01bbe3a6ccf045bd5620f280806",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "1d64c873a4161fcd19ebea6c85c2473ff267ba96cf6f1d12c2b4db9a1518aba7",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "89dfcf04392f3a4270418c6d21c31a6e3be13283fd0eb9cf6de01c710cf9c184",
+        "vertices": 1812,
+        "triangles": 3652
+      },
+      "exterior": {
+        "sha256": "02caa70ca0f61b8662c1b64de63c2638122dfa4e1a415c1e95a5f5b583868db6",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "4734f9d2c7e0f083f1bfd86d7164179738ac828300febb7484019c19d8377824",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "997f5667ab7ed1c2dc5e5a137a0932299ef2a68be9a65e7ab72d825a3f749f54",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "203d56cc2593b8af14e7b28cca926526b51a1c509ce60201831abb6b3ea4e5a1",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "937ba00cb8dd50f040a90067ddf3ae716a981b99a8ca8c7b3807a748eb032f01",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "cc8c710b58bb487123252c7e3fb346b7725f56dca8654a09e3179bd5006c7d1e",
+        "vertices": 1799,
+        "triangles": 3626
+      },
+      "exterior": {
+        "sha256": "8a83e129e6a03fb38948448503e93ffd7f31cc56747efc788edf5392eb3ee0d1",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "36a0dfcc446744ba3c70f87df03a41b3d98c8e51177bcf53d08d67389d553eae",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "7106f7b3e0d619cab3f7c3be1ed1f17f322ebc7229b02cc039bcb05f5f783f2a",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "72040e6f7541750f1d96b93215ea279614c65070f408462fcfe08b8805610d01",
+        "vertices": 1816,
+        "triangles": 3660
+      },
+      "exterior": {
+        "sha256": "62b9c32b31b27a3275f6a893518084d262ff9e989ba346ed5c00c1f74e6f3187",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "1f9afb5ce6bf1b28e536cd1c9289ddc92f8bb45cbdf9a598823b84be5ddedf91",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "2815623917c1a25b887129ad49e27c9d0ad5be60b83fc56c0e017f03b15fd308",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "fc7eeefdc73c6bdac8d29f599e93f532b592bb945e921294dc97fe140359615c",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "6efc8884770a0bb6cc30d113c2685e3dab141d6019a4c1d49d077e28567f7641",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "ad6f55760dfacea296341dab904333e2e9a0248cfa5832c4b4f67b134e627122",
+        "vertices": 1799,
+        "triangles": 3626
+      },
+      "exterior": {
+        "sha256": "1f1c67fb652e8baaa416373deeca4bff3f90757fde1a72d1842a523bcb902053",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "bf0e6f34a20d4737155e7ec03a6adcac9c792b113e0d79f7cfe93d0b5f88f76d",
+        "vertices": 1818,
+        "triangles": 3664
+      },
+      "exterior": {
+        "sha256": "e1a2c7f74ebc624a1d390deb980a2a04e8eb2e2e782399e5ed7eef5322ef1a8d",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "cd07538d06671173bd109c9977f015d97884236dac63a35af14cf708bd86c4b3",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "d88d475e65b38c1fa6c7cfd98ecca508318a0bd237634e8be2af8aee4472520c",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "f1b699dc8248906a4452906184bfcac8f4a97e0a641e0c1a36cca659f5e83659",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "ec3a91f35e86731ae716350044dd6370044c7e2ec305c092fdebc5f487631860",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "f3dd1b1975c9cc3d35c80c08544f11c41ffcca2aa92cc67ba7aacb533cacee5c",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "ab2406dc12d3591e8bf1575b4f19b99f7463edf30ba19848a0eaf63ce3028492",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "b9b335c921cccc8c71a2a3724da105a61434a353bbf64bf100eb74c7262f4260",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "223dbb8414cba49f393438082596fe37dffa46cd9f9713b8b66dbcf9bfed49f5",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "2dce7b241676070ae3523aaf9aaf2a81ce175eb5c82155c9bb9400de6a0a6fa5",
+        "vertices": 1818,
+        "triangles": 3664
+      },
+      "exterior": {
+        "sha256": "5ae4983555879acc47de86e56289e8f788981bd8b0daec6bf7671a99d3838271",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "3023fe3ca596793811691498c52e9e8262bc944581effa9fca41c284ac702ac4",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "e908d9bc5301494231d6be2900a089636b7956fc14b04681b1d52b277ac3126f",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "e89229973d2c3cf57c57b13e6a2372885f7b60567c1e5bb36a1fd7cc5aefbf4c",
+        "vertices": 1798,
+        "triangles": 3624
+      },
+      "exterior": {
+        "sha256": "8c810c3c65c0ca570c78ce7a87f938379b11a33a966d7ae55238cac3d7c3a16c",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "ade735e402a60a3d7f1ef296b904c5f66ffca1005c47714b6f1b8c8ac65f92a1",
+        "vertices": 1799,
+        "triangles": 3626
+      },
+      "exterior": {
+        "sha256": "cb24794f14ef00398b951a6e2a0a5f233c32569b576a031db8bd133a7750a99d",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "085adca870b5b04b1e9e8a0762150b3815b0496f898bb2314e2098b16388764a",
+        "vertices": 1800,
+        "triangles": 3628
+      },
+      "exterior": {
+        "sha256": "419d31f40a9297f54a15418eced00d2429f234b7e402202470e626ebb13ba608",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "4ba5d931a7da308cc1dab4fea943f4078535624ef2fc30f4bc48824e6d453e61",
+        "vertices": 1820,
+        "triangles": 3668
+      },
+      "exterior": {
+        "sha256": "4bc5b64e58591ac98d069551e511c01b377beca525a21ed96199df6200e29c09",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 4,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "fcc20a855003390205158fa509718766b8e895e396c9367d7072657ef69d08ef",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "5ded3d38dea16fb72e661c3fd6e3c0ab180285b85a28282ed242e2ecb65a81cf",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "3a09086a46d9610daf632e66f88434b02d7ff7eef80a5deacebfa9900c3ecf3a",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "90a9e9e38bd9c7be3080552dda0c4230b80c472ae22f1f6a7b17e20e95348029",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "a4ff86022fa02b7b3833cecf1249e75e1ec273d1ee99dd3ede6b5b130c950e6e",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "6a84177c42d2eb2d4818e7838efc2d55ac88912d905b01a3f549b657a5d80b56",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "37656c6cb8dca9a89fefe61440b84768fe10719fe642a883fc00192660aa5cf5",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "7d97581075ea17ae5b33b8b97b52a5b8bdbdf73793b645a19bada5138a8b4671",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "60d0ed01d66471df13d0c26a11183e8d991db53854f5e88a5ceff92cfe138f83",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "2cf67d975e39cd386cc3d54dad4859e642d52d5c5dc0b7b22e71ad664aac4a60",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "87ae761cf60c19bf96e1cb1f7cd6473bbe6c2043068c06fdd2ad04a19f3f265f",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "6c69eabf61c4a56f14e5ca5864c12709b79a883f9ee0153a6a733fffabc6b35f",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "5fd145bb5851c7cdbc2baaacdc7b92e0057d8320296d58413b78aeadb27ed66e",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "4b512021acd79f411d43b56bfde7ac8a4c906f94ab67857214876974b7760e86",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "e53469bd76d21490cf9e1058c0c4cf40ed833537c5d4d1cfc950122bb9959509",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "f6c2a8567c697b6b4238f1665a8811c728a06597a551928d44ae1f42999c8dfd",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "c22a8615778cfb96be9b38757595962be9d2286631d78b04bdf5f8fc57b4db5e",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "a1bb08859955e1d8296170b80c07604c4851bbd29bc46c6f6c2da4f2b7c8d781",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "f4d5e05c1e92c5499bde35127c80a7507847aac1af208cbcb1d20929544e6934",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "1d9a365e35799b93d111d6ceb8ba090393656bb24934118f7ff9f5383aeb787a",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "81e65ff3a058ad7ab15188e1306495d02b28795455c7442fbed8a8aa24ff2751",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "838248217e23b9d678bea62f0a3dc8b407306d78917bacdf89ef538ef0434d05",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "1e45cd8d23b50c0f8ed8e6a1cdb20255a9b2d30398d996e7641dd88261c0cddc",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "8d9e105ecccbbb8a9bedaae8d316dd4445d10528856ba9a050a20f728b16b9eb",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "cb21ca7ed1bf10ebbbe8486e2c378231d1ab27033e9adb971ccb2c1f0ab82524",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "183cf940e8e4a1775c183f73d08bac10d6a0921bbee68ee24738388435291b2a",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "e16d6f23d0fc7aff87f12ab7253aef733832c0f272b55ca6d4201d848190bbcc",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "06e9da6831e61d866e0d38d7e0c0f88dc9e3d633fc4d6ff3631102ce3cc20b02",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "7a623ac5b398261ae9e323ff5525556a215dd44ec158438aa31d123ef7c4544b",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "a8349933dae41cac1e4763bcd61552ad3e0dcd1cafed12bb206da9cdb5673d89",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "23de942d9a794ce4be102b1283745e7cbda4c0b327eb0f3e86523431db038e4f",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "d32dd8032d8cc6bb5af27ff05f3f119f36349e332b0ee605ad98d7068632c8c1",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "f9f9b4a22b048f343e0ec9947b52ffe25bf8598be5381d2c08eb26f051f38a80",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "fe74c3254287bfee24e4fcf313c81d04ff35fcc75e88400014d0cb8a00b55a93",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "efdb427719dc96022a030a4c8556e6edbdc4a55664ce2c46aa4a9cf69a82718d",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "ca5c1ef7ab5bed0c5a5e927cfd80cb9f4b5a36351217f81dc1f51466446c4487",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "7adeea15fdc82a05385d9268dbafdade4dd2665a56907996449346a3addd6b8a",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "3401c9de550e7cc951d907073ba2cfe3f3ecb693ecc82b1650d60ad4bb3284c0",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "9fd9b3e02f7250f46ea4ed8cbfadad0972a6a9f0cf1f6bdcbc548c6f8d1a6f01",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "05e1631e41cdd98969f46412abfcc8f0794e6bf22416551ef59f3594fa27d7d3",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "159bc5d24ea0b91f0a1a6d81be4000dc5b6dd6f55e08ab3bec0367088cb38290",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "aaaa46bf0a9463445b0dccbb511a0e2d278a944b7adc3d5f7650b52e14fa8b3b",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "cd5e7424df55d2b650f24d1132745a7db40eeed6975134e2f04d356541ad4352",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "1fc2d3bad51cdde6ab7b8e0b0f2b4bb8f2553aa2702e2634dd250bc12072a90c",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "b775b7c89e80ba3744faea2dccc66b72a7e3bb1af96f8cdcd6151cc033498d89",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "40cb55fc0e5882e5ee72c65467fddae74cc03bf7d81c1d55e126d2af5e477c1f",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "49d19c181a93cf9b82f564b5a32e67884f8d3231572146ff3b79d9df0ac529d6",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "eed25554efa3dbcbc60d88f99509c8e0849e562df27c0d5717036a1f69d2e0f9",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 0,
+    "meshes": {
+      "blank": {
+        "sha256": "d1ac00f4a896db84cc8b2c1b76bfc07ccef96562ab759c2b54a61ece80ee5054",
+        "vertices": 1834,
+        "triangles": 3696
+      },
+      "exterior": {
+        "sha256": "98428fe5873f6302ecdca4243f209eda66bca4a630889f47f18d7a8709da3785",
+        "vertices": 290,
+        "triangles": 576
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "d6f3e1982f7e29bf555c632feaec5bc55bd5c619e01089b4dd2d760cfe1400c9",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "a65ae05190c1b3412f7533d7ce24be47d593d299d1e46d56a299141f5a00b68f",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "849f711665d6666677f5306a2d7e2fa20c5958d98c8656a40d92c7b28a37fefd",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "407968185b62e9a0e7c646e090c5a05c03c5124c1b0f8368a15dee6878ad5b4f",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "232cd5e7951a41c7217fabab26c0a9a59bb9ff1047aa73ef64965275f513489c",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "586da5c7dc083982a1520da213255f3ca4ee3e7d1c3a4101d457ff247019fdc8",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "af7489a08a1b07d8ac1e09637cb0fc0df8047c0d426ccf4bf79cd810fc1094d7",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "939d8ed9214ff1e0eb5cb44b069ca7de471823652cc0a8286bcb0f0949c93ee0",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "e340430640599539245906f50bd14b8d866f567e88d36f5c5fc8a400734c0bd1",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "3f4b68ca06dae2c032e0eead6454556211955a98f4e991099bae5fc646901cdc",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "9d04b243af67deae6e01c142ebe1ef4605d67f90ef04fc33c0522411c776df91",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "50b08698112b1bfc6d5299b0fa953406227ea0be8cb189d29a1e4132b06760d8",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "653f7c6bacd20f5bb52e576b7816499ac76b97c30f3a626d194c5c94ade40505",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "f55571804281589ea25c169984df2c1d3416700e7b9ab520a2c454e7b9f597bd",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "fa79266c3b14e3adf46bc31678ed69098818c0c389a47cf876f5dedc4846e133",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "2c419af72810b344e4b69fd8b352286099536813631405f9230e40fb2831c55d",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "16ce9d2cac9388ff939502d454eb9090eefd79f4c20ceee1a9528640d791a5fa",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "0c9bce103b1189520289035143f062dca112faf83d0c291370e61f01c9d3f031",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "78bee736277e88a2b0237c99e82bae118be62bf910b92a4042d8a7373104faec",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "3e0f379c592bb764f49b7c681b656300a6394e6d1d7f9f615756d14446392576",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "8c9b9b0fcf54cbed1a3c0ee4b92bf583d9ed541805ef6479fb36827e07d2cb7f",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "58bd158c859213a74188538207ee675634792848c4b32b596b7a8dd3491288e1",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "276b3d872b2277632509225fb958edae76f5b61b7a3992c8b9e954a9875ff0fd",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "280cc315e5ecb8ece554e5944e89511e3586689b9af9965ef1080d6d63b1c433",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "5e64616c14f2fd6edd51224a2e8ca82785717be69f0785a4a2580c9333553968",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "d8869c4bee142fabf48df30f5162b5f0222ff928072d646fd085258cb61902df",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "af08f073340b79628e0b4dd21ff496b115006ce93743b7229d98cc43af923ec8",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "985cf3930835ec2feff56df5d58685ed92acbbab8c2c372588bc1b17b2192da2",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "c99a7f63c25a27b3006c3b639d2cf1f116ac6094c846c32e5df9ade3c69088c4",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "83dbb3618882a0a272f8a563989e767596f7bf34291e74b3f110f74765627710",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "71fd69ba20909fda42113aac12e74189a169b3e3151629fe1b46455d84d3043e",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "95f0f715f90586e40f7f78abbf5e3f21cb6b653e9d3f14102ea6b895956fba7d",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "9e220ba20226caee4431c9a8dfbb585b7e979b716294a678e942152e8aa405b8",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "d4772765e67ac875f933cc3c4b94d16291a4436f6a02845fc08b2bf70417e4e5",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "e3cee48e52bf5d90c3d814a9d659bdea939320cc3468ee43417c2cf75d140e67",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "0fe428268d89051c6b37635c3a59681d38fcbdb18fc88d1fc20aac38b5b3519b",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "810af310a38391da9ada4ae44505d3e123e413fd8923fd5ba17acafa590798cc",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "63d7e4efd260fb975247003736b8c818812f98292f5777c75f70470b5fcb51ca",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "be800476e1f13366fd635c0feb95d837b57b1a09e69e54f509f4256e564ec891",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "f2160f3fab4869fe9bf3ef765147071d6f79142e149f692ca62cc23c2302d92a",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "816fb1af72b194e169a04b19255637dbaf1988aead0a058efa979f2d21bb2aa6",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "c520aa97decff7598a6160caaee358f1a5fae9744ac788e7a01c2f14290b8c3c",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "bd439ce40856e781aa16d029c532d8982b36fe274052f6e14eef7c7462153ec2",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "b5056ecfb961ca7ffef7676d814f8ef2b230eefb20d79c5a59e03dc983c72903",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "cef70f21f36a19a3a6942d9411d0da93f4ed1d9479dc11ff119b95a24816d658",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "70ae225c5744b794c84783fb879ae2e3c91f4e385236edf4cdbd3012f7697509",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.25,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "26ce898312be7b5105250da2b49cfbcd6f6015233d4452e2f40472479a39a4ab",
+        "vertices": 1830,
+        "triangles": 3688
+      },
+      "exterior": {
+        "sha256": "b2458f9c13bbd5645c4ae1592f630728f33ac46c0cc7d54d794efe3b3cd79ceb",
+        "vertices": 286,
+        "triangles": 568
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "21913b43b60a0c8efda84e9b5d98a9fc75fbb058aaf254a0f507dfaa35e49bac",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "0110764f71fa7455b830bcaf7a69551e8e3454145c05aac7905e6f844770205d",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "4d4fcf7c80220fb08562ff42d1d49489a5be8b75d12bec2fbf0f83a87da9b3a3",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "3f0b051b088f143abecaf57abde0cd726d93ac683995ef034c9fde8db7f06a9f",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "eb1d5033f0156880e9ab47647c1506775610cf488ef4d0ebfc27d0aa7ca0741a",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "b684a1005d9747f8a6130942aeb40a9ace20f7efd8a88613b90ee0846455016b",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "03d5513c66b5343528208f432f9edc15b71877109d89f5e773627f894acdb4e0",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "18b580cf1e2b8f271e0f3aeffa639305b7cbf4c34a0774d692b0982b10a04351",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "61aafcd16917fbd42d63204b369576818ffa8eb09d94de5736bf52eb7c09b563",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "5ec021459a22f4570624e1a87d2f6229917f527a8b1047499a1d00621433ba0e",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "a266ecf365365dbb5e47c4ecd6fbc19ec45e0024a9f4e69ebecbe3c091eb8f89",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "67879be6dcc0d6ea58ee1b99237413d75b11472e1af0a1ceeb924298b1540bc1",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "a3f832aa10542de372955978665ef5bac62e43c1df9037ec6e22c98c2efd4f33",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "dd5570f33df1fb5aab911bfa4d39e130c4e79289cb483bc7bdf47c3833f0d46f",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "f01f4584987d044da2a3473badff46f003d24826c61804ce622ff9b6777e6ada",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "7c69a2f3089ae4d5c6f8cdf76ba8478fe99ebd05c199d4ac817dccff2be10c1b",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "d4327e07b2f1507e64dc876628f2874c66030f3c79ceec188f895c45fe5071bd",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "37e991c5425789ef7299cb5d96556ec4f093f35daac3df86d4de0976f7de5a48",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "23cc8c4669681aa0614bd2e8c5ad39eb6a6bb456c78bf32586c179977281c56e",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "1162f4277eb134405f3c451e4b69a1508ce6d0165fe1e13ad309002e25a2660a",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "6a13a22e8bdaccb092be405db543bbf29d19f9b495f01ab0ef3e15ed487e389d",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "386e16334b166e89044c4cdde58fb541a1f485a371591f3ba21f799b134ca192",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "ca63a607bbe2ff7cc98d0d5c0992ad8a61dee3717f36a19d9631d25b60d1c6d8",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "643e75c7dcc38bbfbbda154fa1d997b4cf8ddc456823a4d006cddb55818b1bf2",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "a2975d94420f53740169b966916507057bdabe4c22d9620a867456cbc28d9138",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "52e9c572b91abe87fbff1b24fb2d6108e6daa2d59f2ea0aebb2e3541f8f74414",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "a9d77856a4d1492ac10a44253ceac9b71382ab01165e808fb1cc3628d3b09a05",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "ec9041c8449d4f87d5091593bd2cffad95adfd138fae6d1fa31d694a9dd476a7",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "d26dde5298dddf9af477fd7dd8ca40312836d49565914e14af348db606a60198",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "f88f87f7f60b3f481d1f8962d493ea7f006f1f6c768b6669bac3ba230ed6f48c",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "f5e5855a2ebb63c86d9e091b31d09d57fd852008f45c870cfcb06362cc9d47a3",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "641d32dc299dd548d0e826164ddfb6cc3fac3ae5e276d93b6861d67de1ab2a06",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "b7f92a9c51a96ecd0a7e732c013079b27bd55a9d446f4c9c7b037d4ca3019918",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "6cef3fc77cfbc199a58986062bc00874a286428fef3676561b42a0f496be87d4",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "cc0ff74462d5f6b9b481f790754490f77d0f3323f964b4d6ae59cd5f4cf7b8ad",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "c44e50f9b05f2a45936e14a60fc64f66e9520b291a9c4231f08e882130e336c6",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "e4e14fe92cfea49d9e7f54740963482b2bbd6290198ef059692770098a366639",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "9d8c2495dcca6b8ced46d8e42d984a546cca113c4393efa706876edf5d0138c3",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "a2047916a9f73ac2a2d022b94a0df55eaa217a601cf350b366b407870d7e94cf",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "224c3d16e7fe2303f6beb334b512c1ae30c6606931243f1ea3c81ca1a619c78d",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "9e3cb771dbb2361d1e1e3a7dc2cad217054adc5f0b259a573df3d79e55d63a23",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "37cfe39590c5aab1971c4d3aa7f2157ab3b1e88c5e303e1050b2e35d71999b24",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "b2d8986b3c065bb9ceab2d73e1c4410074418d2022536a9e183a2abaa09708a7",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "69ec35f981d37ecd87bddc5bc621e2f3bf0c5cd05659abd1e9a1eb6239056728",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "659ccc064db7cb41ae4c893084aeb8d3e7ccbe41efbb36ec17163d5565793b0d",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "5510cb741d7d0a3e15a4e24a485dfe2c85aef45d2a0832c4cffbec571eaaebe0",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.5,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "42f879960d761d297b87e5b4ed8f1e348f520618f0340a87e4ea51fa327435b1",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "01dacee72ee1a96393a25d30f904123c99cc8827fac130b531070f42476e5dad",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "617c63f87ad3fcc436fa9b3dd48f13c41f7084d7722cd08fb058dce3b4a11811",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "42457a167e33159040ce256a8fef9c18bc521615d417165b8bdba8e804516878",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "346482747b9995015c3a2f2d95bc89ebb5eb4ab4da6e79fa1c273db5693b85d4",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "fb0716427367d799f25ab81f01ddaf2f6f4e302fd04d088cd9fd1ca444e2a48b",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "9e29454f01b5df38c9fc59501da5490f34983975aeb08c4f6e160f25170923f6",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "fd8736f08e1bd21d902dce8803b3feb54b6b2f851210061edbd2fcec3017011b",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "4794c66c894d634fec68639cb1a269d8db2009ffca45fad94b02b5e722b3af5e",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "4aa70d444261a8a59ec2480eef4c9423401067afa9b45c17cb6dc87c01926a2d",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "54390fb08359440f6ebbfc2a94b3c5d803811d4dccff99cfb7a7129e50e47b0e",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "0d128322d5105a87714230127cc1051d027cfb07eaa1b619bea9098c79db7baf",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "0d91a7fa2ad4ce522a0d0d7ce3fe57c5841ae568c3560b908a4ec1022c59bde2",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "3f84da4f8cf7a2eeaefb4347e6228a4b2af6a9d1bf34a2e372065e489317038a",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.75,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "073497e27ff26395378b27770ad97406fbbc21558695ed62652dd336dc8c22de",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "b93510d98b5ad16c8384015746835ddb3b177c2f73a5e67def37e48817a7fa00",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "ce739ffc227072a094ab9614bd8eb9c023f3d8c767df03e8f37fb0d66e4b4888",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "e429a8cd521a29e487ead7ea0e56963229a0721261617edce07ea4130a0c41e6",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "1ae62d59d6e84d08fa09522ec74136656d71748a5bb23604da0f2776667bae1b",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "97cb89539485d4e44d5c21ebc819b29d8f4354234bb0e5787705cb12c6b166b5",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 0.75,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "6b3d1bea19e070ce509c9073220ad3c639edbead76310819a0d701840391199c",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "c611016daf16fcbe8dfe91d3946983915c106adbf252998464bfc97d38814b36",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "929573063648c9a39240f7856953e515b7fc486d18e24672408e817c98ce3467",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "36b3e4b9a15c5f50c6fc41aeaf9e1c737a07cdc1b88d9fc9a3bc3fd077730994",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "04e0c5bba3df063ff3e0583c9770c78936fed1c6dcc592ae185541044415756c",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "26a1a21fa98741c7748549cf1d51b19192c500a00ebf9d7c10068961203a671d",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "84946d2990371768f6df2f6b7d21c475a9a213d60ed69c6d73b862583b18c81e",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "2ceec46ff965948aeead8a9733615c365a76fbbba8659f3f8e8a08ebf497c948",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "46691af556f4ba47e90dab7080413358995db29dad19a421832a1687c5061bf1",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "6df1e040d48addd5c924a8c5a34e75d5a5833cb24c93b890c596a54176234388",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "14d44eda84a12441d781e087be4710ac1852ed68e032f6b763e41cb3adc7e895",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "bf69b1b2f5355c415bce64284c3827dc432d5778418e23d649e14cbd3e6f22a2",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.25,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "625ac26fbd245d045c66d7dd04dcdb37846a81f8b47a502711c3fc9a28c1f59b",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "b6967cb045ae52cc329402ae1b75d2f054f21de665aefe69830e8b49250ba3a6",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "4594a0ba6b590cecc8295bb757d78eec430c6e34988164a307112fbb9f825560",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "2b8541efc7d17460c3a3e2754dd73e0674c2761c24cd421ee48e0718ce9453e9",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "4baa95b5229c3fd59d7f68d063a1479707c168df65b6ce94b17c68378b4d3085",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "9594bbc05352ee868c26c7d8d13c233a3912684cd68352e71c71036fde2e8cd4",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.25,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "55f415b72ec006a7bd6698995f7012293568ce403628a55d582b96d1767f7854",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "3f39510adc9303b512368799e50a03c2bc62b93e65efbad9fff0fb89aef1f305",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "3289bb86bb43e525183c5310db6f1d1e877ab50cbe713d48bddc17832712ac04",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "279ccb54dfb3a97840ac3885c2baa2289d9a8df4e112e8b573755bedf1157a4a",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.5,
+    "heightDeltaMm": -0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "84c6a092e0bebe9e55608ec049108e3f56208ff3e342bd4b24f055b06b913f05",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "a070e32ad29a73459b30c0405929c8d60f21773adb7d6072b0feade648ed1f4e",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "3924a6f7af0e6887f262ae041312ff848cfbf8adb86846a34cee51ca2a17316b",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "3a2872c677b0021857343ce3b37e2f172609c8db5189af65c774702516c81ce3",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.25,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "17cb726083edf79d68ae4dae67645b1bae331290f6df6f167ed337f50ca9f48c",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "451cf1444bf6b65df3aecf26eb6399dc56a016cb95de19939f811e2d0f7f4192",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  },
+  {
+    "row": 5,
+    "width": 1.75,
+    "radiusMm": 1.5,
+    "heightDeltaMm": 0.5,
+    "baseZ": 1.195,
+    "meshes": {
+      "blank": {
+        "sha256": "5f4cad9b4f0813603ef93bb0900f1d21f5d5a3ca4315a151257340ddf13f7785",
+        "vertices": 1826,
+        "triangles": 3680
+      },
+      "exterior": {
+        "sha256": "5e3204d0371cff8cfeb1b53fb1658b3c87f871b34427c8e424fdda7c0efbd68a",
+        "vertices": 282,
+        "triangles": 560
+      }
+    }
+  }
+]

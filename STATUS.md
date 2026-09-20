@@ -4,7 +4,7 @@ Last updated: 2026-09-20.
 
 ## Current phase
 
-Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel, and clearance checks for one printed sample; its legend has some physical relief. The local browser build now selects OEM row and key width before SVG artwork. Seven new row/width variants are software-verified but not physically fit-validated. The previous procedural generator remains in source for rollback. The public deployment still contains the earlier corrected procedural geometry. See CALIBRATION.md.
+Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel, and clearance checks for printed samples; its legend has slight physical relief. The local browser build selects OEM row and key width, plus bounded corner radius and row-relative height before SVG artwork. Modified measurements and additional row/width variants are not physically fit-validated. The previous procedural generator remains in source for rollback. The public deployment still contains the earlier corrected procedural geometry. See CALIBRATION.md.
 
 ## Implemented
 
@@ -24,6 +24,7 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 - Current blank extraction for the OEM comparison: the complete procedural blank and matching solid exterior envelope are available for development inspection without changing runtime geometry.
 - The browser worker now loads pinned OEM row 5 blank/exterior meshes locally and applies the existing SVG inlay/export pipeline. The previous procedural generator remains for comparison and rollback.
 - A selectable OEM catalogue now offers rows 1–5 at 1u and row 5 at 1.25u, 1.5u, and 1.75u. The selected variant drives the worker, preview, and 3MF; SVG artwork, its millimeter size, and colors remain independent.
+- The local editor now offers bounded corner-radius and row-relative height choices for every catalogue entry, in 0.25 mm steps. Nonzero height is labeled OEM derived; changed measurements are experimental. The original mesh pair remains the exact default and the worker loads only the chosen generated pair. The user explicitly chose not to require a separate physical print before offering each option.
 
 ## Verification evidence
 
@@ -53,6 +54,7 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 - On 2026-09-19, the user reported that the OEM comparison print turned out well and confirmed seating without force, firmness, removal, full travel, and no rubbing against adjacent keys or case. Some legend relief is perceptible. These observations validate one sample's mechanical behavior, but not repeatability or flush printed finish.
 - Local OEM runtime verification: 37 unit/domain tests, type checking, linting, and production build pass. Six Chromium/Firefox browser checks pass, including a downloaded 3MF with the OEM footprint. A separate `/keycaps/` production build loads and enables export in Chromium, exercising the worker and local mesh URLs under a repository subpath. The KeyV2 license accompanies the built assets.
 - The seven additional OEM blank/exterior pairs were generated with the pinned KeyV2 source and OpenSCAD recipe. Their source and asset hashes are recorded in [the variant manifest](docs/plans/oem-variant-manifest.json); tests check the bundled assets against it. Geometry tests confirm each imported solid, blank containment, conserved inlay volume at 3/8/11 mm, one connected Body at 8 mm, and negligible Body/Legend overlap and reconstruction difference. All eight browser workflow checks pass, including a 1.5u download with its expected width. A `/keycaps/` build loaded and generated a 1.75u variant in Chromium. None of the seven variants has physical fit evidence.
+- The bounded measurement catalogue contains 192 modified blank/exterior pairs generated from the pinned KeyV2 source. All asset hashes, solid imports, blank containment (within a 0.001 mm³ tessellation tolerance), and 8 mm Spark inlays pass; a direct check confirms ±0.5 mm height changes in the row 5/1u mesh. The unchanged defaults reuse their prior assets. Forty-one unit/domain tests, type checking, linting, formatting, and the production build pass; ten Chromium/Firefox browser checks cover altered and reset 3MF exports. A `/keycaps/` build loaded a modified model without browser errors. These are software results, not physical fit evidence.
 
 ## Remaining acceptance gates
 
@@ -64,8 +66,8 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 
 ## Next work
 
-- On `feat/oem-shape-height`, isolated row 5/1u radius and height probes remain outside the web catalogue. Two radius candidates now have matching exterior meshes and local 3MF trial files; digital checks cover central insertion geometry, blank containment, 3/8/11 mm inlays, connected Body, named Body/Legend parts, and archive structure. Their hashes and paths are in [the customization plan](docs/plans/oem-customization.md). Print quality, full physical fit, and the height construction remain open; original browser assets are unchanged.
-- Proposed [OEM shape and height customization plan](docs/plans/oem-customization.md): the user prioritizes outer shape and height and accepts the label “OEM-derived” when height differs from its row's nominal value. Corner radius is the first candidate, height the second. Numeric bounds require geometric and physical trials. No additional control is implemented or calibrated.
+- On `feat/oem-shape-height`, the initial radius probes led to a generated bounded measurement catalogue for all eight row/width entries. The original browser assets are unchanged. Modified geometry is available locally but remains experimental; collect print feedback when available without treating it as a prerequisite for use.
+- [OEM shape and height customization](docs/plans/oem-customization.md) is implemented locally with narrow software bounds. Future physical feedback may refine those bounds, but is not a precondition for the experimental controls.
 - Inspect and print selected experimental OEM variants before claiming fit on any additional key. The catalogue and SVG-independent selection are implemented locally; physical validation remains variant-specific.
 - Investigate the physically raised legend through a controlled slicing/print comparison. Preserve the flush digital part boundary and avoid an unvalidated depth change.
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.

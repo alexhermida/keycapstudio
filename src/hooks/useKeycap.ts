@@ -5,10 +5,18 @@ interface Result {
   artwork: Artwork;
   size: number;
   variantId: string;
+  radiusMm: number;
+  heightDeltaMm: number;
   model?: KeycapModel;
   error?: string;
 }
-export function useKeycap(artwork: Artwork, size: number, variantId: string) {
+export function useKeycap(
+  artwork: Artwork,
+  size: number,
+  variantId: string,
+  radiusMm: number,
+  heightDeltaMm: number,
+) {
   const [result, setResult] = useState<Result>();
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
@@ -20,12 +28,12 @@ export function useKeycap(artwork: Artwork, size: number, variantId: string) {
         const fail = (message: string) => {
           clearTimeout(timeout);
           worker?.terminate();
-          setResult({ artwork, size, variantId, error: message });
+          setResult({ artwork, size, variantId, radiusMm, heightDeltaMm, error: message });
         };
         worker.onmessage = ({ data }: MessageEvent<GenerateResponse>) => {
           clearTimeout(timeout);
           if ('error' in data) fail(data.error);
-          else setResult({ artwork, size, variantId, model: data.model });
+          else setResult({ artwork, size, variantId, radiusMm, heightDeltaMm, model: data.model });
         };
         worker.onerror = () =>
           fail('The geometry engine could not start. Reload the page or try another browser.');
@@ -33,12 +41,14 @@ export function useKeycap(artwork: Artwork, size: number, variantId: string) {
           () => fail('This icon took too long to generate. Simplify its paths and try again.'),
           45000,
         );
-        worker.postMessage({ id: attempt, artwork, size, variantId });
+        worker.postMessage({ id: attempt, artwork, size, variantId, radiusMm, heightDeltaMm });
       } catch {
         setResult({
           artwork,
           size,
           variantId,
+          radiusMm,
+          heightDeltaMm,
           error: 'This browser could not start the geometry engine.',
         });
       }
@@ -48,9 +58,13 @@ export function useKeycap(artwork: Artwork, size: number, variantId: string) {
       clearTimeout(timeout);
       worker?.terminate();
     };
-  }, [artwork, size, variantId, attempt]);
+  }, [artwork, size, variantId, radiusMm, heightDeltaMm, attempt]);
   const current =
-    result?.artwork === artwork && result.size === size && result.variantId === variantId;
+    result?.artwork === artwork &&
+    result.size === size &&
+    result.variantId === variantId &&
+    result.radiusMm === radiusMm &&
+    result.heightDeltaMm === heightDeltaMm;
   return {
     model: result?.model,
     error: current ? result.error : undefined,
