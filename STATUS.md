@@ -30,6 +30,7 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 
 ## Verification evidence
 
+- Mobile regression after localization: Chromium and Firefox at 390 × 844 render the localized header without horizontal overflow; Help remains reachable, and its dialog stays within the viewport with internal scrolling. This is browser-layout evidence only.
 - The locally bundled header icons and expanded print guide pass formatting, type checking, linting, 41 unit tests, production build, and Chromium/Firefox accessibility checks. A local browser smoke check confirmed both icons and the expanded guide. No print-orientation change was made to the 3MF.
 - The provisional Thangs link was replaced with the supplied Buy Me a Coffee profile URL and matching bundled icon. The URL returned HTTP 200; type checking, linting, 41 unit tests, production build, formatting, and Chromium/Firefox accessibility checks pass after the change.
 - Type checking, linting, and production build pass.

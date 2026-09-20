@@ -110,6 +110,30 @@ test('switches language and opens privacy and printing help without changing the
   });
 });
 
+test('keeps the localized header and help dialog within a mobile viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await expect(page.getByRole('button', { name: 'Download 3MF' })).toBeEnabled({ timeout: 45000 });
+  await page.getByLabel('Language').selectOption('es');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  const help = page.getByRole('button', { name: 'Ayuda', exact: true });
+  await expect(help).toBeInViewport();
+  await help.click();
+  expect(
+    await page.getByRole('dialog').evaluate((node) => {
+      const bounds = node.getBoundingClientRect();
+      return {
+        top: bounds.top,
+        bottom: bounds.bottom,
+        overflow: getComputedStyle(node).overflowY,
+      };
+    }),
+  ).toEqual({ top: expect.any(Number), bottom: expect.any(Number), overflow: 'auto' });
+  const bounds = await page.getByRole('dialog').boundingBox();
+  expect(bounds!.y).toBeGreaterThanOrEqual(0);
+  expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(844);
+});
+
 test('selects an OEM row and width independently of the artwork', async ({ page }) => {
   await page.goto('/');
   const download = page.getByRole('button', { name: 'Download 3MF' });
