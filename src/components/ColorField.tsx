@@ -1,14 +1,15 @@
 interface Props {
   label: string;
+  accessibleLabel: string;
   value: string;
   onChange: (value: string) => void;
 }
-export function ColorField({ label, value, onChange }: Props) {
+export function ColorField({ label, accessibleLabel, value, onChange }: Props) {
   return (
     <label className="color-field">
       <span className="color-dot" style={{ background: value }}>
         <input
-          aria-label={`${label} color`}
+          aria-label={accessibleLabel}
           type="color"
           value={value}
           onChange={(e) => onChange(e.target.value)}

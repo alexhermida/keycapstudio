@@ -4,6 +4,8 @@ A browser app that turns a filled SVG icon into a two-color OEM-profile keycap. 
 
 Choose an OEM row and key width, adjust corner radius and row-relative height, upload an icon, adjust its legend size, choose two colors, inspect the 3D model, and download a 3MF. Processing happens locally: no backend, account, telemetry, or saved-project storage.
 
+The editor is available in English, Galician, and Spanish. It follows the browser language when supported, and a manual selection applies only to the current session. The in-app Help button explains privacy and printing guidance. SVG artwork and keycap settings stay in memory for the current session and are not sent to an application server or stored as projects; reloading starts a new design. Browser caching of site resources and the downloaded 3MF are separate from project storage.
+
 **Experimental MVP:** one printed OEM row 5 sample passed the requested K2 fit and travel checks. Its legend has perceptible relief despite flush exported geometry; repeatability remains untested. See [CALIBRATION.md](CALIBRATION.md).
 
 ## Run locally

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import type { KeycapModel, MeshData } from '../geometry/types';
+import { useI18n } from '../i18n';
 
 type View = 'perspective' | 'top' | 'underside';
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export default function Preview({ model, bodyColor, legendColor }: Props) {
+  const { t } = useI18n();
+  const translation = useRef(t);
   const host = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<{
     group: THREE.Group;
@@ -22,6 +25,10 @@ export default function Preview({ model, bodyColor, legendColor }: Props) {
   const [view, setView] = useState<View>('perspective');
   const [failed, setFailed] = useState(false);
   const [contextLost, setContextLost] = useState(false);
+
+  useEffect(() => {
+    translation.current = t;
+  }, [t]);
 
   useEffect(() => {
     const element = host.current!;
@@ -37,10 +44,7 @@ export default function Preview({ model, bodyColor, legendColor }: Props) {
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 0.9;
-    renderer.domElement.setAttribute(
-      'aria-label',
-      'Interactive keycap model. Use the view buttons to inspect the top or underside.',
-    );
+    renderer.domElement.setAttribute('aria-label', translation.current('canvasLabel'));
     renderer.domElement.setAttribute('role', 'img');
     const lost = (event: Event) => {
       event.preventDefault();
@@ -97,6 +101,10 @@ export default function Preview({ model, bodyColor, legendColor }: Props) {
   }, []);
 
   useEffect(() => {
+    sceneRef.current?.renderer.domElement.setAttribute('aria-label', t('canvasLabel'));
+  }, [t]);
+
+  useEffect(() => {
     const context = sceneRef.current;
     if (!context || !model) return;
     const geometry = (data: MeshData) => {
@@ -143,15 +151,13 @@ export default function Preview({ model, bodyColor, legendColor }: Props) {
       <div ref={host} className="canvas-host" />
       {failed || contextLost ? (
         <div className="preview-fallback" role="status">
-          {contextLost
-            ? '3D preview paused. Reload to restore it.'
-            : '3D preview is unavailable in this browser. You can still download the model.'}
+          {contextLost ? t('previewPaused') : t('previewUnavailable')}
         </div>
       ) : null}
-      <div className="view-toolbar" aria-label="Preview camera">
+      <div className="view-toolbar" aria-label={t('previewCamera')}>
         {(['perspective', 'top', 'underside'] as const).map((v) => (
           <button key={v} aria-pressed={view === v} onClick={() => setView(v)}>
-            {v === 'perspective' ? '3D view' : v === 'top' ? 'Top' : 'Underside'}
+            {v === 'perspective' ? t('perspective') : v === 'top' ? t('top') : t('underside')}
           </button>
         ))}
       </div>

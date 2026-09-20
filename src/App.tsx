@@ -1,15 +1,17 @@
 import { lazy, Suspense, useRef, useState } from 'react';
 import { ColorField } from './components/ColorField';
+import { HelpDialog } from './components/HelpDialog';
+import { LanguageSelector } from './components/LanguageSelector';
 import { useKeycap } from './hooks/useKeycap';
 import { KEYCAP, OEM_CUSTOMIZATION } from './geometry/config';
 import { DEFAULT_VARIANT_ID, getVariant, KEY_VARIANTS } from './geometry/variants';
 import type { Artwork } from './geometry/types';
 import { EXAMPLES } from './examples';
+import { errorMessage, useI18n } from './i18n';
 import githubMark from './assets/brand/github.svg';
 import coffeeMark from './assets/brand/buymeacoffee.svg';
 
 const Preview = lazy(() => import('./components/Preview'));
-const COFFEE_URL = 'https://buymeacoffee.com/dvd16';
 const INITIAL: Artwork = {
   aspectRatio: 63 / 90,
   sourceColor: '#79a95b',
@@ -29,7 +31,6 @@ const INITIAL: Artwork = {
     },
   ],
 };
-
 function UploadIcon() {
   return (
     <svg
@@ -47,7 +48,8 @@ function UploadIcon() {
 }
 
 export default function App() {
-  const [artwork, setArtwork] = useState(INITIAL);
+  const { t, number } = useI18n();
+  const [artwork, setArtwork] = useState<Artwork>(INITIAL);
   const [name, setName] = useState('Spark · example');
   const [size, setSize] = useState<number>(KEYCAP.defaultLegendSize);
   const [variantId, setVariantId] = useState(DEFAULT_VARIANT_ID);
@@ -59,7 +61,11 @@ export default function App() {
   const [reading, setReading] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [downloading, setDownloading] = useState(false);
-  const [notice, setNotice] = useState('');
+  const [notice, setNotice] = useState<'downloaded' | 'downloadFailed'>();
+  const [help, setHelp] = useState<{ open: boolean; section: 'privacy' | 'printing' }>({
+    open: false,
+    section: 'privacy',
+  });
   const fileInput = useRef<HTMLInputElement>(null);
   const readVersion = useRef(0);
   const { model, pending, error, retry } = useKeycap(
@@ -72,40 +78,40 @@ export default function App() {
   const variant = getVariant(variantId);
   const rows = [...new Set(KEY_VARIANTS.map((candidate) => candidate.row))];
   const widths = KEY_VARIANTS.filter((candidate) => candidate.row === variant.row);
-  const problem = inputError || error;
+  const problem = errorMessage(inputError || error, t);
   const busy = pending || reading;
   const customized = radiusMm !== 1 || heightDeltaMm !== 0;
-
+  const showHelp = (section: 'privacy' | 'printing') => setHelp({ open: true, section });
+  const clearNotice = () => setNotice(undefined);
   async function load(source: string | File, label: string) {
     const version = ++readVersion.current;
     setReading(true);
     setInputError('');
-    setNotice('');
+    clearNotice();
     try {
       if (
         source instanceof File &&
         (!source.name.toLowerCase().endsWith('.svg') || source.size > 150_000)
       )
-        throw new Error('Choose an SVG file smaller than 150 KB.');
-      const text = typeof source === 'string' ? source : await source.text();
+        throw new Error('SVG is too large.');
+      const sourceText = typeof source === 'string' ? source : await source.text();
       const { parseArtwork } = await import('./svg/parse');
-      const parsed = parseArtwork(text);
+      const parsed = parseArtwork(sourceText);
       if (version !== readVersion.current) return;
       setArtwork(parsed);
       setName(label);
       if (parsed.sourceColor) setLegendColor(parsed.sourceColor);
-    } catch (e) {
+    } catch (caught) {
       if (version === readVersion.current)
-        setInputError(e instanceof Error ? e.message : 'Could not read this file.');
+        setInputError(caught instanceof Error ? caught.message : t('fileRead'));
     } finally {
       if (version === readVersion.current) setReading(false);
     }
   }
-
   async function download() {
     if (!model || busy || problem) return;
     setDownloading(true);
-    setNotice('');
+    clearNotice();
     try {
       const { exportThreeMf } = await import('./export/threeMf');
       const bytes = exportThreeMf(model, bodyColor, legendColor);
@@ -116,19 +122,18 @@ export default function App() {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 10000);
-      setNotice('Downloaded. Open the 3MF in your slicer and assign a filament to each part.');
+      setTimeout(() => URL.revokeObjectURL(url), 10_000);
+      setNotice('downloaded');
     } catch {
-      setNotice('Download failed. Please try again.');
+      setNotice('downloadFailed');
     } finally {
       setDownloading(false);
     }
   }
-
   return (
     <div className="app-shell">
       <header className="app-header">
-        <a className="brand" href="./" aria-label="Keycap Studio home">
+        <a className="brand" href="./" aria-label={t('home')}>
           <span className="brand-key" aria-hidden="true">
             k.
           </span>
@@ -137,10 +142,18 @@ export default function App() {
           </span>
         </a>
         <span className="header-note">
-          <span className="privacy-dot" /> Made here. Stays here.
+          <span className="privacy-dot" /> {t('madeHere')}
         </span>
-        <span className="version-tag">EARLY ACCESS · V0.1</span>
-        <nav className="header-links" aria-label="Project links">
+        <span className="version-tag">{t('earlyAccess')}</span>
+        <nav className="header-links" aria-label={t('projectLinks')}>
+          <button
+            className="header-link header-link-help"
+            type="button"
+            onClick={() => showHelp('privacy')}
+          >
+            {t('help')}
+          </button>
+          <LanguageSelector />
           <a
             className="header-link header-link-github"
             href="https://github.com/alexhermida/keycapstudio"
@@ -152,49 +165,55 @@ export default function App() {
           </a>
           <a
             className="header-link header-link-coffee"
-            href={COFFEE_URL}
+            href="https://buymeacoffee.com/dvd16"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Buy Me a Coffee · dvd16"
+            aria-label={t('coffee')}
           >
             <img className="brand-icon" src={coffeeMark} alt="" />
-            Buy Me a Coffee
+            {t('coffee')}
           </a>
         </nav>
       </header>
       <main>
         <div className="workspace-heading">
           <div>
-            <p className="eyebrow">A SMALL KEY. YOUR OWN MARK.</p>
-            <h1>Make it yours.</h1>
+            <p className="eyebrow">{t('eyebrow')}</p>
+            <h1>{t('title')}</h1>
           </div>
           <p>
-            One icon. Two colors.
-            <br />A keycap ready for your next print.
+            {t('headingCopy')
+              .split('\n')
+              .map((line, index) => (
+                <span key={line}>
+                  {line}
+                  {index === 0 && <br />}
+                </span>
+              ))}
           </p>
         </div>
         <div className="workspace">
-          <aside className="editor" aria-label="Keycap settings">
+          <aside className="editor" aria-label={t('settings')}>
             <div className="preset">
               <span className="preset-icon" aria-hidden="true">
                 ⌘
               </span>
               <div>
-                <strong>OEM profile</strong>
-                <span>MX-compatible · row and width below</span>
+                <strong>{t('oemProfile')}</strong>
+                <span>{t('mxCompatible')}</span>
               </div>
-              <span className="preset-badge">ACTIVE</span>
+              <span className="preset-badge">{t('active')}</span>
             </div>
             <section className="control-section">
               <div className="section-title">
                 <span className="step">01</span>
-                <h2>Choose your key</h2>
+                <h2>{t('chooseKey')}</h2>
               </div>
               <div className="key-fields">
                 <label>
-                  OEM row
+                  {t('oemRow')}
                   <select
-                    aria-label="OEM row"
+                    aria-label={t('oemRow')}
                     value={variant.row}
                     onChange={(event) => {
                       const row = Number(event.target.value);
@@ -203,24 +222,24 @@ export default function App() {
                           (candidate) => candidate.row === row && candidate.width === variant.width,
                         ) ?? KEY_VARIANTS.find((candidate) => candidate.row === row);
                       if (next) setVariantId(next.id);
-                      setNotice('');
+                      clearNotice();
                     }}
                   >
                     {rows.map((row) => (
                       <option key={row} value={row}>
-                        Row {row}
+                        {t('row')} {row}
                       </option>
                     ))}
                   </select>
                 </label>
                 <label>
-                  Key width
+                  {t('keyWidth')}
                   <select
-                    aria-label="Key width"
+                    aria-label={t('keyWidth')}
                     value={variantId}
                     onChange={(event) => {
                       setVariantId(event.target.value);
-                      setNotice('');
+                      clearNotice();
                     }}
                   >
                     {widths.map((choice) => (
@@ -233,14 +252,14 @@ export default function App() {
               </div>
               <p className="field-help">
                 {variant.physicalStatus === 'sample-checked' && !customized
-                  ? 'One printed sample passed the K2 lighting-key fit checks.'
-                  : 'Experimental size or shape: fit and print quality vary by choice.'}
+                  ? t('checkedFit')
+                  : t('experimental')}
               </p>
             </section>
             <section className="control-section">
               <div className="section-title">
                 <span className="step">02</span>
-                <h2>Shape and height</h2>
+                <h2>{t('shapeHeight')}</h2>
                 <button
                   className="reset-measures"
                   type="button"
@@ -248,18 +267,19 @@ export default function App() {
                   onClick={() => {
                     setRadiusMm(1);
                     setHeightDeltaMm(0);
-                    setNotice('');
+                    clearNotice();
                   }}
                 >
-                  Reset
+                  {t('reset')}
                 </button>
               </div>
               <div className="measure-control">
-                <label htmlFor="corner-radius">Corner radius</label>
-                <output htmlFor="corner-radius">{radiusMm.toFixed(2)} mm</output>
+                <label htmlFor="corner-radius">{t('cornerRadius')}</label>
+                <output htmlFor="corner-radius">{number(radiusMm, 2)} mm</output>
               </div>
               <input
                 id="corner-radius"
+                aria-label={t('cornerRadius')}
                 type="range"
                 min={OEM_CUSTOMIZATION.radiusMin}
                 max={OEM_CUSTOMIZATION.radiusMax}
@@ -267,22 +287,23 @@ export default function App() {
                 value={radiusMm}
                 onChange={(event) => {
                   setRadiusMm(Number(event.target.value));
-                  setNotice('');
+                  clearNotice();
                 }}
               />
               <div className="range-labels">
-                <span>Squarer · 0.50</span>
-                <span>Rounder · 1.50 mm</span>
+                <span>{t('squarer')} · 0.50</span>
+                <span>{t('rounder')} · 1.50 mm</span>
               </div>
               <div className="measure-control">
-                <label htmlFor="height-delta">Height adjustment</label>
+                <label htmlFor="height-delta">{t('heightAdjustment')}</label>
                 <output htmlFor="height-delta">
                   {heightDeltaMm > 0 ? '+' : ''}
-                  {heightDeltaMm.toFixed(2)} mm
+                  {number(heightDeltaMm, 2)} mm
                 </output>
               </div>
               <input
                 id="height-delta"
+                aria-label={t('heightAdjustment')}
                 type="range"
                 min={OEM_CUSTOMIZATION.heightMin}
                 max={OEM_CUSTOMIZATION.heightMax}
@@ -290,7 +311,7 @@ export default function App() {
                 value={heightDeltaMm}
                 onChange={(event) => {
                   setHeightDeltaMm(Number(event.target.value));
-                  setNotice('');
+                  clearNotice();
                 }}
               />
               <div className="range-labels">
@@ -298,45 +319,45 @@ export default function App() {
                 <span>+0.50 mm</span>
               </div>
               <p className="field-help">
-                {heightDeltaMm === 0 ? 'OEM row height' : 'OEM derived height'} · 0.25 mm steps.
-                Relative to the selected OEM row. Modified measurements are experimental.
+                {heightDeltaMm === 0 ? t('oemRowHeight') : t('oemDerivedHeight')} ·{' '}
+                {t('heightHelp')}
               </p>
             </section>
             <section className="control-section">
               <div className="section-title">
                 <span className="step">03</span>
-                <h2>Your icon</h2>
+                <h2>{t('icon')}</h2>
               </div>
               <input
                 ref={fileInput}
                 className="file-input"
                 type="file"
                 accept=".svg,image/svg+xml"
-                aria-label="Upload SVG"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
+                aria-label={t('uploadSvg')}
+                onChange={(event) => {
+                  const file = event.target.files?.[0];
                   if (file) void load(file, file.name);
-                  e.target.value = '';
+                  event.target.value = '';
                 }}
               />
               <button
                 className={`upload-zone ${dragging ? 'dragging' : ''}`}
                 onClick={() => fileInput.current?.click()}
-                onDragOver={(e) => {
-                  e.preventDefault();
+                onDragOver={(event) => {
+                  event.preventDefault();
                   setDragging(true);
                 }}
                 onDragLeave={() => setDragging(false)}
-                onDrop={(e) => {
-                  e.preventDefault();
+                onDrop={(event) => {
+                  event.preventDefault();
                   setDragging(false);
-                  const file = e.dataTransfer.files[0];
+                  const file = event.dataTransfer.files[0];
                   if (file) void load(file, file.name);
                 }}
               >
                 <UploadIcon />
-                <strong>Drop your SVG here</strong>
-                <span>or click to browse · up to 150 KB</span>
+                <strong>{t('dropSvg')}</strong>
+                <span>{t('browseSvg')}</span>
               </button>
               <div className="file-status">
                 <span className="file-symbol" aria-hidden="true">
@@ -348,91 +369,103 @@ export default function App() {
                 </span>
               </div>
               <div className="examples">
-                <span>Try an example</span>
+                <span>{t('example')}</span>
                 <button onClick={() => void load(EXAMPLES.spark, 'Spark · example')}>Spark</button>
                 <button onClick={() => void load(EXAMPLES.orbit, 'Orbit · example')}>Orbit</button>
               </div>
-              <p className="field-help">
-                Filled paths only. Convert outlines to paths before uploading.
-              </p>
+              <p className="field-help">{t('filledPaths')}</p>
             </section>
             <section className="control-section">
               <div className="section-title">
                 <span className="step">04</span>
-                <h2>Legend size</h2>
+                <h2>{t('legendSize')}</h2>
                 <output htmlFor="legend-size">
-                  {size.toFixed(1)} <small>mm</small>
+                  {number(size)} <small>mm</small>
                 </output>
               </div>
               <input
                 id="legend-size"
-                aria-label="Legend size"
+                aria-label={t('legendSize')}
                 type="range"
                 min={KEYCAP.minLegendSize}
                 max={KEYCAP.maxLegendSize}
                 step="0.1"
                 value={size}
-                onChange={(e) => {
-                  setSize(Number(e.target.value));
-                  setNotice('');
+                onChange={(event) => {
+                  setSize(Number(event.target.value));
+                  clearNotice();
                 }}
               />
               <div className="range-labels">
                 <span>3 mm</span>
                 <span>11 mm</span>
               </div>
-              <p className="field-help">Centered, with proportions preserved.</p>
+              <p className="field-help">{t('legendHelp')}</p>
             </section>
             <section className="control-section colors-section">
               <div className="section-title">
                 <span className="step">05</span>
-                <h2>Make it two-tone</h2>
+                <h2>{t('twoTone')}</h2>
               </div>
               <div className="color-fields">
-                <ColorField label="Body" value={bodyColor} onChange={setBodyColor} />
-                <ColorField label="Legend" value={legendColor} onChange={setLegendColor} />
+                <ColorField
+                  label={t('body')}
+                  accessibleLabel={t('bodyColor')}
+                  value={bodyColor}
+                  onChange={setBodyColor}
+                />
+                <ColorField
+                  label={t('legend')}
+                  accessibleLabel={t('legendColor')}
+                  value={legendColor}
+                  onChange={setLegendColor}
+                />
               </div>
-              <p className="field-help">Choose matching filaments in your slicer.</p>
+              <p className="field-help">{t('filamentHelp')}</p>
             </section>
           </aside>
-          <section className="preview-panel" aria-label="3D preview">
+          <section className="preview-panel" aria-label={t('preview')}>
             <div className="preview-topline">
-              <span className="preview-label">YOUR KEYCAP</span>
+              <span className="preview-label">{t('yourKeycap')}</span>
               <span className="model-state" role="status">
                 <span className={`state-dot ${busy ? 'working' : ''}`} />
-                {problem ? 'Needs attention' : busy ? 'Generating model…' : 'Model ready'}
+                {problem ? t('needsAttention') : busy ? t('generating') : t('ready')}
               </span>
             </div>
             <div className={`preview-stage ${busy || problem ? 'preview-muted' : ''}`}>
-              <Suspense fallback={<div className="preview-fallback">Loading preview…</div>}>
+              <Suspense fallback={<div className="preview-fallback">{t('loadingPreview')}</div>}>
                 <Preview model={model} bodyColor={bodyColor} legendColor={legendColor} />
               </Suspense>
               <div className="stage-shadow" />
             </div>
-            {problem ? (
+            {problem && (
               <div className="problem" role="alert">
-                <strong>Let’s fix that</strong>
+                <strong>{t('fix')}</strong>
                 <p>{problem}</p>
-                {error ? <button onClick={retry}>Try again</button> : null}
+                {error && <button onClick={retry}>{t('retry')}</button>}
               </div>
-            ) : null}
+            )}
             <div className="preview-footnote">
-              <span>Drag to orbit · scroll to zoom</span>
+              <span>{t('orbitZoom')}</span>
               <span>
-                {heightDeltaMm === 0 ? 'OEM' : 'OEM derived'} row {variant.row} · {variant.width}u
+                {heightDeltaMm === 0 ? 'OEM' : t('oemDerived')} {t('row').toLowerCase()}{' '}
+                {variant.row} · {variant.width}u
               </span>
             </div>
             <div className="export-bar">
               <div className="export-details">
-                <strong>One keycap. Two parts.</strong>
-                <span>Body + Legend · 0.5 mm flush inlay</span>
+                <strong>{t('partsTitle')}</strong>
+                <span>{t('partsDetail')}</span>
+                <button className="print-link" type="button" onClick={() => showHelp('printing')}>
+                  {t('printingHelp')}
+                </button>
               </div>
               <button
                 className="download-button"
                 disabled={!model || busy || !!problem || downloading}
                 onClick={() => void download()}
               >
-                {downloading ? 'Preparing…' : 'Download 3MF'}
+                {downloading ? t('preparing') : t('download')}
                 <span aria-hidden="true">↓</span>
               </button>
             </div>
@@ -440,55 +473,31 @@ export default function App() {
         </div>
         <div className="below-workspace">
           <p>
-            <span aria-hidden="true">↳</span> First print? This profile is experimental. Check stem
-            fit and key travel before regular use.
+            <span aria-hidden="true">↳</span>
+            {t('firstPrint')}
           </p>
-          <p>No uploads to a server. No saved projects.</p>
+          <p>
+            <button className="privacy-link" type="button" onClick={() => showHelp('privacy')}>
+              {t('privacyShort')}
+            </button>
+          </p>
         </div>
-        {notice ? (
+        {notice && (
           <p className="download-notice" role="status">
-            {notice}
+            {t(notice)}
           </p>
-        ) : null}
-        <details className="print-guide">
-          <summary>Printing this keycap</summary>
-          <div>
-            <p>
-              <strong>Import and assign colors.</strong> Open the 3MF as a model in OrcaSlicer or
-              Snapmaker Orca. Expand <strong>Custom Keycap</strong>, assign filaments to{' '}
-              <strong>Body</strong> and <strong>Legend</strong>, and keep both parts assembled.
-            </p>
-            <p>
-              <strong>Orient the assembly.</strong> The 3MF uses the keycap’s upright modeling
-              coordinates; it is not pre-rotated for printing. A side-oriented trial had a better
-              top finish than an earlier upright trial. A useful starting point is the slicer’s{' '}
-              <em>Lay on Face</em> command on a broad side. Rotate Body and Legend together. Reapply
-              that placement for each new geometry: OEM sides are not perfectly flat. Check
-              first-layer contact and add supports where the cavity, roof, or socket needs them.
-              Printing icon-up without suitable support produced a poor earlier sample.
-            </p>
-            <p>
-              <strong>Inspect the slice.</strong> Look through the legend layers for intact thin
-              strokes and seam placement, and confirm the socket stays open. Adaptive-width walls
-              (Arachne) reduced overlapping legend paths and made the printed relief smaller in one
-              comparison, but did not remove it completely. The color preview alone cannot confirm
-              the final surface finish.
-            </p>
-            <p>
-              <strong>Check the first print.</strong> Let it cool, then check gentle insertion,
-              retention, removal, full travel and return, and clearance from neighboring keys and
-              the case. Do not force a tight socket. Fit feedback applies to the unmodified row 5/1u
-              sample; its exact print orientation was not recorded. Other sizes and measurements
-              remain experimental.
-            </p>
-          </div>
-        </details>
+        )}
       </main>
       <footer>
         <span>KEYCAP STUDIO</span>
-        <span>Small object. Personal touch.</span>
-        <span>OEM keycaps, made locally.</span>
+        <span>{t('footer')}</span>
+        <span>{t('localMade')}</span>
       </footer>
+      <HelpDialog
+        open={help.open}
+        section={help.section}
+        onClose={() => setHelp((current) => ({ ...current, open: false }))}
+      />
     </div>
   );
 }

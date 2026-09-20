@@ -79,6 +79,37 @@ test('rejects unsupported artwork and recovers without stale export', async ({ p
   await expect(page.getByText('Spark · example')).toBeVisible();
 });
 
+test('switches language and opens privacy and printing help without changing the design', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await expect(page.getByRole('button', { name: 'Download 3MF' })).toBeEnabled({ timeout: 45000 });
+  await page.getByLabel('Language').selectOption('es');
+  await expect(page.getByRole('button', { name: 'Descargar 3MF' })).toBeEnabled();
+  await expect(
+    page.getByText('Procesado en tu navegador. Los diseños no se guardan.'),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Ayuda', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toContainText('Privacidad');
+  await expect(dialog).toContainText(
+    'Tu SVG y la configuración de la tecla se procesan en tu navegador.',
+  );
+  await page.getByRole('button', { name: 'Cerrar' }).click();
+  await expect(dialog).toHaveCount(0);
+  await page.getByRole('button', { name: 'Ayuda de impresión' }).click();
+  await expect(page.getByRole('dialog')).toContainText('Importa el 3MF como un solo ensamblaje.');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Descargar 3MF' })).toBeEnabled();
+  expect(
+    await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length })),
+  ).toEqual({
+    local: 0,
+    session: 0,
+  });
+});
+
 test('selects an OEM row and width independently of the artwork', async ({ page }) => {
   await page.goto('/');
   const download = page.getByRole('button', { name: 'Download 3MF' });

@@ -70,6 +70,7 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 
 ## Next work
 
+- [Localization and contextual help](docs/plans/localization-and-help.md) is implemented locally: English/Galician/Spanish, browser-language detection with a session-only choice, localized measurements/labels, concise privacy wording, and an accessible native modal for privacy and printing. This change does not alter geometry or physical validation; deployment remains separate.
 - On `feat/oem-shape-height`, the initial radius probes led to a generated bounded measurement catalogue for all eight row/width entries. The original browser assets are unchanged. Modified geometry is available locally but remains experimental; collect print feedback when available without treating it as a prerequisite for use.
 - [OEM shape and height customization](docs/plans/oem-customization.md) is implemented locally with narrow software bounds. Future physical feedback may refine those bounds, but is not a precondition for the experimental controls.
 - Inspect and print selected experimental OEM variants before claiming fit on any additional key. The catalogue and SVG-independent selection are implemented locally; physical validation remains variant-specific.
