@@ -24,7 +24,7 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 - Current blank extraction for the OEM comparison: the complete procedural blank and matching solid exterior envelope are available for development inspection without changing runtime geometry.
 - The browser worker now loads pinned OEM row 5 blank/exterior meshes locally and applies the existing SVG inlay/export pipeline. The previous procedural generator remains for comparison and rollback.
 - A selectable OEM catalogue now offers rows 1–5 at 1u and row 5 at 1.25u, 1.5u, and 1.75u. The selected variant drives the worker, preview, and 3MF; SVG artwork, its millimeter size, and colors remain independent.
-- Footer links to the public GitHub repository and to a clearly labeled provisional Thangs homepage link, ready to replace with the creator profile URL when available.
+- Prominent header buttons link to the public GitHub repository and a clearly labeled provisional Thangs homepage, ready to replace with the creator profile URL when available.
 - The local editor now offers bounded corner-radius and row-relative height choices for every catalogue entry, in 0.25 mm steps. Nonzero height is labeled OEM derived; changed measurements are experimental. The original mesh pair remains the exact default and the worker loads only the chosen generated pair. The user explicitly chose not to require a separate physical print before offering each option.
 
 ## Verification evidence

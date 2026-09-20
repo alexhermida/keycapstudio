@@ -139,6 +139,25 @@ export default function App() {
           <span className="privacy-dot" /> Made here. Stays here.
         </span>
         <span className="version-tag">EARLY ACCESS · V0.1</span>
+        <nav className="header-links" aria-label="Project links">
+          <a
+            className="header-link header-link-github"
+            href="https://github.com/alexhermida/keycapstudio"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            className="header-link header-link-thangs"
+            href={THANGS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Thangs homepage; creator profile coming soon"
+          >
+            Thangs <small>soon</small>
+          </a>
+        </nav>
       </header>
       <main>
         <div className="workspace-heading">
@@ -451,18 +470,7 @@ export default function App() {
       </main>
       <footer>
         <span>KEYCAP STUDIO</span>
-        <nav className="footer-links" aria-label="Project links">
-          <a
-            href="https://github.com/alexhermida/keycapstudio"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub repository
-          </a>
-          <a href={THANGS_URL} target="_blank" rel="noopener noreferrer">
-            Thangs <span>(profile coming soon)</span>
-          </a>
-        </nav>
+        <span>Small object. Personal touch.</span>
         <span>OEM keycaps, made locally.</span>
       </footer>
     </div>
