@@ -4,7 +4,18 @@ Last updated: 2026-09-20.
 
 ## Current phase
 
-Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel, and clearance checks for printed samples; its legend has slight physical relief. The local browser build selects OEM row and key width, plus bounded corner radius and row-relative height before SVG artwork. Modified measurements and additional row/width variants are not physically fit-validated. The previous procedural generator remains in source for rollback. The public deployment still contains the earlier corrected procedural geometry. See CALIBRATION.md.
+Parametric OEM R1–R4 editor, default R4 · 1u. Base width/depth, front/rear edge-center heights, and corner radius are editable in millimeters. The lower insertion region comes unchanged from the previously printed KeyV2 reference; the exterior and roof connection are new and not physically verified. Historical evidence below applies only to the artifacts named there. No deployment is included in this change.
+
+## Current implementation — parametric profiles
+
+- Accepted UI terminology uses OEM R1–R4; the K2 lighting position is R4. The previous `row5` identifier is internal to the historical KeyV2 template.
+- Preset changes and Reset restore reference measurements; artwork and colors stay independent.
+- Collapsible localized controls, direct numerical entry, and actual exported-mesh dimensions.
+- Worker-generated shell, fixed reference insertion region, existing flush Body/Legend pipeline.
+- Previous assets and procedural geometry remain available for regression and rollback; they are not presented as the new presets.
+- Verification: TypeScript, ESLint, production build, and 49 domain tests pass. New regressions cover all four 18 mm presets, measured edge-center heights, reference insertion-volume equivalence, serialized solid validity, and all 32 combinations of dimension bounds. Chromium/Firefox pass 16 workflow/accessibility checks, including downloaded dimensions, deterministic Reset, every row, and localized mobile layout. New physical fit, removal, travel, clearance, and print-quality checks remain open.
+
+## Historical implementation and evidence
 
 ## Implemented
 
@@ -70,7 +81,7 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 - Slicer: separate parts are confirmed; inspect actual layer/support coverage for the socket boss and cavity roof.
 - Public Pages deployment: corrected geometry is verified live; the deployment workflow's browser checks passed. This does not substitute for physical print validation.
 
-## Next work
+## Historical next-work notes (superseded where covered above)
 
 - [Localization and contextual help](docs/plans/localization-and-help.md) is implemented locally: English/Galician/Spanish, browser-language detection with a session-only choice, localized measurements/labels, concise privacy wording, and an accessible native modal for privacy and printing. This change does not alter geometry or physical validation; deployment remains separate.
 - On `feat/oem-shape-height`, the initial radius probes led to a generated bounded measurement catalogue for all eight row/width entries. The original browser assets are unchanged. Modified geometry is available locally but remains experimental; collect print feedback when available without treating it as a prerequisite for use.
@@ -83,6 +94,6 @@ Experimental OEM catalogue: row 5/1u passed seating, retention, removal, travel,
 - Stem/socket isolation is complete with unchanged output. After the baseline and legend investigation, plan physical calibration for the documented Advanced switch-fit control before choosing its adjustment semantics, bounds, and step size. Keep today's dimensions as the default and retain Body + Legend export. UI implementation remains future work.
 - Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
-## Scope retained
+## Current scope
 
-An explicit OEM row/width catalogue, filled SVGs, two colors, and single-session editing. The row 5/1u K2 lighting key remains the only physically checked target. Text, fonts, other profiles, arbitrary dimensions, editable project persistence, automatic stroke conversion, and fit tuning remain deferred.
+OEM R1–R4 with bounded outer dimensions, filled SVGs, two colors, and single-session editing. The earlier KeyV2 row5/1u sample is historical physical evidence only. Text, fonts, other profiles, stabilized sizes, persistence, automatic stroke conversion, and socket-fit tuning remain deferred.

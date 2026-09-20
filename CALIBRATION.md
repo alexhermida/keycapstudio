@@ -1,5 +1,17 @@
 # Physical calibration
 
+## Parametric OEM revision — 2026-09-20
+
+The user approved replacing the editor's KeyV2 row catalogue with OEM R1–R4 reference presets and adjustable outer dimensions. The K2 lighting position is R4 according to Keychron; the earlier `row5` name referred to the KeyV2 template. Historical physical feedback below remains attached to those older artifacts.
+
+The new default R4/1u base is 18 × 18 mm, replacing the approximately 17.45 × 17.61 mm generated KeyV2 footprint. Front/rear edge-center defaults are 10.0/10.6 mm, with 0.8 mm assumed dish. Radius defaults to 1 mm. Dimensions, bounds, source diagrams, and modeling assumptions are recorded in [ADR 0006](docs/adr/0006-parametric-oem-profiles.md). They are not measurements of the original K2 or a complete OEM specification.
+
+The original reference mesh is unchanged. Its central insertion region through Z=4.5 mm is retained without scaling, including socket opening, bevel, blind depth, and Z placement. The upper connection extends to a newly generated roof. Automated comparison checks preserve the reference insertion volume; this is not proof of fit for the new shell.
+
+All new presets and customized measurements remain **physically unverified**. Print a fresh export and check seating, retention, removal, complete travel/return, surrounding clearance, roof integrity, and legend finish. The user permits experimental use without a prior print of every option. No physical-validation claim or socket-fit tuning is introduced.
+
+The following sections document previous geometry and trials.
+
 ## Validation status
 
 The procedural cap improved after the planar-side correction and one sample seated well on 2026-09-16; that geometry remains a historical control. The current OEM row 5/1u reference passed the requested seating, retention, removal, travel, and clearance checks for one sample on 2026-09-19. Seven additional OEM row/width variants are software candidates only. Physical legend relief and repeatability remain unresolved. The following working measurements describe the original Keychron K2 lighting keycap, incorporating user clarification of the reference photos; they are not universal dimensions for every OEM row/width.

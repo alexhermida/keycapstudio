@@ -1,10 +1,10 @@
-import { lazy, Suspense, useRef, useState } from 'react';
+import { lazy, Suspense, useMemo, useRef, useState } from 'react';
 import { ColorField } from './components/ColorField';
 import { HelpDialog } from './components/HelpDialog';
 import { LanguageSelector } from './components/LanguageSelector';
 import { useKeycap } from './hooks/useKeycap';
-import { KEYCAP, OEM_CUSTOMIZATION } from './geometry/config';
-import { DEFAULT_VARIANT_ID, getVariant, KEY_VARIANTS } from './geometry/variants';
+import { KEYCAP, oemDefaults, type OemRow } from './geometry/config';
+import { DimensionControls } from './components/DimensionControls';
 import type { Artwork } from './geometry/types';
 import { EXAMPLES } from './examples';
 import { errorMessage, useI18n } from './i18n';
@@ -52,9 +52,9 @@ export default function App() {
   const [artwork, setArtwork] = useState<Artwork>(INITIAL);
   const [name, setName] = useState('Spark · example');
   const [size, setSize] = useState<number>(KEYCAP.defaultLegendSize);
-  const [variantId, setVariantId] = useState(DEFAULT_VARIANT_ID);
-  const [radiusMm, setRadiusMm] = useState<number>(OEM_CUSTOMIZATION.radiusDefault);
-  const [heightDeltaMm, setHeightDeltaMm] = useState<number>(OEM_CUSTOMIZATION.heightDefault);
+  const [row, setRow] = useState<OemRow>(4);
+  const [widthU, setWidthU] = useState(1);
+  const [dimensions, setDimensions] = useState(() => oemDefaults(4));
   const [bodyColor, setBodyColor] = useState('#eeeae1');
   const [legendColor, setLegendColor] = useState('#527b48');
   const [inputError, setInputError] = useState('');
@@ -68,19 +68,25 @@ export default function App() {
   });
   const fileInput = useRef<HTMLInputElement>(null);
   const readVersion = useRef(0);
-  const { model, pending, error, retry } = useKeycap(
-    artwork,
-    size,
-    variantId,
-    radiusMm,
-    heightDeltaMm,
-  );
-  const variant = getVariant(variantId);
-  const rows = [...new Set(KEY_VARIANTS.map((candidate) => candidate.row))];
-  const widths = KEY_VARIANTS.filter((candidate) => candidate.row === variant.row);
+  const { model, pending, error, retry } = useKeycap(artwork, size, dimensions);
+  const modelSize = useMemo(() => {
+    if (!model) return undefined;
+    const min = [Infinity, Infinity, Infinity];
+    const max = [-Infinity, -Infinity, -Infinity];
+    for (const mesh of [model.body, model.legend])
+      for (let i = 0; i < mesh.positions.length; i++) {
+        const axis = i % 3;
+        min[axis] = Math.min(min[axis], mesh.positions[i]);
+        max[axis] = Math.max(max[axis], mesh.positions[i]);
+      }
+    return max.map((value, axis) => value - min[axis]);
+  }, [model]);
+  const defaults = oemDefaults(row, widthU);
   const problem = errorMessage(inputError || error, t);
   const busy = pending || reading;
-  const customized = radiusMm !== 1 || heightDeltaMm !== 0;
+  const customized = Object.entries(defaults).some(
+    ([key, value]) => dimensions[key as keyof typeof dimensions] !== value,
+  );
   const showHelp = (section: 'privacy' | 'printing') => setHelp({ open: true, section });
   const clearNotice = () => setNotice(undefined);
   async function load(source: string | File, label: string) {
@@ -214,20 +220,19 @@ export default function App() {
                   {t('oemRow')}
                   <select
                     aria-label={t('oemRow')}
-                    value={variant.row}
+                    value={row}
                     onChange={(event) => {
-                      const row = Number(event.target.value);
-                      const next =
-                        KEY_VARIANTS.find(
-                          (candidate) => candidate.row === row && candidate.width === variant.width,
-                        ) ?? KEY_VARIANTS.find((candidate) => candidate.row === row);
-                      if (next) setVariantId(next.id);
+                      const next = Number(event.target.value) as OemRow;
+                      const width = next === 4 ? widthU : 1;
+                      setRow(next);
+                      setWidthU(width);
+                      setDimensions(oemDefaults(next, width));
                       clearNotice();
                     }}
                   >
-                    {rows.map((row) => (
-                      <option key={row} value={row}>
-                        {t('row')} {row}
+                    {([1, 2, 3, 4] as const).map((value) => (
+                      <option key={value} value={value}>
+                        R{value}
                       </option>
                     ))}
                   </select>
@@ -236,93 +241,33 @@ export default function App() {
                   {t('keyWidth')}
                   <select
                     aria-label={t('keyWidth')}
-                    value={variantId}
+                    value={widthU}
                     onChange={(event) => {
-                      setVariantId(event.target.value);
+                      const width = Number(event.target.value);
+                      setWidthU(width);
+                      setDimensions(oemDefaults(row, width));
                       clearNotice();
                     }}
                   >
-                    {widths.map((choice) => (
-                      <option key={choice.id} value={choice.id}>
-                        {choice.width}u
+                    {(row === 4 ? [1, 1.25, 1.5, 1.75] : [1]).map((width) => (
+                      <option key={width} value={width}>
+                        {width}u
                       </option>
                     ))}
                   </select>
                 </label>
               </div>
-              <p className="field-help">
-                {variant.physicalStatus === 'sample-checked' && !customized
-                  ? t('checkedFit')
-                  : t('experimental')}
-              </p>
+              <p className="field-help">{t('experimental')}</p>
             </section>
-            <section className="control-section">
-              <div className="section-title">
-                <span className="step">02</span>
-                <h2>{t('shapeHeight')}</h2>
-                <button
-                  className="reset-measures"
-                  type="button"
-                  disabled={!customized}
-                  onClick={() => {
-                    setRadiusMm(1);
-                    setHeightDeltaMm(0);
-                    clearNotice();
-                  }}
-                >
-                  {t('reset')}
-                </button>
-              </div>
-              <div className="measure-control">
-                <label htmlFor="corner-radius">{t('cornerRadius')}</label>
-                <output htmlFor="corner-radius">{number(radiusMm, 2)} mm</output>
-              </div>
-              <input
-                id="corner-radius"
-                aria-label={t('cornerRadius')}
-                type="range"
-                min={OEM_CUSTOMIZATION.radiusMin}
-                max={OEM_CUSTOMIZATION.radiusMax}
-                step={OEM_CUSTOMIZATION.step}
-                value={radiusMm}
-                onChange={(event) => {
-                  setRadiusMm(Number(event.target.value));
-                  clearNotice();
-                }}
-              />
-              <div className="range-labels">
-                <span>{t('squarer')} · 0.50</span>
-                <span>{t('rounder')} · 1.50 mm</span>
-              </div>
-              <div className="measure-control">
-                <label htmlFor="height-delta">{t('heightAdjustment')}</label>
-                <output htmlFor="height-delta">
-                  {heightDeltaMm > 0 ? '+' : ''}
-                  {number(heightDeltaMm, 2)} mm
-                </output>
-              </div>
-              <input
-                id="height-delta"
-                aria-label={t('heightAdjustment')}
-                type="range"
-                min={OEM_CUSTOMIZATION.heightMin}
-                max={OEM_CUSTOMIZATION.heightMax}
-                step={OEM_CUSTOMIZATION.step}
-                value={heightDeltaMm}
-                onChange={(event) => {
-                  setHeightDeltaMm(Number(event.target.value));
-                  clearNotice();
-                }}
-              />
-              <div className="range-labels">
-                <span>−0.50 mm</span>
-                <span>+0.50 mm</span>
-              </div>
-              <p className="field-help">
-                {heightDeltaMm === 0 ? t('oemRowHeight') : t('oemDerivedHeight')} ·{' '}
-                {t('heightHelp')}
-              </p>
-            </section>
+            <DimensionControls
+              dimensions={dimensions}
+              defaults={defaults}
+              customized={customized}
+              onChange={(next) => {
+                setDimensions(next);
+                clearNotice();
+              }}
+            />
             <section className="control-section">
               <div className="section-title">
                 <span className="step">03</span>
@@ -448,10 +393,15 @@ export default function App() {
             <div className="preview-footnote">
               <span>{t('orbitZoom')}</span>
               <span>
-                {heightDeltaMm === 0 ? 'OEM' : t('oemDerived')} {t('row').toLowerCase()}{' '}
-                {variant.row} · {variant.width}u
+                OEM R{row} · {widthU}u{customized ? ` · ${t('customized')}` : ''}
               </span>
             </div>
+            {model && !busy && !problem && (
+              <p className="model-dimensions">
+                {t('overallDimensions')}: {modelSize?.map((value) => number(value, 2)).join(' × ')}{' '}
+                mm
+              </p>
+            )}
             <div className="export-bar">
               <div className="export-details">
                 <strong>{t('partsTitle')}</strong>

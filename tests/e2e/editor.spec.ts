@@ -50,8 +50,8 @@ test('loads the actual worker, uploads SVG, edits, changes view and downloads a 
     const values = vertices.map((vertex) => Number(vertex[axis]));
     return Math.max(...values) - Math.min(...values);
   };
-  expect(span(1)).toBeCloseTo(17.45, 1);
-  expect(span(2)).toBeCloseTo(17.61, 1);
+  expect(span(1)).toBeCloseTo(18, 4);
+  expect(span(2)).toBeCloseTo(18, 4);
   expect(Object.keys(archive).some((name) => /gcode|project_settings|slice_info/.test(name))).toBe(
     false,
   );
@@ -146,12 +146,13 @@ test('selects an OEM row and width independently of the artwork', async ({ page 
   await expect(page.getByText('two-islands.svg')).toBeVisible();
   await page.getByLabel('OEM row').selectOption('3');
   await expect(download).toBeEnabled({ timeout: 45000 });
-  await expect(page.getByLabel('Key width')).toHaveValue('oem-r3-1u');
-  await page.getByLabel('OEM row').selectOption('5');
-  await page.getByLabel('Key width').selectOption('oem-r5-1_5u');
-  await page.getByLabel('Corner radius').fill('0.75');
-  await page.getByLabel('Height adjustment').fill('-0.25');
-  await expect(page.getByText('OEM derived height')).toBeVisible();
+  await expect(page.getByLabel('Key width')).toHaveValue('1');
+  await page.getByLabel('OEM row').selectOption('4');
+  await page.getByLabel('Key width').selectOption('1.5');
+  await page.getByText('Customize measurements', { exact: true }).click();
+  await page.getByLabel('Corner radius', { exact: true }).fill('0.7');
+  await page.getByLabel('Front edge height', { exact: true }).fill('10.2');
+  await expect(page.locator('summary')).toContainText('Customized');
   await expect(page.getByText('two-islands.svg')).toBeVisible();
   await expect(page.getByText(/Experimental size/)).toBeVisible();
   await expect(download).toBeEnabled({ timeout: 45000 });
@@ -161,12 +162,12 @@ test('selects an OEM row and width independently of the artwork', async ({ page 
   const archive = unzipSync(new Uint8Array(await readFile((await file.path())!)));
   const xml = strFromU8(archive['3D/3dmodel.model']);
   const x = [...xml.matchAll(/<vertex x="([^"]+)"/g)].map((match) => Number(match[1]));
-  expect(Math.max(...x) - Math.min(...x)).toBeCloseTo(26.977, 1);
+  expect(Math.max(...x) - Math.min(...x)).toBeCloseTo(27.5, 4);
   expect(xml).toContain('name="Body"');
   expect(xml).toContain('name="Legend"');
 });
 
-test('customizes OEM corner radius and derived height, then resets to the original', async ({
+test('customizes physical dimensions and resets the selected profile deterministically', async ({
   page,
 }) => {
   await page.goto('/');
@@ -177,9 +178,12 @@ test('customizes OEM corner radius and derived height, then resets to the origin
   const originalFile = await original;
   const originalBytes = await readFile((await originalFile.path())!);
 
-  await page.getByLabel('Corner radius').fill('1.5');
-  await page.getByLabel('Height adjustment').fill('0.5');
-  await expect(page.getByText('OEM derived height')).toBeVisible();
+  await page.getByText('Customize measurements', { exact: true }).click();
+  await page.getByLabel('Corner radius', { exact: true }).fill('1.5');
+  await page.getByLabel('Base width (mm)', { exact: true }).fill('18.3');
+  await page.getByLabel('Base width (mm)', { exact: true }).press('Tab');
+  await page.getByLabel('Rear edge height', { exact: true }).fill('11.1');
+  await expect(page.locator('summary')).toContainText('Customized');
   await expect(download).toBeEnabled({ timeout: 45000 });
   const changed = page.waitForEvent('download');
   await download.click();
@@ -189,14 +193,49 @@ test('customizes OEM corner radius and derived height, then resets to the origin
   expect(modelXml).toContain('name="Body"');
   expect(modelXml).toContain('name="Legend"');
   expect(changedBytes.equals(originalBytes)).toBe(false);
+  const x = [...modelXml.matchAll(/<vertex x="([^"]+)"/g)].map((match) => Number(match[1]));
+  expect(Math.max(...x) - Math.min(...x)).toBeCloseTo(18.3, 4);
 
   await page.getByRole('button', { name: 'Reset' }).click();
-  await expect(page.getByLabel('Corner radius')).toHaveValue('1');
-  await expect(page.getByLabel('Height adjustment')).toHaveValue('0');
+  await expect(page.getByLabel('Corner radius', { exact: true })).toHaveValue('1');
+  await expect(page.getByLabel('Rear edge height', { exact: true })).toHaveValue('10.6');
+  await expect(page.getByLabel('Base width', { exact: true })).toHaveValue('18');
   await expect(download).toBeEnabled({ timeout: 45000 });
   const restored = page.waitForEvent('download');
   await download.click();
   const restoredFile = await restored;
   const restoredBytes = await readFile((await restoredFile.path())!);
   expect(restoredBytes.equals(originalBytes)).toBe(true);
+});
+
+test('offers R1–R4, loads their defaults and keeps mobile controls within the viewport', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const row = page.getByLabel('OEM row');
+  await expect(row.locator('option')).toHaveText(['R1', 'R2', 'R3', 'R4']);
+  await page.getByText('Customize measurements', { exact: true }).click();
+  for (const [value, front, rear] of [
+    ['1', '9.3', '7.1'],
+    ['2', '8.5', '7.2'],
+    ['3', '8.5', '8.2'],
+    ['4', '10', '10.6'],
+  ]) {
+    await row.selectOption(value);
+    await expect(page.getByLabel('Front edge height', { exact: true })).toHaveValue(front);
+    await expect(page.getByLabel('Rear edge height', { exact: true })).toHaveValue(rear);
+    await expect(page.getByRole('button', { name: 'Download 3MF' })).toBeEnabled({
+      timeout: 45000,
+    });
+    await page.getByLabel('Rear edge height', { exact: true }).fill('11');
+    await page.getByRole('button', { name: 'Reset', exact: true }).click();
+    await expect(page.getByLabel('Rear edge height', { exact: true })).toHaveValue(rear);
+  }
+  for (const locale of ['es', 'gl']) {
+    await page.locator('select').first().selectOption(locale);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+      390,
+    );
+  }
 });

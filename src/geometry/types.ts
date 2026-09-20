@@ -1,3 +1,4 @@
+import type { OemDimensions } from './config';
 export type Point = [number, number];
 export interface FilledPath {
   contours: Point[][];
@@ -23,8 +24,6 @@ export interface GenerateRequest {
   id: number;
   artwork: Artwork;
   size: number;
-  variantId: string;
-  radiusMm: number;
-  heightDeltaMm: number;
+  dimensions: OemDimensions;
 }
 export type GenerateResponse = { id: number; model: KeycapModel } | { id: number; error: string };

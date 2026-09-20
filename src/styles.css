@@ -271,6 +271,27 @@ h1 {
 .control-section {
   margin-bottom: 25px;
 }
+.dimension-controls summary {
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.dimension-controls input[type='number'] {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  border: 1px solid #c4c8bf;
+  border-radius: 6px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+}
+.model-dimensions {
+  padding: 0 24px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
 .measure-control {
   display: flex;
   justify-content: space-between;

@@ -4,6 +4,19 @@ export const LOCALES = ['en', 'gl', 'es'] as const;
 export type Locale = (typeof LOCALES)[number];
 
 const en = {
+  customizeDimensions: 'Customize measurements',
+  customized: 'Customized',
+  baseWidth: 'Base width',
+  baseDepth: 'Base depth',
+  frontHeight: 'Front edge height',
+  rearHeight: 'Rear edge height',
+  overallDimensions: 'Overall size (width × depth × height)',
+  dimensionsHelp:
+    'Heights are measured at the center of each top edge, from the base. Front faces you; rear faces the screen. The corners sit higher because of the concave top. Limits are experimental. The switch socket stays unchanged.',
+  invalidMeasurements: 'Measurements are outside the supported range.',
+  iconTooLarge: 'The icon extends beyond the usable top. Reduce its size.',
+  printEvidence:
+    'The previous template had sample-level fit feedback. These adjustable profiles need a new fit and travel check; no universal print settings have been validated.',
   language: 'Language',
   help: 'Help',
   close: 'Close',
@@ -92,8 +105,6 @@ const en = {
     'Inspect layer previews: keep the socket open and check thin legend strokes, seams, and material assignments. Adaptive-width walls improved one comparison but did not remove all tactile relief.',
   printCheck:
     'Print one sample and let it cool. Check gentle insertion, retention, removal, full travel and return, and clearance from nearby keys and the case. Other variants and modified measurements remain experimental.',
-  printEvidence:
-    'Physical feedback currently covers one unmodified row 5/1u sample. Its successful print orientation was not recorded; no universal temperature, speed, or layer-height recipe has been validated.',
   downloaded: 'Downloaded. Open the 3MF in your slicer and assign a filament to each part.',
   downloadFailed: 'Download failed. Please try again.',
   fileTooLarge: 'Choose an SVG file smaller than 150 KB.',
@@ -106,6 +117,19 @@ const en = {
 
 const gl = {
   ...en,
+  customizeDimensions: 'Personalizar medidas',
+  customized: 'Personalizado',
+  baseWidth: 'Ancho da base',
+  baseDepth: 'Profundidade da base',
+  frontHeight: 'Altura do bordo dianteiro',
+  rearHeight: 'Altura do bordo traseiro',
+  overallDimensions: 'Tamaño total (ancho × profundidade × alto)',
+  dimensionsHelp:
+    'As alturas mídense no centro de cada bordo superior, desde a base. Diante mira cara a ti; detrás, cara á pantalla. As esquinas son máis altas pola concavidade. Os límites son experimentais. O aloxamento do switch conserva as súas medidas.',
+  invalidMeasurements: 'As medidas están fóra do intervalo admitido.',
+  iconTooLarge: 'A icona excede a superficie útil. Reduce o seu tamaño.',
+  printEvidence:
+    'A plantilla anterior tivo probas de encaixe con mostras. Estes perfís axustables necesitan unha nova comprobación de encaixe e percorrido; non hai axustes de impresión universais validados.',
   language: 'Idioma',
   help: 'Axuda',
   close: 'Pechar',
@@ -197,8 +221,6 @@ const gl = {
     'Inspecciona as capas: mantén aberto o encaixe e comproba trazos finos da lenda, costuras e materiais. As paredes de anchura adaptativa melloraron unha comparación, pero non eliminaron todo o relevo táctil.',
   printCheck:
     'Imprime unha mostra e déixaa arrefriar. Comproba inserción suave, retención, retirada, percorrido completo e folgura coas teclas e carcasa próximas. As demais variantes e medidas modificadas seguen sendo experimentais.',
-  printEvidence:
-    'As observacións físicas cobren agora unha mostra sen modificar de fila 5/1u. Non se rexistrou a súa orientación de impresión; non hai unha receita universal de temperatura, velocidade ou altura de capa validada.',
   downloaded: 'Descargado. Abre o 3MF no laminador e asigna un filamento a cada peza.',
   downloadFailed: 'A descarga fallou. Téntao de novo.',
   fileTooLarge: 'Escolle un ficheiro SVG menor de 150 KB.',
@@ -212,6 +234,19 @@ const gl = {
 
 const es = {
   ...en,
+  customizeDimensions: 'Personalizar medidas',
+  customized: 'Personalizado',
+  baseWidth: 'Ancho de base',
+  baseDepth: 'Profundidad de base',
+  frontHeight: 'Altura del borde delantero',
+  rearHeight: 'Altura del borde trasero',
+  overallDimensions: 'Tamaño total (ancho × profundidad × alto)',
+  dimensionsHelp:
+    'Las alturas se miden en el centro de cada borde superior, desde la base. Delante mira hacia ti; detrás, hacia la pantalla. Las esquinas son más altas por la concavidad. Los límites son experimentales. El alojamiento del switch conserva sus medidas.',
+  invalidMeasurements: 'Las medidas están fuera del intervalo admitido.',
+  iconTooLarge: 'El icono excede la superficie útil. Reduce su tamaño.',
+  printEvidence:
+    'La plantilla anterior tuvo pruebas de encaje con muestras. Estos perfiles ajustables necesitan una nueva comprobación de encaje y recorrido; no hay ajustes de impresión universales validados.',
   language: 'Idioma',
   help: 'Ayuda',
   close: 'Cerrar',
@@ -304,8 +339,6 @@ const es = {
     'Inspecciona las capas: mantén abierto el encaje y revisa trazos finos de la leyenda, costuras y materiales. Las paredes de anchura adaptativa mejoraron una comparación, pero no eliminaron todo el relieve táctil.',
   printCheck:
     'Imprime una muestra y déjala enfriar. Comprueba inserción suave, retención, retirada, recorrido completo y holgura con teclas y carcasa cercanas. Las demás variantes y medidas modificadas siguen siendo experimentales.',
-  printEvidence:
-    'Las observaciones físicas cubren actualmente una muestra sin modificar de fila 5/1u. No se registró su orientación de impresión; no hay una receta universal de temperatura, velocidad o altura de capa validada.',
   downloaded: 'Descargado. Abre el 3MF en el laminador y asigna un filamento a cada pieza.',
   downloadFailed: 'La descarga ha fallado. Inténtalo de nuevo.',
   fileTooLarge: 'Elige un archivo SVG menor de 150 KB.',
@@ -365,6 +398,8 @@ export function useI18n() {
 }
 export function errorMessage(message: string | undefined, t: (key: MessageKey) => string) {
   if (!message) return undefined;
+  if (message === 'Invalid keycap measurements.') return t('invalidMeasurements');
+  if (message.includes('usable key top')) return t('iconTooLarge');
   if (message.includes('stroke')) return t('strokeError');
   if (message.includes('too large')) return t('fileTooLarge');
   return message.startsWith('The geometry engine')

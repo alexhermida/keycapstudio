@@ -34,3 +34,9 @@ _Avoid_: Image, decoration
 
 **1u**:
 The standard single-key width unit in a keyboard layout; it does not specify an exact physical measurement.
+
+**OEM row (R1–R4)**:
+A row-dependent keycap shape. In the K2 diagram, the two upper physical rows use R4; the lighting key is R4/1u. Historical KeyV2 row numbers use a different naming scheme.
+
+**Edge-center height**:
+Vertical distance from the keycap base to the center of the front or rear upper edge. A concave edge has higher corners, so this differs from overall maximum height.

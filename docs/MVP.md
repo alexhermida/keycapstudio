@@ -2,7 +2,7 @@
 
 ## Agreed scope
 
-Generate two-color OEM-profile keycaps from SVG artwork. The user's Keychron K2 top-right 1u lighting keycap (OEM row 5) is the default and only physically checked variant; additional row/width options are experimental. Use React and TypeScript; host on GitHub Pages with all processing in the browser. Keep uploaded SVG data local.
+Generate two-color OEM-profile keycaps from SVG artwork. The default is OEM R4 · 1u, corresponding to the K2 lighting-key position. All new parametric presets are experimental; physical feedback on the previous KeyV2 template does not validate them. Use React and TypeScript; host on GitHub Pages with all processing in the browser. Keep uploaded SVG data local.
 
 The workflow includes SVG upload, a centered legend with adjustable size, a 3D preview, one body color, one legend color, and a downloadable 3MF.
 
@@ -46,13 +46,13 @@ A user-supplied local SVG contains four separate filled paths, one solid fill co
 
 ## Deferred
 
-Typed text, font selection, automatic SVG stroke conversion, PNG input, more than two colors, arbitrary legend positioning, legend rotation, and layout editing. General-purpose mechanical geometry editing remains deferred. Additional keyboards and OEM row/width variants are not yet implemented; the first supported catalogue is planned separately.
+Typed text, font selection, automatic SVG stroke conversion, PNG input, more than two colors, arbitrary legend positioning, legend rotation, and layout editing. Socket-fit editing and arbitrary profiles remain deferred.
 
-The editor now selects an OEM row and key width in `u`, then accepts SVG artwork as an independent step. The row 5/1u reference remains the default. This is a catalogue of generated variants, not raw geometry or stem-fit sliders.
+## OEM profiles and measurements
 
-The implemented first catalogue and remaining gates are in [the OEM key-selection plan](plans/oem-profile-controls.md). Existing SVG, legend-size, and color controls remain, with key width (`u`) clearly separate from legend size (`mm`). The adaptive-width print and every new key variant have separate physical gates.
+The user approved selecting OEM R1–R4 and adjusting the base width/depth, front/rear edge-center heights, and base corner radius in millimeters. R4 · 1u is the default; the existing wider choices remain available under R4. Changing row or width loads its defaults without changing artwork or colors. A collapsible section keeps controls compact; Reset restores the selected profile. Preview and export use the same generated model, and actual overall mesh dimensions are displayed.
 
-The user has prioritized outer shape and height customization and asked to use bounded measurements in the editor without printing every option first. [The customization plan](plans/oem-customization.md) and [decision](adr/0004-bounded-oem-measurements.md) define discrete corner-radius and row-relative height choices generated with KeyV2. Nondefault height is labeled OEM derived. These are experimental software bounds, not an official OEM tolerance or a fit claim.
+Reference dimensions and modeling assumptions are documented in [ADR 0006](adr/0006-parametric-oem-profiles.md). No vendor attribution is required in the UI. Bounds are generator restrictions, not a universal OEM standard. Generate in the existing browser worker; preserve the prior reference's insertion region without scaling. New shells and stem-to-roof connections require physical checks. This supersedes the earlier generated-mesh-only customization decision; historical catalogue assets remain available for comparison.
 
 ### Later follow-up: Switch fit
 

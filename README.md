@@ -1,12 +1,12 @@
 # Keycap Studio
 
-A browser app that turns a filled SVG icon into a two-color OEM-profile keycap. The **Keychron K2 top-right 1u lighting keycap (OEM row 5)** is the default and the only variant with reported physical fit.
+A browser app that turns a filled SVG icon into a two-color OEM-profile keycap. Select **R1–R4**, then customize its measurements. **R4 · 1u** is the starting point for the Keychron K2 lighting key.
 
-Choose an OEM row and key width, adjust corner radius and row-relative height, upload an icon, adjust its legend size, choose two colors, inspect the 3D model, and download a 3MF. Processing happens locally: no backend, account, telemetry, or saved-project storage.
+Choose an OEM row and key width, adjust base width/depth, front/rear edge heights and corner radius, upload an icon, adjust its legend size, choose two colors, inspect the 3D model, and download a 3MF. Processing happens locally: no backend, account, telemetry, or saved-project storage.
 
 The editor is available in English, Galician, and Spanish. It follows the browser language when supported, and a manual selection applies only to the current session. The in-app Help button explains privacy and printing guidance. SVG artwork and keycap settings stay in memory for the current session and are not sent to an application server or stored as projects; reloading starts a new design. Browser caching of site resources and the downloaded 3MF are separate from project storage.
 
-**Experimental MVP:** one printed OEM row 5 sample passed the requested K2 fit and travel checks. Its legend has perceptible relief despite flush exported geometry; repeatability remains untested. See [CALIBRATION.md](CALIBRATION.md).
+**Experimental MVP:** the earlier KeyV2 template had reported sample-level fit. The new adjustable profiles preserve its insertion geometry but require new physical fit and travel checks. They are not exact replicas of the K2. See [CALIBRATION.md](CALIBRATION.md).
 
 ## Run locally
 
@@ -17,11 +17,13 @@ npm ci
 npm run dev
 ```
 
-Open the URL printed by Vite. The app starts at OEM row 5, 1u with an original example icon. Choose another offered row/width, upload your own SVG or try Spark/Orbit. Key width is measured in `u`; legend size is independently measured in millimeters. Refreshing starts a new design.
+Open the URL printed by Vite. The app starts at OEM R4, 1u with an original example icon. Choose another offered row/width, upload your own SVG or try Spark/Orbit. Key width is measured in `u`; legend size is independently measured in millimeters. Refreshing starts a new design.
 
 The header links to the [GitHub repository](https://github.com/alexhermida/keycapstudio) and the creator's [Buy Me a Coffee page](https://buymeacoffee.com/dvd16).
 
-The initial catalogue has rows 1–5 at 1u, plus row 5 at 1.25u, 1.5u, and 1.75u. Corner radius is offered from 0.50 to 1.50 mm and height adjustment from −0.50 to +0.50 mm relative to the selected OEM row, both in 0.25 mm steps. Reset restores the original measurements. A nonzero height adjustment is labeled **OEM derived**. Only the unmodified row 5/1u has passed physical K2 fit trials; changed measurements and other sizes are experimental and may not fit your keyboard. Larger keys or keys requiring stabilizers are not offered yet.
+All four profiles offer 1u. R4 also retains the earlier 1.25u, 1.5u and 1.75u choices. Open **Customize measurements** to adjust base width (±0.5 mm around the selected size), depth (17.5–18.5 mm), front/rear edge heights (6.8–12.5 mm), and base corner radius (0.5–1.5 mm). Sliders step by 0.1 mm; numeric fields permit direct entry. Heights refer to the **center of each top edge**, measured from the base; front faces the typist and rear faces the screen. The concave top has higher corners. Overall mesh dimensions appear below the preview.
+
+Changing row or key width loads that preset's initial measurements and preserves artwork, legend size, and colors. **Reset** restores the selected preset. These are experimental generator limits, not OEM tolerances or guaranteed keyboard clearance. The switch socket is fixed; wider/stabilized keys remain outside the available sizes.
 
 ## Development checks
 
@@ -82,10 +84,11 @@ Relative asset URLs support both a repository subpath and a root domain. The wor
 
 Core modules live in `src/svg`, `src/geometry`, and `src/export`; React components and the worker hook are separate. Mechanical values live in `src/geometry/config.ts`.
 
-The worker loads the selected OEM blank and matching exterior from local binary mesh assets. The printed row 5/1u reference retains its original assets. The [variant recipe](docs/plans/keyv2-oem-variant.scad), [measurement recipe](docs/plans/keyv2-oem-customizable.scad), [variant manifest](docs/plans/oem-variant-manifest.json), [measurement manifest](docs/plans/oem-customization-manifest.json), and [OEM comparison](docs/plans/oem-template-comparison-results.md) record provenance. Regenerate measurement assets with `node scripts/generate-oem-customizations.mjs` after checking out the pinned KeyV2 source under `_tmp/KeyV2` and installing OpenSCAD 2026.03.07. The previous procedural blank and its isolated stem/socket module remain in source for comparison and rollback. A future Advanced switch-fit control is outlined in the MVP document; it is not available in the current UI.
+The worker constructs a parametric rounded, tapered shell using the selected dimensions and the unchanged lower stem from the earlier reference mesh. It uses the same exterior for the flush inlay. No new dependency or server is required. Mechanical parameters, reference presets, and limits live in `src/geometry/config.ts`; [ADR 0006](docs/adr/0006-parametric-oem-profiles.md) documents dimensions, assumptions, provenance, and the preserved stem boundary.
 
+The previous procedural generator and KeyV2 catalogue assets/recipes remain available for comparison and rollback; the new worker loads only the single reference blank. Their old `row5` identifier is a KeyV2 template name, not Keychron's R4 designation.
 OEM mesh provenance: [KeyV2](https://github.com/rsheldiii/KeyV2) at commit `19f0d2faadd4949634c93f38d1a66869d29e8f43`, generated with the repository's OpenSCAD recipes and converted to indexed meshes by `node scripts/build-oem-assets.mjs`. KeyV2's GPL-3.0 license text is preserved in [KEYV2-LICENSE.md](public/KEYV2-LICENSE.md) and shipped with the static build.
 
 ## Limitations
 
-The app generates the listed OEM rows/widths and bounded measurement choices, but physical compatibility has only been reported for the unmodified row 5/1u K2 lighting key. Measurement limits are engineering choices, not an official OEM standard. Text, fonts, arbitrary key sizes, other profiles, fit tuning, and project saving are deferred. Desktop Chromium and Firefox are tested; full mobile and Safari support are not verified. Separate Body/Legend parts are user-confirmed in the slicer. The adaptive-width print improved but did not fully eliminate tactile legend relief; no broadly validated compatibility or print-quality claim is made.
+The adjustable OEM profiles have automatic geometry/export checks but no physical fit validation. Text, fonts, other profiles, stabilized sizes, socket-fit tuning, and project saving are deferred. Chromium and Firefox are tested, including mobile layout; Safari and real touch-device behavior remain unverified. Earlier prints had slight tactile legend relief despite flush digital geometry.

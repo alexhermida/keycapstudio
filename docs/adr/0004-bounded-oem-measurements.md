@@ -1,5 +1,7 @@
 # Offer bounded OEM measurements from generated KeyV2 meshes
 
+Runtime selection and controls superseded by [ADR 0006](0006-parametric-oem-profiles.md). Retained as the decision record for the historical generated assets.
+
 Status: accepted for the local editor, 2026-09-20.
 
 The user wants to vary outer shape and height after selecting an OEM row and width, without a physical print for each setting. KeyV2 fixes the nominal depth of each row and does not publish safe customization limits. The browser does not run OpenSCAD. A continuous slider over the existing fixed mesh would claim geometry that the exported 3MF does not contain.
