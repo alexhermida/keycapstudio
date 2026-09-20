@@ -7,6 +7,8 @@ import type { Artwork } from './geometry/types';
 import { EXAMPLES } from './examples';
 
 const Preview = lazy(() => import('./components/Preview'));
+// Replace with the creator profile URL once the Thangs page is published.
+const THANGS_URL = 'https://thangs.com/';
 const INITIAL: Artwork = {
   aspectRatio: 63 / 90,
   sourceColor: '#79a95b',
@@ -449,7 +451,18 @@ export default function App() {
       </main>
       <footer>
         <span>KEYCAP STUDIO</span>
-        <span>Small object. Personal touch.</span>
+        <nav className="footer-links" aria-label="Project links">
+          <a
+            href="https://github.com/alexhermida/keycapstudio"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub repository
+          </a>
+          <a href={THANGS_URL} target="_blank" rel="noopener noreferrer">
+            Thangs <span>(profile coming soon)</span>
+          </a>
+        </nav>
         <span>OEM keycaps, made locally.</span>
       </footer>
     </div>

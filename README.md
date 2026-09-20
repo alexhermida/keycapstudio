@@ -17,6 +17,8 @@ npm run dev
 
 Open the URL printed by Vite. The app starts at OEM row 5, 1u with an original example icon. Choose another offered row/width, upload your own SVG or try Spark/Orbit. Key width is measured in `u`; legend size is independently measured in millimeters. Refreshing starts a new design.
 
+The footer links to the [GitHub repository](https://github.com/alexhermida/keycapstudio). Its Thangs link temporarily points to the Thangs homepage and is labeled “profile coming soon”; replace `THANGS_URL` in `src/App.tsx` with the creator profile URL once published.
+
 The initial catalogue has rows 1–5 at 1u, plus row 5 at 1.25u, 1.5u, and 1.75u. Corner radius is offered from 0.50 to 1.50 mm and height adjustment from −0.50 to +0.50 mm relative to the selected OEM row, both in 0.25 mm steps. Reset restores the original measurements. A nonzero height adjustment is labeled **OEM derived**. Only the unmodified row 5/1u has passed physical K2 fit trials; changed measurements and other sizes are experimental and may not fit your keyboard. Larger keys or keys requiring stabilizers are not offered yet.
 
 ## Development checks
