@@ -123,7 +123,15 @@ export default function Preview({ model, bodyColor, legendColor }: Props) {
     );
     const legend = new THREE.Mesh(
       geometry(model.legend),
-      new THREE.MeshStandardMaterial({ color: legendColor, roughness: 0.5 }),
+      new THREE.MeshStandardMaterial({
+        color: legendColor,
+        roughness: 0.5,
+        // Body and Legend intentionally share their exterior surface. Prefer Legend in the depth
+        // buffer so the interactive preview does not alternate between the two coplanar meshes.
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1,
+      }),
     );
     context.group.add(body, legend);
     context.renderer.render(context.scene, context.camera);
