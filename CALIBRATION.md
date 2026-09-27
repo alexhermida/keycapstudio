@@ -12,7 +12,15 @@ All new presets and customized measurements remain **physically unverified**. Pr
 
 ### Latest sample feedback
 
-The user reports that the latest pictured sample fits well. The two front corners show localized roughness/irregular contour, reportedly present on earlier prints and more noticeable on this sample. This is qualitative seating and surface-quality evidence only. The exact exported revision, measurements, and corresponding sliced artifact have not been verified; do not assign the result to every new preset or infer confirmed retention, removal, or full travel. The photo alone does not establish whether the irregularity originated during printing or removal. No geometry or process adjustment is justified yet; request the matching slicer project and the observation before/after removal to investigate.
+Update, 2026-09-27: the user clarifies that insertion is difficult, superseding the earlier general report of good fit for this sample. The corner defects are already present when printing finishes, before removal. Do not mark this sample as fit-validated.
+
+Read-only inspection of the supplied slicer project reconstructs a watertight Body with an 18 × 18 mm footprint and approximately 11.556 mm maximum height. Its central 7 × 7 mm insertion region through Z=4.49 mm matches the historical reference to less than 0.000001 mm³ added/removed volume. The opening was not narrowed by the exterior customization, but printed fit remains unverified and is reported tight. Shell clearance and deposition effects are not resolved by that digital comparison.
+
+The saved assembly orientation places a planar side against the bed: approximately 159.33 mm² of downward-facing triangles lie within 0.000003 mm of the bed plane. This does not reproduce the former bent-side geometry defect. Rounded corners rise away from that plane; model sections through the first 0.65 mm remain connected. These measurements do not establish support or extrusion coverage at the corners.
+
+The project contains no G-code. Local re-slicing was attempted but rejected because the available command-line slicer does not support the project's version. Matching exported G-code is needed for the next toolpath check. No model, socket, or printing setting was changed; source files, process settings, and inspection artifacts remain private.
+
+Original report, 2026-09-20 (superseded by the clarification above): the user initially reported that the pictured sample fit well. The two front corners show localized roughness/irregular contour, reportedly present on earlier prints and more noticeable on this sample. This is qualitative seating and surface-quality evidence only. The exact exported revision, measurements, and corresponding sliced artifact have not been verified; do not assign the result to every new preset or infer confirmed retention, removal, or full travel. The photo alone does not establish whether the irregularity originated during printing or removal. No geometry or process adjustment is justified yet; request the matching slicer project and the observation before/after removal to investigate.
 
 The following sections document previous geometry and trials.
 
