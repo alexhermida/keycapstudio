@@ -6,10 +6,16 @@ interface Result {
   artwork: Artwork;
   size: number;
   dimensions: OemDimensions;
+  stemFitDeltaMm: number;
   model?: KeycapModel;
   error?: string;
 }
-export function useKeycap(artwork: Artwork, size: number, dimensions: OemDimensions) {
+export function useKeycap(
+  artwork: Artwork,
+  size: number,
+  dimensions: OemDimensions,
+  stemFitDeltaMm: number,
+) {
   const [result, setResult] = useState<Result>();
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
@@ -21,12 +27,12 @@ export function useKeycap(artwork: Artwork, size: number, dimensions: OemDimensi
         const fail = (message: string) => {
           clearTimeout(timeout);
           worker?.terminate();
-          setResult({ artwork, size, dimensions, error: message });
+          setResult({ artwork, size, dimensions, stemFitDeltaMm, error: message });
         };
         worker.onmessage = ({ data }: MessageEvent<GenerateResponse>) => {
           clearTimeout(timeout);
           if ('error' in data) fail(data.error);
-          else setResult({ artwork, size, dimensions, model: data.model });
+          else setResult({ artwork, size, dimensions, stemFitDeltaMm, model: data.model });
         };
         worker.onerror = () =>
           fail('The geometry engine could not start. Reload the page or try another browser.');
@@ -34,12 +40,13 @@ export function useKeycap(artwork: Artwork, size: number, dimensions: OemDimensi
           () => fail('This icon took too long to generate. Simplify its paths and try again.'),
           45000,
         );
-        worker.postMessage({ id: attempt, artwork, size, dimensions });
+        worker.postMessage({ id: attempt, artwork, size, dimensions, stemFitDeltaMm });
       } catch {
         setResult({
           artwork,
           size,
           dimensions,
+          stemFitDeltaMm,
           error: 'This browser could not start the geometry engine.',
         });
       }
@@ -49,9 +56,12 @@ export function useKeycap(artwork: Artwork, size: number, dimensions: OemDimensi
       clearTimeout(timeout);
       worker?.terminate();
     };
-  }, [artwork, size, dimensions, attempt]);
+  }, [artwork, size, dimensions, stemFitDeltaMm, attempt]);
   const current =
-    result?.artwork === artwork && result.size === size && result.dimensions === dimensions;
+    result?.artwork === artwork &&
+    result.size === size &&
+    result.dimensions === dimensions &&
+    result.stemFitDeltaMm === stemFitDeltaMm;
   return {
     model: result?.model,
     error: current ? result.error : undefined,

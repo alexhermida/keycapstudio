@@ -1,5 +1,11 @@
 # Physical calibration
 
+## Experimental stem fit — 2026-09-29
+
+The Advanced control now changes the total width of both cross arms by `stemFitDeltaMm`, from −0.10 to +0.15 mm in 0.05 mm steps. Positive is looser; negative is tighter. At 0.00 mm the adjustment is bypassed and the existing reference stem path is unchanged. The pinned reference asset and its measured straight gripping faces determine the operation; the older Python calibration dimensions are not reused. Changes are confined to model Z=1.0–3.5 mm and the central arm spans. The entrance bevel, blind roof/depth, boss exterior, shell, and legend are intended to remain unchanged; software volume and mesh tests check these boundaries.
+
+The browser offers one labeled 3MF with A −0.05, B 0.00, C +0.05, and D +0.10 mm. These are experimental samples, not physically validated settings. Print and cool the reference and neighboring samples, then report gentle insertion, retention, safe removal, and repeatability before assigning any fit status. Check full key travel and surrounding clearance on a complete cap as well. Current software checks establish mesh and export behavior only. The earlier difficult-insertion report remains the latest relevant physical feedback; it does not select a new delta.
+
 ## Parametric OEM revision — 2026-09-20
 
 The user approved replacing the editor's KeyV2 row catalogue with OEM R1–R4 reference presets and adjustable outer dimensions. The K2 lighting position is R4 according to Keychron; the earlier `row5` name referred to the KeyV2 template. Historical physical feedback below remains attached to those older artifacts.

@@ -1,10 +1,12 @@
 # Project status
 
-Last updated: 2026-09-27.
+Last updated: 2026-09-29.
 
 ## Current phase
 
-Parametric OEM R1–R4 editor, default R4 · 1u. Base width/depth, front/rear edge-center heights, and corner radius are editable in millimeters. The lower insertion region comes unchanged from the previously printed KeyV2 reference; the exterior and roof connection are new and not physically verified. Historical evidence below applies only to the artifacts named there. No deployment is included in this change.
+Parametric OEM R1–R4 editor, default R4 · 1u. Base width/depth, front/rear edge-center heights, and corner radius are editable in millimeters. At the default stem-fit value, the lower insertion region comes unchanged from the previously printed KeyV2 reference; the exterior and roof connection are new and not physically verified. Historical evidence below applies only to the artifacts named there. No deployment is included in this change.
+
+Experimental Advanced stem fit is implemented locally. At 0.00 mm the reference stem path is unchanged; nonzero settings edit only the socket's straight gripping faces. This implementation has software and slicer-CLI evidence but no new physical print evidence. The feature must remain experimental pending sample insertion, retention, removal, and repeatability feedback. It has not been pushed or deployed.
 
 ## Current implementation — parametric profiles
 
@@ -13,7 +15,8 @@ Parametric OEM R1–R4 editor, default R4 · 1u. Base width/depth, front/rear ed
 - Accepted UI terminology uses OEM R1–R4; the K2 lighting position is R4. The previous `row5` identifier is internal to the historical KeyV2 template.
 - Preset changes and Reset restore reference measurements; artwork and colors stay independent.
 - Collapsible localized controls, direct numerical entry, and actual exported-mesh dimensions.
-- Worker-generated shell, fixed reference insertion region, existing flush Body/Legend pipeline.
+- Worker-generated shell, reference insertion region at 0.00 mm stem fit, existing flush Body/Legend pipeline.
+- A validated −0.10 to +0.15 mm stem-fit delta in 0.05 mm steps, a collapsed Advanced control, and a four-piece raised-letter calibration 3MF using the same parametric socket path. The default bypasses fit booleans. See ADR 0007 and CALIBRATION.md.
 - Previous assets and procedural geometry remain available for regression and rollback; they are not presented as the new presets.
 - Verification: TypeScript, ESLint, production build, and 49 domain tests pass. New regressions cover all four 18 mm presets, measured edge-center heights, reference insertion-volume equivalence, serialized solid validity, and all 32 combinations of dimension bounds. Chromium/Firefox pass 16 workflow/accessibility checks, including downloaded dimensions, deterministic Reset, every row, and localized mobile layout. New physical fit, removal, travel, clearance, and print-quality checks remain open.
 
@@ -26,7 +29,7 @@ Parametric OEM R1–R4 editor, default R4 · 1u. Base width/depth, front/rear ed
 - Interactive 3D preview with orbit, zoom, top, and underside views.
 - Geometry worker with cancellation on input changes, timeout, progress, and recoverable errors.
 - Deterministic approximate K2 lighting-key geometry, hollow shell, blind cross socket, and flush inlay.
-- Isolated stem/socket assembly module with explicit geometry ownership and unchanged fixed dimensions. Advanced switch-fit control documented as future work, not implemented.
+- Isolated historical stem/socket assembly module with explicit geometry ownership. The production parametric path now applies the optional stem-fit edit in a separate module.
 - Separate watertight Body and Legend meshes, including disconnected legend islands.
 - Model-only 3MF with assembly/part names and independent material assignments.
 - Strict SVG validation, fill rules, transforms, implicit closure, and bounded complexity.
@@ -42,6 +45,9 @@ Parametric OEM R1–R4 editor, default R4 · 1u. Base width/depth, front/rear ed
 - The local editor now offers bounded corner-radius and row-relative height choices for every catalogue entry, in 0.25 mm steps. Nonzero height is labeled OEM derived; changed measurements are experimental. The original mesh pair remains the exact default and the worker loads only the chosen generated pair. The user explicitly chose not to require a separate physical print before offering each option.
 
 ## Verification evidence
+
+- Stem-fit domain tests cover a frozen pre-change zero-output fingerprint, monotonic signed volume changes, confinement to model Z=1.0–3.5 mm, unchanged shell bounds and exterior, valid Body/Legend meshes without volume overlap, invalid-value rejection, and four raised-letter sample solids with labeled 3MF entries. Chromium and Firefox browser tests cover the UI → worker → downloaded geometry path, both range extremes, keyboard control, reset-byte equality, translations, mobile width, and calibration download. Formatting, TypeScript, ESLint, 58 unit/domain tests, production build, and 20 browser tests pass.
+- Snapmaker Orca CLI `--info` imported the +0.15 mm keycap as a manifold, two-part model with an 18 × 18 mm footprint. It imported each calibration piece as manifold. A separate CLI slice of the four-piece file using a bundled generic profile completed 29 layers; G-code contains positive extrusion for A, B, C, and D on every layer. The default no-profile CLI slice failed a printer G-code validation check, so the successful slice used explicit generic settings. This checks toolpath continuity, not physical print quality. Direct GUI preview inspection and independent filament reassignment for this exact revision were blocked by unavailable computer-use permissions.
 
 - Preview rendering correction: the separately rendered Body and Legend meshes intentionally share a flush exterior surface. A GPU depth tie could flicker along the legend while orbiting. The Legend preview material now uses a depth offset, without changing the mesh arrays, geometry worker, or 3MF exporter. Automated geometry/export checks remain the evidence that printing geometry is unchanged.
 - Mobile regression after localization: Chromium and Firefox at 390 × 844 render the localized header without horizontal overflow; Help remains reachable, and its dialog stays within the viewport with internal scrolling. This is browser-layout evidence only.
@@ -93,9 +99,9 @@ Parametric OEM R1–R4 editor, default R4 · 1u. Base width/depth, front/rear ed
 - Preserve the working geometry; confirm the remaining mechanical observations without requiring a dimension change. Keep private calibration settings out of the repository.
 - Follow up on the improved but still raised adaptive-width print with a close-up and matching slice if pursuing a fully flush finish. Fit and travel were confirmed for this sample; the remaining physical cause of the slight relief is not confirmed.
 - Future code changes still require a manual Pages deployment; pushing main alone does not publish them.
-- Stem/socket isolation is complete with unchanged output. After the baseline and legend investigation, plan physical calibration for the documented Advanced switch-fit control before choosing its adjustment semantics, bounds, and step size. Keep today's dimensions as the default and retain Body + Legend export. UI implementation remains future work.
+- Stem fit is available experimentally; print the reference and neighboring calibration pieces and record fit, retention, removal, and repeatability before validating a setting. Keep the default reference geometry unless that physical evidence justifies a change.
 - Incorporate print feedback through CALIBRATION.md before changing validated dimensions or claiming compatibility.
 
 ## Current scope
 
-OEM R1–R4 with bounded outer dimensions, filled SVGs, two colors, and single-session editing. The earlier KeyV2 row5/1u sample is historical physical evidence only. Text, fonts, other profiles, stabilized sizes, persistence, automatic stroke conversion, and socket-fit tuning remain deferred.
+OEM R1–R4 with bounded outer dimensions, experimental stem fit, filled SVGs, two colors, and single-session editing. The earlier KeyV2 row5/1u sample is historical physical evidence only. Text, fonts, other profiles, stabilized sizes, persistence, and automatic stroke conversion remain deferred.

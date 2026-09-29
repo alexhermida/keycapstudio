@@ -2,6 +2,8 @@ import Module from 'manifold-3d';
 import type { Manifold, CrossSection, ManifoldToplevel, Mesh } from 'manifold-3d';
 import { KEYCAP } from './config';
 import { createCurrentBlank } from './template';
+import { createOemBlank } from './parametric';
+import type { OemDimensions } from './config';
 import type { Artwork, KeycapModel, MeshData } from './types';
 
 export async function initializeKernel(wasmUrl?: string): Promise<ManifoldToplevel> {
@@ -41,6 +43,24 @@ export function generateKeycap(
   if (!Number.isFinite(size) || size < KEYCAP.minLegendSize || size > KEYCAP.maxLegendSize)
     throw new Error('Legend size must be between 3 and 11 mm.');
   const blank = createCurrentBlank(kernel);
+  try {
+    return generateFromBlank(kernel, blank.full, blank.outside, artwork, size);
+  } finally {
+    blank.full.delete();
+    blank.outside.delete();
+  }
+}
+
+/** Production parametric path; the zero fit branch keeps createOemBlank's reference stem. */
+export function generateOemKeycap(
+  kernel: ManifoldToplevel,
+  reference: Manifold,
+  dimensions: OemDimensions,
+  stemFitDeltaMm: number,
+  artwork: Artwork,
+  size: number,
+): KeycapModel {
+  const blank = createOemBlank(kernel, dimensions, reference, stemFitDeltaMm);
   try {
     return generateFromBlank(kernel, blank.full, blank.outside, artwork, size);
   } finally {

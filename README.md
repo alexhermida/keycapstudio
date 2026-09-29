@@ -23,7 +23,9 @@ The header links to the [GitHub repository](https://github.com/alexhermida/keyca
 
 All four profiles offer 1u. R4 also retains the earlier 1.25u, 1.5u and 1.75u choices. Open **Customize measurements** to adjust base width (±0.5 mm around the selected size), depth (17.5–18.5 mm), front/rear edge heights (6.8–12.5 mm), and base corner radius (0.5–1.5 mm). Sliders step by 0.1 mm; numeric fields permit direct entry. Heights refer to the **center of each top edge**, measured from the base; front faces the typist and rear faces the screen. The concave top has higher corners. Overall mesh dimensions appear below the preview.
 
-Changing row or key width loads that preset's initial measurements and preserves artwork, legend size, and colors. **Reset** restores the selected preset. These are experimental generator limits, not OEM tolerances or guaranteed keyboard clearance. The switch socket is fixed; wider/stabilized keys remain outside the available sizes.
+Changing row or key width loads that preset's initial measurements and preserves artwork, legend size, colors, and stem fit. **Reset** restores the selected outer measurements. These are experimental generator limits, not OEM tolerances or guaranteed keyboard clearance. Wider/stabilized keys remain outside the available sizes.
+
+Under **Advanced → Stem fit**, adjust the socket arm widths from −0.10 to +0.15 mm in 0.05 mm steps. Positive values loosen; negative values tighten. **0.00 mm Reference** preserves the existing stem geometry exactly. **Reset stem fit** restores it. **Print stem fit test** downloads one 3MF containing four raised-letter samples: A −0.05, B 0.00, C +0.05, and D +0.10 mm. Inspect the file in a slicer, then print and compare insertion, retention, removal, and repeatability. The bounds are experimental and have no physical validation yet; see [CALIBRATION.md](CALIBRATION.md) and [ADR 0007](docs/adr/0007-experimental-stem-fit.md).
 
 ## Development checks
 
@@ -91,4 +93,4 @@ OEM mesh provenance: [KeyV2](https://github.com/rsheldiii/KeyV2) at commit `19f0
 
 ## Limitations
 
-The adjustable OEM profiles have automatic geometry/export checks but no physical fit validation. Text, fonts, other profiles, stabilized sizes, socket-fit tuning, and project saving are deferred. Chromium and Firefox are tested, including mobile layout; Safari and real touch-device behavior remain unverified. Earlier prints had slight tactile legend relief despite flush digital geometry.
+The adjustable OEM profiles and stem fit have automatic geometry/export checks but no physical fit validation for the new settings. Text, fonts, other profiles, stabilized sizes, and project saving are deferred. Chromium and Firefox are tested, including mobile layout; Safari and real touch-device behavior remain unverified. Earlier prints had slight tactile legend relief despite flush digital geometry.

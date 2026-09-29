@@ -1,5 +1,6 @@
 import { strToU8, zipSync } from 'fflate';
 import type { KeycapModel, MeshData } from '../geometry/types';
+import type { StemFitSample } from '../geometry/stemFitTest';
 
 export const MODEL_NS = 'http://schemas.microsoft.com/3dmanufacturing/core/2015/02';
 const xml = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -17,6 +18,43 @@ function meshXml(mesh: MeshData, id: number, name: string, material: number): st
       `<triangle v1="${mesh.indices[i]}" v2="${mesh.indices[i + 1]}" v3="${mesh.indices[i + 2]}"/>`,
     );
   return `<object id="${id}" name="${name}" type="model" pid="1" pindex="${material}"><mesh><vertices>${vertices.join('')}</vertices><triangles>${triangles.join('')}</triangles></mesh></object>`;
+}
+
+export function exportStemFitTest(samples: StemFitSample[]): Uint8Array<ArrayBuffer> {
+  const expected: Record<string, number> = { A: -0.05, B: 0, C: 0.05, D: 0.1 };
+  if (
+    samples.length !== 4 ||
+    samples.some(
+      (sample, index) =>
+        sample.label !== Object.keys(expected)[index] || sample.deltaMm !== expected[sample.label],
+    )
+  )
+    throw new Error('Expected four labeled stem fit samples.');
+  const objects = samples
+    .map((sample, index) =>
+      meshXml(sample.mesh, index + 2, `${sample.label} ${sample.deltaMm.toFixed(2)} mm`, 0),
+    )
+    .join('');
+  const build = samples.map((_, index) => `<item objectid="${index + 2}"/>`).join('');
+  const modelXml = `${xml}<model unit="millimeter" xml:lang="en-US" xmlns="${MODEL_NS}"><metadata name="Title">Stem Fit Test</metadata><resources><basematerials id="1"><base name="Sample" displaycolor="#E0E0E0FF"/></basematerials>${objects}</resources><build>${build}</build></model>`;
+  return zipSync(
+    {
+      '[Content_Types].xml': [
+        strToU8(
+          `${xml}<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/></Types>`,
+        ),
+        { mtime: new Date(2020, 0, 1) },
+      ],
+      '_rels/.rels': [
+        strToU8(
+          `${xml}<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`,
+        ),
+        { mtime: new Date(2020, 0, 1) },
+      ],
+      '3D/3dmodel.model': [strToU8(modelXml), { mtime: new Date(2020, 0, 1) }],
+    },
+    { level: 6 },
+  );
 }
 
 /** Model-only 3MF: no machine profile, filament presets, user data, or G-code. */

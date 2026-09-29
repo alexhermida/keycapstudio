@@ -46,7 +46,7 @@ A user-supplied local SVG contains four separate filled paths, one solid fill co
 
 ## Deferred
 
-Typed text, font selection, automatic SVG stroke conversion, PNG input, more than two colors, arbitrary legend positioning, legend rotation, and layout editing. Socket-fit editing and arbitrary profiles remain deferred.
+Typed text, font selection, automatic SVG stroke conversion, PNG input, more than two colors, arbitrary legend positioning, legend rotation, layout editing, and arbitrary profiles remain deferred.
 
 ## OEM profiles and measurements
 
@@ -54,11 +54,11 @@ The user approved selecting OEM R1–R4 and adjusting the base width/depth, fron
 
 Reference dimensions and modeling assumptions are documented in [ADR 0006](adr/0006-parametric-oem-profiles.md). No vendor attribution is required in the UI. Bounds are generator restrictions, not a universal OEM standard. Generate in the existing browser worker; preserve the prior reference's insertion region without scaling. New shells and stem-to-roof connections require physical checks. This supersedes the earlier generated-mesh-only customization decision; historical catalogue assets remain available for comparison.
 
-### Later follow-up: Switch fit
+### Experimental stem fit
 
-A separate, later mechanical control is planned under an **Advanced** section, after the current print-quality and fit checks. It is not part of OEM row/width selection. Its purpose is to adjust only the cross-shaped socket opening, leaving the outer keycap, boss diameter, socket depth, and legend unchanged. Keep the current opening dimensions as the default, provide Reset, and clearly distinguish tighter from looser adjustment. Continue exporting Body + Legend with the stem joined into Body.
+A separate **Advanced → Stem fit** control adjusts the cross-shaped socket's two gripping arm widths. The 0.00 mm default follows the prior reference path exactly. Positive values loosen and negative values tighten, from −0.10 to +0.15 mm in 0.05 mm steps. This is independent of OEM row/width and outer measurements. The boss, socket depth, entrance bevel, roof, shell, and legend remain unchanged. Export continues as Body + Legend with the stem joined into Body.
 
-The stem/socket module is now isolated and tested without changing its output. The UI, request parameters, and adjustment logic are not implemented. Exact adjustment semantics, minimum/maximum values, and step size remain open until a physical calibration plan establishes a suitable range; do not invent validated tight/loose presets. This does not authorize a general geometry editor or additional keyboard support.
+**Print stem fit test** downloads one four-piece 3MF: A −0.05, B 0.00, C +0.05, D +0.10 mm. Each has a raised letter. These bounds and samples are experimental, not validated presets. [ADR 0007](adr/0007-experimental-stem-fit.md) records the edit region and reference-preservation rule. Physical fit, retention, removal, and repeatability remain a calibration gate; this does not authorize a general geometry editor or additional keyboard support.
 
 ## Engineering requirements
 

@@ -152,7 +152,9 @@ test('selects an OEM row and width independently of the artwork', async ({ page 
   await page.getByText('Customize measurements', { exact: true }).click();
   await page.getByLabel('Corner radius', { exact: true }).fill('0.7');
   await page.getByLabel('Front edge height', { exact: true }).fill('10.2');
-  await expect(page.locator('summary')).toContainText('Customized');
+  await expect(page.locator('summary').filter({ hasText: 'Customize measurements' })).toContainText(
+    'Customized',
+  );
   await expect(page.getByText('two-islands.svg')).toBeVisible();
   await expect(page.getByText(/Experimental size/)).toBeVisible();
   await expect(download).toBeEnabled({ timeout: 45000 });
@@ -183,7 +185,9 @@ test('customizes physical dimensions and resets the selected profile determinist
   await page.getByLabel('Base width (mm)', { exact: true }).fill('18.3');
   await page.getByLabel('Base width (mm)', { exact: true }).press('Tab');
   await page.getByLabel('Rear edge height', { exact: true }).fill('11.1');
-  await expect(page.locator('summary')).toContainText('Customized');
+  await expect(page.locator('summary').filter({ hasText: 'Customize measurements' })).toContainText(
+    'Customized',
+  );
   await expect(download).toBeEnabled({ timeout: 45000 });
   const changed = page.waitForEvent('download');
   await download.click();
@@ -238,4 +242,70 @@ test('offers R1–R4, loads their defaults and keeps mobile controls within the 
       390,
     );
   }
+});
+
+test('stem fit uses the worker, resets exactly, and downloads labeled calibration samples', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const download = page.getByRole('button', { name: 'Download 3MF' });
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  const originalEvent = page.waitForEvent('download');
+  await download.click();
+  const original = await originalEvent;
+  const originalBytes = await readFile((await original.path())!);
+
+  await page.getByText('Advanced', { exact: true }).click();
+  await page.getByText('Stem fit', { exact: true }).click();
+  const fit = page.getByLabel('Stem fit (mm)');
+  await expect(fit).toHaveValue('0.00');
+  await page.getByRole('button', { name: 'Tighten stem fit' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(fit).toHaveValue('-0.05');
+  await page.keyboard.press('Enter');
+  await expect(fit).toHaveValue('-0.10');
+  await expect(page.getByText('Experimental—verify with a test print.')).toBeVisible();
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  const changedEvent = page.waitForEvent('download');
+  await download.click();
+  const changed = await changedEvent;
+  expect((await readFile((await changed.path())!)).equals(originalBytes)).toBe(false);
+  await fit.fill('0.10');
+  await fit.press('Tab');
+  await page.getByRole('button', { name: 'Loosen stem fit' }).click();
+  await expect(fit).toHaveValue('0.15');
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  await expect(page.getByText('Looser · 0.15 mm')).toBeVisible();
+
+  const sampleEvent = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Print stem fit test' }).click();
+  const sample = await sampleEvent;
+  expect(sample.suggestedFilename()).toBe('stem-fit-test.3mf');
+  const sampleXml = strFromU8(
+    unzipSync(new Uint8Array(await readFile((await sample.path())!)))['3D/3dmodel.model'],
+  );
+  for (const name of ['A -0.05 mm', 'B 0.00 mm', 'C 0.05 mm', 'D 0.10 mm'])
+    expect(sampleXml).toContain(`name="${name}"`);
+
+  await page.getByRole('button', { name: 'Reset stem fit' }).click();
+  await expect(fit).toHaveValue('0.00');
+  await expect(download).toBeEnabled({ timeout: 45000 });
+  const resetEvent = page.waitForEvent('download');
+  await download.click();
+  const reset = await resetEvent;
+  expect((await readFile((await reset.path())!)).equals(originalBytes)).toBe(true);
+});
+
+test('stem fit controls are translated and fit the mobile viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto('/');
+  await page.getByLabel('Language').selectOption('es');
+  await page.getByText('Avanzado', { exact: true }).click();
+  await page.getByText('Ajuste del encaje', { exact: true }).click();
+  await expect(page.getByLabel('Ajuste del encaje (mm)')).toHaveValue('0.00');
+  await expect(page.getByRole('button', { name: 'Imprimir prueba de encaje' })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+  await page.getByLabel('Idioma').selectOption('gl');
+  await expect(page.getByLabel('Axuste do encaixe (mm)')).toHaveValue('0.00');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
 });

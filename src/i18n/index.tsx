@@ -4,6 +4,20 @@ export const LOCALES = ['en', 'gl', 'es'] as const;
 export type Locale = (typeof LOCALES)[number];
 
 const en = {
+  advanced: 'Advanced',
+  stemFit: 'Stem fit',
+  stemFitMm: 'Stem fit (mm)',
+  stemFitMinus: 'Tighten stem fit',
+  stemFitPlus: 'Loosen stem fit',
+  stemFitExplanation: 'Positive values make the socket looser; negative values make it tighter.',
+  stemFitWarning: 'Experimental—verify with a test print.',
+  tighter: 'Tighter',
+  reference: 'Reference',
+  looser: 'Looser',
+  stemFitReset: 'Reset stem fit',
+  printStemFitTest: 'Print stem fit test',
+  preparingTest: 'Preparing test…',
+  testDownloaded: 'Stem fit test downloaded. Check all four labeled samples in the slicer.',
   customizeDimensions: 'Customize measurements',
   customized: 'Customized',
   baseWidth: 'Base width',
@@ -12,7 +26,7 @@ const en = {
   rearHeight: 'Rear edge height',
   overallDimensions: 'Overall size (width × depth × height)',
   dimensionsHelp:
-    'Heights are measured at the center of each top edge, from the base. Front faces you; rear faces the screen. The corners sit higher because of the concave top. Limits are experimental. The switch socket stays unchanged.',
+    'Heights are measured at the center of each top edge, from the base. Front faces you; rear faces the screen. The corners sit higher because of the concave top. Limits are experimental. Stem fit is adjusted separately under Advanced.',
   invalidMeasurements: 'Measurements are outside the supported range.',
   iconTooLarge: 'The icon extends beyond the usable top. Reduce its size.',
   printEvidence:
@@ -104,7 +118,7 @@ const en = {
   printInspect:
     'Inspect layer previews: keep the socket open and check thin legend strokes, seams, and material assignments. Adaptive-width walls improved one comparison but did not remove all tactile relief.',
   printCheck:
-    'Print one sample and let it cool. Check gentle insertion, retention, removal, full travel and return, and clearance from nearby keys and the case. Other variants and modified measurements remain experimental.',
+    'Print one sample and let it cool. Check gentle insertion, retention, removal, full travel and return, and clearance from nearby keys and the case. Stem fit changes are experimental; compare the four labeled test pieces first.',
   downloaded: 'Downloaded. Open the 3MF in your slicer and assign a filament to each part.',
   downloadFailed: 'Download failed. Please try again.',
   fileTooLarge: 'Choose an SVG file smaller than 150 KB.',
@@ -117,6 +131,21 @@ const en = {
 
 const gl = {
   ...en,
+  advanced: 'Avanzado',
+  stemFit: 'Axuste do encaixe',
+  stemFitMm: 'Axuste do encaixe (mm)',
+  stemFitMinus: 'Apertar o encaixe',
+  stemFitPlus: 'Afrouxar o encaixe',
+  stemFitExplanation: 'Os valores positivos afrouxan o encaixe; os negativos aprétano.',
+  stemFitWarning: 'Experimental: compróbao cunha impresión de proba.',
+  tighter: 'Máis apertado',
+  reference: 'Referencia',
+  looser: 'Máis frouxo',
+  stemFitReset: 'Restablecer encaixe',
+  printStemFitTest: 'Imprimir proba de encaixe',
+  preparingTest: 'Preparando proba…',
+  testDownloaded:
+    'Proba de encaixe descargada. Comproba as catro mostras etiquetadas no laminador.',
   customizeDimensions: 'Personalizar medidas',
   customized: 'Personalizado',
   baseWidth: 'Ancho da base',
@@ -125,7 +154,7 @@ const gl = {
   rearHeight: 'Altura do bordo traseiro',
   overallDimensions: 'Tamaño total (ancho × profundidade × alto)',
   dimensionsHelp:
-    'As alturas mídense no centro de cada bordo superior, desde a base. Diante mira cara a ti; detrás, cara á pantalla. As esquinas son máis altas pola concavidade. Os límites son experimentais. O aloxamento do switch conserva as súas medidas.',
+    'As alturas mídense no centro de cada bordo superior, desde a base. Diante mira cara a ti; detrás, cara á pantalla. As esquinas son máis altas pola concavidade. Os límites son experimentais. O encaixe axústase por separado en Avanzado.',
   invalidMeasurements: 'As medidas están fóra do intervalo admitido.',
   iconTooLarge: 'A icona excede a superficie útil. Reduce o seu tamaño.',
   printEvidence:
@@ -220,7 +249,7 @@ const gl = {
   printInspect:
     'Inspecciona as capas: mantén aberto o encaixe e comproba trazos finos da lenda, costuras e materiais. As paredes de anchura adaptativa melloraron unha comparación, pero non eliminaron todo o relevo táctil.',
   printCheck:
-    'Imprime unha mostra e déixaa arrefriar. Comproba inserción suave, retención, retirada, percorrido completo e folgura coas teclas e carcasa próximas. As demais variantes e medidas modificadas seguen sendo experimentais.',
+    'Imprime unha mostra e déixaa arrefriar. Comproba inserción suave, retención, retirada, percorrido completo e folgura coas teclas e carcasa próximas. Os cambios de encaixe son experimentais; compara as catro pezas etiquetadas.',
   downloaded: 'Descargado. Abre o 3MF no laminador e asigna un filamento a cada peza.',
   downloadFailed: 'A descarga fallou. Téntao de novo.',
   fileTooLarge: 'Escolle un ficheiro SVG menor de 150 KB.',
@@ -234,6 +263,21 @@ const gl = {
 
 const es = {
   ...en,
+  advanced: 'Avanzado',
+  stemFit: 'Ajuste del encaje',
+  stemFitMm: 'Ajuste del encaje (mm)',
+  stemFitMinus: 'Apretar el encaje',
+  stemFitPlus: 'Aflojar el encaje',
+  stemFitExplanation: 'Los valores positivos aflojan el encaje; los negativos lo aprietan.',
+  stemFitWarning: 'Experimental: verifícalo con una impresión de prueba.',
+  tighter: 'Más apretado',
+  reference: 'Referencia',
+  looser: 'Más holgado',
+  stemFitReset: 'Restablecer encaje',
+  printStemFitTest: 'Imprimir prueba de encaje',
+  preparingTest: 'Preparando prueba…',
+  testDownloaded:
+    'Prueba de encaje descargada. Comprueba las cuatro muestras etiquetadas en el laminador.',
   customizeDimensions: 'Personalizar medidas',
   customized: 'Personalizado',
   baseWidth: 'Ancho de base',
@@ -242,7 +286,7 @@ const es = {
   rearHeight: 'Altura del borde trasero',
   overallDimensions: 'Tamaño total (ancho × profundidad × alto)',
   dimensionsHelp:
-    'Las alturas se miden en el centro de cada borde superior, desde la base. Delante mira hacia ti; detrás, hacia la pantalla. Las esquinas son más altas por la concavidad. Los límites son experimentales. El alojamiento del switch conserva sus medidas.',
+    'Las alturas se miden en el centro de cada borde superior, desde la base. Delante mira hacia ti; detrás, hacia la pantalla. Las esquinas son más altas por la concavidad. Los límites son experimentales. El encaje se ajusta por separado en Avanzado.',
   invalidMeasurements: 'Las medidas están fuera del intervalo admitido.',
   iconTooLarge: 'El icono excede la superficie útil. Reduce su tamaño.',
   printEvidence:
@@ -338,7 +382,7 @@ const es = {
   printInspect:
     'Inspecciona las capas: mantén abierto el encaje y revisa trazos finos de la leyenda, costuras y materiales. Las paredes de anchura adaptativa mejoraron una comparación, pero no eliminaron todo el relieve táctil.',
   printCheck:
-    'Imprime una muestra y déjala enfriar. Comprueba inserción suave, retención, retirada, recorrido completo y holgura con teclas y carcasa cercanas. Las demás variantes y medidas modificadas siguen siendo experimentales.',
+    'Imprime una muestra y déjala enfriar. Comprueba inserción suave, retención, retirada, recorrido completo y holgura con teclas y carcasa cercanas. Los cambios de encaje son experimentales; compara las cuatro piezas etiquetadas.',
   downloaded: 'Descargado. Abre el 3MF en el laminador y asigna un filamento a cada pieza.',
   downloadFailed: 'La descarga ha fallado. Inténtalo de nuevo.',
   fileTooLarge: 'Elige un archivo SVG menor de 150 KB.',

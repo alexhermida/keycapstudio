@@ -3,8 +3,9 @@ import { ColorField } from './components/ColorField';
 import { HelpDialog } from './components/HelpDialog';
 import { LanguageSelector } from './components/LanguageSelector';
 import { useKeycap } from './hooks/useKeycap';
-import { KEYCAP, oemDefaults, type OemRow } from './geometry/config';
+import { KEYCAP, STEM_FIT, oemDefaults, type OemRow } from './geometry/config';
 import { DimensionControls } from './components/DimensionControls';
+import { StemFitControls } from './components/StemFitControls';
 import type { Artwork } from './geometry/types';
 import { EXAMPLES } from './examples';
 import { errorMessage, useI18n } from './i18n';
@@ -55,20 +56,22 @@ export default function App() {
   const [row, setRow] = useState<OemRow>(4);
   const [widthU, setWidthU] = useState(1);
   const [dimensions, setDimensions] = useState(() => oemDefaults(4));
+  const [stemFitDeltaMm, setStemFitDeltaMm] = useState<number>(STEM_FIT.defaultMm);
   const [bodyColor, setBodyColor] = useState('#eeeae1');
   const [legendColor, setLegendColor] = useState('#527b48');
   const [inputError, setInputError] = useState('');
   const [reading, setReading] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [downloading, setDownloading] = useState(false);
-  const [notice, setNotice] = useState<'downloaded' | 'downloadFailed'>();
+  const [preparingTest, setPreparingTest] = useState(false);
+  const [notice, setNotice] = useState<'downloaded' | 'testDownloaded' | 'downloadFailed'>();
   const [help, setHelp] = useState<{ open: boolean; section: 'privacy' | 'printing' }>({
     open: false,
     section: 'privacy',
   });
   const fileInput = useRef<HTMLInputElement>(null);
   const readVersion = useRef(0);
-  const { model, pending, error, retry } = useKeycap(artwork, size, dimensions);
+  const { model, pending, error, retry } = useKeycap(artwork, size, dimensions, stemFitDeltaMm);
   const modelSize = useMemo(() => {
     if (!model) return undefined;
     const min = [Infinity, Infinity, Infinity];
@@ -134,6 +137,49 @@ export default function App() {
       setNotice('downloadFailed');
     } finally {
       setDownloading(false);
+    }
+  }
+  async function printStemFitTest() {
+    setPreparingTest(true);
+    clearNotice();
+    let worker: Worker | undefined;
+    try {
+      const activeWorker = new Worker(new URL('./geometry/stemFitWorker.ts', import.meta.url), {
+        type: 'module',
+      });
+      worker = activeWorker;
+      const bytes = await new Promise<Uint8Array<ArrayBuffer>>((resolve, reject) => {
+        const timer = setTimeout(
+          () => reject(new Error('Stem fit test generation timed out.')),
+          60000,
+        );
+        activeWorker.onmessage = ({
+          data,
+        }: MessageEvent<{ bytes?: Uint8Array<ArrayBuffer>; error?: string }>) => {
+          clearTimeout(timer);
+          if (data.bytes) resolve(data.bytes);
+          else reject(new Error(data.error));
+        };
+        activeWorker.onerror = () => {
+          clearTimeout(timer);
+          reject(new Error('Could not generate stem fit test.'));
+        };
+        activeWorker.postMessage({});
+      });
+      const url = URL.createObjectURL(new Blob([bytes], { type: 'model/3mf' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'stem-fit-test.3mf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+      setNotice('testDownloaded');
+    } catch {
+      setNotice('downloadFailed');
+    } finally {
+      worker?.terminate();
+      setPreparingTest(false);
     }
   }
   return (
@@ -268,6 +314,20 @@ export default function App() {
                 clearNotice();
               }}
             />
+            <section className="control-section">
+              <details className="dimension-controls advanced-controls">
+                <summary>{t('advanced')}</summary>
+                <StemFitControls
+                  value={stemFitDeltaMm}
+                  onChange={(value) => {
+                    setStemFitDeltaMm(value);
+                    clearNotice();
+                  }}
+                  onPrintTest={() => void printStemFitTest()}
+                  preparingTest={preparingTest}
+                />
+              </details>
+            </section>
             <section className="control-section">
               <div className="section-title">
                 <span className="step">03</span>

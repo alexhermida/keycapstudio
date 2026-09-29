@@ -276,6 +276,69 @@ h1 {
   font-weight: 600;
   line-height: 1.5;
 }
+.advanced-controls > .control-section {
+  margin: 12px 0 0;
+}
+.stem-fit-controls {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.stem-fit-controls summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.stem-fit-row {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+}
+.stem-fit-row label {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+}
+.stem-fit-row input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid #c4c8bf;
+  border-radius: 6px;
+  font: inherit;
+}
+.stem-fit-row button,
+.stem-fit-actions button {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+.stem-fit-row button {
+  min-width: 36px;
+}
+.stem-fit-row button:disabled,
+.stem-fit-actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.stem-fit-status {
+  font-weight: 600;
+}
+.stem-fit-warning {
+  color: #9a4b16;
+}
+.stem-fit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stem-fit-actions button {
+  padding: 6px 8px;
+}
 .dimension-controls input[type='number'] {
   width: 100%;
   min-width: 0;

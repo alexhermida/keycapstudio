@@ -82,6 +82,31 @@ export const OEM_SHAPE = Object.freeze({
   stemJoinHeight: 4.5,
   stemRegion: 7,
 });
+/** Width changes are total millimeters, shared equally by opposite gripping faces.
+ * The two measured widths belong to the pinned KeyV2 reference at Z=1–3.5 mm. */
+export const STEM_FIT = Object.freeze({
+  defaultMm: 0,
+  minMm: -0.1,
+  maxMm: 0.15,
+  stepMm: 0.05,
+  gripBottom: 1,
+  gripTop: 3.5,
+  verticalArmWidth: 1.2166666984558105,
+  horizontalArmWidth: 1.316666603088379,
+  verticalReach: 4.5,
+  horizontalReach: 4,
+});
+
+export function validateStemFitDeltaMm(delta: number): void {
+  const { minMm, maxMm, stepMm } = STEM_FIT;
+  if (
+    !Number.isFinite(delta) ||
+    delta < minMm ||
+    delta > maxMm ||
+    Math.abs(delta / stepMm - Math.round(delta / stepMm)) > 1e-8
+  )
+    throw new Error('Stem fit must be from -0.10 to +0.15 mm in 0.05 mm steps.');
+}
 export const DIMENSION_LIMITS = {
   width: { min: 17.5, max: 32.8, step: 0.1 },
   depth: { min: 17.5, max: 18.5, step: 0.1 },

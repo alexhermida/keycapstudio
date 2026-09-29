@@ -25,5 +25,6 @@ export interface GenerateRequest {
   artwork: Artwork;
   size: number;
   dimensions: OemDimensions;
+  stemFitDeltaMm: number;
 }
 export type GenerateResponse = { id: number; model: KeycapModel } | { id: number; error: string };

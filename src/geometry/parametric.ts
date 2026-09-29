@@ -1,15 +1,24 @@
 import type { CrossSection, Manifold, ManifoldToplevel } from 'manifold-3d';
-import { KEYCAP, OEM_SHAPE, validateDimensions, type OemDimensions } from './config';
+import {
+  KEYCAP,
+  OEM_SHAPE,
+  validateDimensions,
+  validateStemFitDeltaMm,
+  type OemDimensions,
+} from './config';
+import { applyStemFit } from './stemFit';
 import type { CurrentBlank } from './template';
 
-/** Build an adjustable shell around the unchanged insertion region of a borrowed reference.
- * Caller owns both returned solids. No scaling or warping is applied to the stem. */
+/** Build an adjustable shell around a borrowed reference stem region.
+ * At zero fit, the insertion region remains unchanged. Caller owns both returned solids. */
 export function createOemBlank(
   kernel: ManifoldToplevel,
   dimensions: OemDimensions,
   reference: Manifold,
+  stemFitDeltaMm = 0,
 ): CurrentBlank {
   validateDimensions(dimensions);
+  validateStemFitDeltaMm(stemFitDeltaMm);
   const allocated: (Manifold | CrossSection)[] = [];
   const keep = <T extends Manifold | CrossSection>(solid: T): T => {
     allocated.push(solid);
@@ -65,11 +74,13 @@ export function createOemBlank(
       ]),
     );
     const stem = keep(reference.intersect(region));
-    const joinSection = keep(stem.slice(stemJoinHeight - 0.001));
+    const fittedStem =
+      stemFitDeltaMm === 0 ? stem : keep(applyStemFit(kernel, stem, stemFitDeltaMm));
+    const joinSection = keep(fittedStem.slice(stemJoinHeight - 0.001));
     const extension = keep(
       keep(joinSection.extrude(height - stemJoinHeight)).translate([0, 0, stemJoinHeight - 0.001]),
     );
-    const full = keep(keep(keep(shell.add(stem)).add(extension)).intersect(outside));
+    const full = keep(keep(keep(shell.add(fittedStem)).add(extension)).intersect(outside));
     if (full.status() !== 'NoError' || outside.status() !== 'NoError')
       throw new Error('Invalid keycap measurements.');
     const parts = full.decompose();
